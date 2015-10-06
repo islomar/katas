@@ -22,14 +22,10 @@ public class TripService {
     User loggedUser = getLoggedUser().orElseThrow(() -> new UserNotLoggedInException());
 
     if (user.isFriend(loggedUser)) {
-      return findTripsByUser(user);
+      return tripDAO.findTripsByUser(user);
     } else {
       return Collections.emptyList();
     }
-  }
-
-  protected List<Trip> findTripsByUser(User user) {
-    return tripDAO.findTripsByUser(user);
   }
 
   protected Optional<User> getLoggedUser() {

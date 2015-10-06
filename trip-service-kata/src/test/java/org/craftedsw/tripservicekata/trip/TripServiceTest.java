@@ -24,6 +24,7 @@ public class TripServiceTest {
   @Mock private User searchedUser;
   @Mock private User loggedUser;
   @Mock private TripDAO tripDAO;
+  @Mock private Trip trip;
 
   @BeforeMethod
   public void setUpMethod() {
@@ -34,7 +35,7 @@ public class TripServiceTest {
   public void throw_UserNotLoggedInException_if_no_user_is_logged() {
 
     User noLoggedUser = null;
-    TripService tripService = new TesteableTripService(noLoggedUser, null, tripDAO);
+    TripService tripService = new TesteableTripService(noLoggedUser, tripDAO);
 
     tripService.getTripsByUser(searchedUser);
   }
@@ -42,7 +43,7 @@ public class TripServiceTest {
 
   public void find_no_trips_if_loggedUser_and_searched_user_are_not_friends() {
 
-    TripService tripService = new TesteableTripService(loggedUser, null, tripDAO);
+    TripService tripService = new TesteableTripService(loggedUser, tripDAO);
     given(searchedUser.getFriends()).willReturn(new ArrayList<User>());
 
     List<Trip> tripsByUser = tripService.getTripsByUser(searchedUser);
@@ -53,8 +54,8 @@ public class TripServiceTest {
 
   public void find_trips_if_loggedUser_and_searched_user_are_friends() {
 
-    Trip trip = new Trip();
-    TripService tripService = new TesteableTripService(loggedUser, Arrays.asList(trip), tripDAO);
+    given(tripDAO.findTripsByUser(searchedUser)).willReturn(Arrays.asList(trip));
+    TripService tripService = new TesteableTripService(loggedUser, tripDAO);
     given(searchedUser.isFriend(loggedUser)).willReturn(true);
 
     List<Trip> tripsByUser = tripService.getTripsByUser(searchedUser);
@@ -66,23 +67,16 @@ public class TripServiceTest {
   private class TesteableTripService extends TripService {
 
     private final Optional<User> loggedUser;
-    private final List<Trip> tripList;
 
-    public TesteableTripService(User loggedUser, List<Trip> tripList, TripDAO tripDAO) {
+    public TesteableTripService(User loggedUser, TripDAO tripDAO) {
 
       super(tripDAO);
       this.loggedUser = Optional.ofNullable(loggedUser);
-      this.tripList = tripList;
     }
 
     @Override
     protected Optional<User> getLoggedUser() {
       return this.loggedUser;
-    }
-
-    @Override
-    protected List<Trip> findTripsByUser(User user) {
-      return this.tripList;
     }
   }
 
