@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.empty;
@@ -35,7 +36,7 @@ public class TripServiceTest {
     User noLoggedUser = null;
     TripService tripService = new TesteableTripService(noLoggedUser, null, tripDAO);
 
-    tripService.getTripsByUser(noLoggedUser);
+    tripService.getTripsByUser(searchedUser);
   }
 
 
@@ -64,18 +65,18 @@ public class TripServiceTest {
 
   private class TesteableTripService extends TripService {
 
-    private final User loggedUser;
+    private final Optional<User> loggedUser;
     private final List<Trip> tripList;
 
     public TesteableTripService(User loggedUser, List<Trip> tripList, TripDAO tripDAO) {
 
       super(tripDAO);
-      this.loggedUser = loggedUser;
+      this.loggedUser = Optional.ofNullable(loggedUser);
       this.tripList = tripList;
     }
 
     @Override
-    protected User getLoggedUser() {
+    protected Optional<User> getLoggedUser() {
       return this.loggedUser;
     }
 
