@@ -22,6 +22,7 @@ public class TripServiceTest {
 
   @Mock private User searchedUser;
   @Mock private User loggedUser;
+  @Mock private TripDAO tripDAO;
 
   @BeforeMethod
   public void setUpMethod() {
@@ -32,7 +33,7 @@ public class TripServiceTest {
   public void throw_UserNotLoggedInException_if_no_user_is_logged() {
 
     User noLoggedUser = null;
-    TripService tripService = new TesteableTripService(noLoggedUser, null);
+    TripService tripService = new TesteableTripService(noLoggedUser, null, tripDAO);
 
     tripService.getTripsByUser(noLoggedUser);
   }
@@ -40,7 +41,7 @@ public class TripServiceTest {
 
   public void find_no_trips_if_loggedUser_and_searched_user_are_not_friends() {
 
-    TripService tripService = new TesteableTripService(loggedUser, null);
+    TripService tripService = new TesteableTripService(loggedUser, null, tripDAO);
     given(searchedUser.getFriends()).willReturn(new ArrayList<User>());
 
     List<Trip> tripsByUser = tripService.getTripsByUser(searchedUser);
@@ -52,7 +53,7 @@ public class TripServiceTest {
   public void find_trips_if_loggedUser_and_searched_user_are_friends() {
 
     Trip trip = new Trip();
-    TripService tripService = new TesteableTripService(loggedUser, Arrays.asList(trip));
+    TripService tripService = new TesteableTripService(loggedUser, Arrays.asList(trip), tripDAO);
     given(searchedUser.isFriend(loggedUser)).willReturn(true);
 
     List<Trip> tripsByUser = tripService.getTripsByUser(searchedUser);
@@ -66,9 +67,9 @@ public class TripServiceTest {
     private final User loggedUser;
     private final List<Trip> tripList;
 
-    public TesteableTripService(User loggedUser, List<Trip> tripList) {
+    public TesteableTripService(User loggedUser, List<Trip> tripList, TripDAO tripDAO) {
 
-      super(new TripDAO());
+      super(tripDAO);
       this.loggedUser = loggedUser;
       this.tripList = tripList;
     }
