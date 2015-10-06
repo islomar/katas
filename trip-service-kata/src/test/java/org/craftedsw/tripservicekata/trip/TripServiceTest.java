@@ -65,6 +65,7 @@ public class TripServiceTest {
 
     public TesteableTripService(User loggedUser, List<Trip> tripList) {
 
+      super(new TripDAO());
       this.loggedUser = loggedUser;
       this.tripList = tripList;
     }
