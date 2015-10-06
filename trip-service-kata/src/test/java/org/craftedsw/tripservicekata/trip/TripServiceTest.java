@@ -11,10 +11,18 @@ public class TripServiceTest {
   @Test(expectedExceptions = UserNotLoggedInException.class)
   public void throw_UserNotLoggedInException_if_no_user_is_logged() {
 
-    TripService tripService = new TripService();
+    TripService tripService = new TesteableTripService();
     User noLoggedUser = null;
 
     tripService.getTripsByUser(noLoggedUser);
+  }
+
+  private class TesteableTripService extends TripService {
+
+    @Override
+    protected User getLoggedUser() {
+      return null;
+    }
   }
 
 }
