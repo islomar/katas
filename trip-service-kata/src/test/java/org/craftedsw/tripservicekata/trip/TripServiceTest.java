@@ -16,6 +16,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @Test
@@ -61,6 +63,7 @@ public class TripServiceTest {
     List<Trip> tripsByUser = tripService.getTripsByUser(searchedUser);
 
     assertThat(tripsByUser, is(Arrays.asList(trip)));
+    verify(tripDAO, times(1)).findTripsByUser(searchedUser);
   }
 
 
