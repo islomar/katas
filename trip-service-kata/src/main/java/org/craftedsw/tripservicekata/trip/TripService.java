@@ -21,18 +21,12 @@ public class TripService {
 		User loggedUser = getLoggedUser();
 		boolean isFriend = false;
 		if (loggedUser != null) {
-			for (User friend : user.getFriends()) {
-				if (friend.equals(loggedUser)) {
-					isFriend = true;
-					break;
-				}
-			}
-			if (isFriend) {
-				tripList = findTripsByUser(user);
-			}
-			return tripList;
+                  if (user.isFriend(loggedUser)) {
+                    tripList = findTripsByUser(user);
+                  }
+        	  return tripList;
 		} else {
-			throw new UserNotLoggedInException();
+		  throw new UserNotLoggedInException();
 		}
 	}
 

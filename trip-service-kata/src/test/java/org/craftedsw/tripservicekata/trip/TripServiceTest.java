@@ -37,6 +37,7 @@ public class TripServiceTest {
     tripService.getTripsByUser(noLoggedUser);
   }
 
+
   public void find_no_trips_if_loggedUser_and_searched_user_are_not_friends() {
 
     TripService tripService = new TesteableTripService(loggedUser, null);
@@ -47,16 +48,18 @@ public class TripServiceTest {
     assertThat(tripsByUser, is(empty()));
   }
 
+
   public void find_trips_if_loggedUser_and_searched_user_are_friends() {
 
     Trip trip = new Trip();
     TripService tripService = new TesteableTripService(loggedUser, Arrays.asList(trip));
-    given(searchedUser.getFriends()).willReturn(Arrays.asList(loggedUser));
+    given(searchedUser.isFriend(loggedUser)).willReturn(true);
 
     List<Trip> tripsByUser = tripService.getTripsByUser(searchedUser);
 
     assertThat(tripsByUser, is(Arrays.asList(trip)));
   }
+
 
   private class TesteableTripService extends TripService {
 

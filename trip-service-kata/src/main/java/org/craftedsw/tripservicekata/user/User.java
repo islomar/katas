@@ -18,6 +18,10 @@ public class User {
 		friends.add(user);
 	}
 
+	public boolean isFriend(User user) {
+	  return friends.contains(user);
+	}
+
 	public void addTrip(Trip trip) {
 		trips.add(trip);
 	}
