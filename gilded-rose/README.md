@@ -2,7 +2,7 @@
 
 The starting point for this kata comes from (here)[https://github.com/emilybache/GildedRose-Refactoring-Kata].
 
-This is **refactoring kata.
+This is **refactoring** kata.
 
 
 
