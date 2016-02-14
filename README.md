@@ -1,12 +1,13 @@
-katas
-=====
+#Repository for katas
+
 
 Code from katas practiced either on my own or through Coding Dojos, Coderetreats, etc.
-sss
+Currently:
+* (The Gilded rose)[./gilded-rose/README.md]
+
 
 ##Pending katas
 * codekata.com/kata/kata16-business-rules
-* Guilded rose
 * Mars Rover
 * Data Munging:  http://codekata.com/kata/kata04-data-munging/
 * Word wrap kata: http://thecleancoder.blogspot.com/2010/10/craftsman-62-dark-path.html
