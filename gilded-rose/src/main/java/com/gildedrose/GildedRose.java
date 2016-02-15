@@ -28,7 +28,10 @@ public class GildedRose {
                 && !itemName.equals(SULFURAS_HAND_OF_RAGNAROS)) {
                 decreaseItemQualityIfApplies(item);
 
-            } else if (itemQuality < MAX_QUALITY) {
+            }
+            if ((itemName.equals(AGED_BRIE)
+                 || itemName.equals(BACKSTAGE_PASSES_TO_A_TAFKAL80_ETC_CONCERT)
+                 || itemName.equals(SULFURAS_HAND_OF_RAGNAROS) && itemQuality < MAX_QUALITY)) {
                 increaseItemQualityIfApplies(item);
 
                 if (itemName.equals(BACKSTAGE_PASSES_TO_A_TAFKAL80_ETC_CONCERT)) {
