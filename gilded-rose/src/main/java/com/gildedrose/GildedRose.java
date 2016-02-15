@@ -17,51 +17,52 @@ public class GildedRose {
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
             Item item = items[i];
-            if (!item.name.equals(AGED_BRIE)
-                && !item.name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL80_ETC_CONCERT)) {
-                if (item.quality > 0) {
-                    if (!item.name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
-                        item.quality = item.quality - 1;
+
+            if (!item.getName().equals(AGED_BRIE)
+                && !item.getName().equals(BACKSTAGE_PASSES_TO_A_TAFKAL80_ETC_CONCERT)) {
+                if (item.getQuality() > 0) {
+                    if (!item.getName().equals(SULFURAS_HAND_OF_RAGNAROS)) {
+                        item.decreaseQuality();
                     }
                 }
             } else {
-                if (item.quality < MAX_QUALITY) {
-                    item.quality = item.quality + 1;
+                if (item.getQuality() < MAX_QUALITY) {
+                    item.increaseQuality();
 
-                    if (item.name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL80_ETC_CONCERT)) {
-                        if (item.sellIn <= NUMBER_OF_DAYS_EARLIER_WITH_DOUBLE_PRIZE) {
-                            if (item.quality < MAX_QUALITY) {
-                                item.quality = item.quality + 1;
+                    if (item.getName().equals(BACKSTAGE_PASSES_TO_A_TAFKAL80_ETC_CONCERT)) {
+                        if (item.getSellIn() <= NUMBER_OF_DAYS_EARLIER_WITH_DOUBLE_PRIZE) {
+                            if (item.getQuality() < MAX_QUALITY) {
+                                item.increaseQuality();
                             }
                         }
 
-                        if (item.sellIn <= NUMBER_OF_DAYS_EARLIER_WITH_TRIPLE_PRIZE) {
-                            if (item.quality < MAX_QUALITY) {
-                                item.quality = item.quality + 1;
+                        if (item.getSellIn() <= NUMBER_OF_DAYS_EARLIER_WITH_TRIPLE_PRIZE) {
+                            if (item.getQuality() < MAX_QUALITY) {
+                                item.increaseQuality();
                             }
                         }
                     }
                 }
             }
 
-            if (!item.name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
-                item.sellIn = item.sellIn - 1;
+            if (!item.getName().equals(SULFURAS_HAND_OF_RAGNAROS)) {
+                item.decreaseSellIn();
             }
 
-            if (item.sellIn < 0) {
-                if (!item.name.equals(AGED_BRIE)) {
-                    if (!item.name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL80_ETC_CONCERT)) {
-                        if (item.quality > 0) {
-                            if (!item.name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
-                                item.quality = item.quality - 1;
+            if (item.getSellIn() < 0) {
+                if (!item.getName().equals(AGED_BRIE)) {
+                    if (!item.getName().equals(BACKSTAGE_PASSES_TO_A_TAFKAL80_ETC_CONCERT)) {
+                        if (item.getQuality() > 0) {
+                            if (!item.getName().equals(SULFURAS_HAND_OF_RAGNAROS)) {
+                                item.decreaseQuality();
                             }
                         }
                     } else {
-                        item.quality = item.quality - item.quality;
+                        item.setQualityToZero();
                     }
                 } else {
-                    if (item.quality < MAX_QUALITY) {
-                        item.quality = item.quality + 1;
+                    if (item.getQuality() < MAX_QUALITY) {
+                        item.increaseQuality();
                     }
                 }
             }
