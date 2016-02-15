@@ -46,18 +46,17 @@ public class GildedRose {
                 item.sellIn -= 1;
             }
 
-            if (itemSellIn < 0) {
-                if (!itemName.equals(AGED_BRIE)) {
-                    if (!itemName.equals(BACKSTAGE_PASSES_TO_A_TAFKAL80_ETC_CONCERT)) {
-                        if (!itemName.equals(SULFURAS_HAND_OF_RAGNAROS)) {
-                            decreaseItemQualityIfApplies(item);
-                        }
-                    } else {
-                        setQualityToZero(item);
-                    }
+            if (itemSellIn < 0 && !itemName.equals(AGED_BRIE)) {
+                if (!itemName.equals(BACKSTAGE_PASSES_TO_A_TAFKAL80_ETC_CONCERT)
+                    && !itemName.equals(SULFURAS_HAND_OF_RAGNAROS)) {
+                    decreaseItemQualityIfApplies(item);
                 } else {
-                    increaseItemQualityIfApplies(item);
+                    setQualityToZero(item);
                 }
+            }
+
+            if (itemSellIn < 0 && itemName.equals(AGED_BRIE)) {
+                increaseItemQualityIfApplies(item);
             }
         }
     }
