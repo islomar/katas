@@ -10,10 +10,10 @@ public class GildedRoseTest {
 
     @Test
     public void foo() {
-        Item[] items = new Item[] { new Item("foo", 0, 0) };
+        Item[] items = new Item[]{new Item("foo", 0, 0)};
         GildedRose app = new GildedRose(items);
         app.updateQuality();
-        assertEquals("foo", app.items[0].getName());
+        assertEquals("foo", app.items[0].name);
     }
 
     @Test
@@ -24,10 +24,11 @@ public class GildedRoseTest {
 
         sut.updateQuality();
 
-        assertEquals(80, sulfuras.getQuality());
+        assertEquals(80, sulfuras.quality);
 
 
     }
+
     @Test
     public void should_never_changes_sellIn_of_Sulfuras() throws Exception {
         Item sulfuras = new Item("Sulfuras, Hand of Ragnaros", 0, 80);
@@ -36,11 +37,10 @@ public class GildedRoseTest {
 
         sut.updateQuality();
 
-        assertEquals(0, sulfuras.getSellIn());
+        assertEquals(0, sulfuras.sellIn);
 
 
     }
-
 
 
     @Test
@@ -51,8 +51,7 @@ public class GildedRoseTest {
 
         sut.updateQuality();
 
-
-        assertEquals(9, normalItem.getSellIn());
+        assertEquals(9, normalItem.sellIn);
     }
 
     @Test
@@ -63,8 +62,7 @@ public class GildedRoseTest {
 
         sut.updateQuality();
 
-
-        assertEquals(19, normalItem.getQuality());
+        assertEquals(19, normalItem.quality);
     }
 
     @Test
@@ -75,8 +73,7 @@ public class GildedRoseTest {
 
         sut.updateQuality();
 
-
-        assertEquals(0, normalItem.getQuality());
+        assertEquals(0, normalItem.quality);
     }
 
     @Test
@@ -87,8 +84,7 @@ public class GildedRoseTest {
 
         sut.updateQuality();
 
-
-        assertEquals(23, normalItem.getQuality());
+        assertEquals(23, normalItem.quality);
     }
 
 
@@ -100,8 +96,7 @@ public class GildedRoseTest {
 
         sut.updateQuality();
 
-
-        assertEquals(26, agedBrie.getQuality());
+        assertEquals(26, agedBrie.quality);
     }
 
 
@@ -113,8 +108,7 @@ public class GildedRoseTest {
 
         sut.updateQuality();
 
-
-        assertEquals(50, agedBrie.getQuality());
+        assertEquals(50, agedBrie.quality);
     }
 
     @Test
@@ -125,8 +119,7 @@ public class GildedRoseTest {
 
         sut.updateQuality();
 
-
-        assertEquals(0, backStagePass.getQuality());
+        assertEquals(0, backStagePass.quality);
     }
 
     @Test
@@ -137,8 +130,7 @@ public class GildedRoseTest {
 
         sut.updateQuality();
 
-
-        assertEquals(21, backStagePass.getQuality());
+        assertEquals(21, backStagePass.quality);
     }
 
     @Test
@@ -149,8 +141,7 @@ public class GildedRoseTest {
 
         sut.updateQuality();
 
-
-        assertEquals(29, backStagePass.getQuality());
+        assertEquals(29, backStagePass.quality);
     }
 
     @Test
@@ -161,8 +152,7 @@ public class GildedRoseTest {
 
         sut.updateQuality();
 
-
-        assertEquals(47, backStagePass.getQuality());
+        assertEquals(47, backStagePass.quality);
     }
 
     @Test
@@ -172,14 +162,15 @@ public class GildedRoseTest {
         Item backStagePass10DaysAway = new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49);
         Item backStagePass5DaysAway = new Item("Backstage passes to a TAFKAL80ETC concert", 5, 48);
 
-        GildedRose sut = new GildedRose((Item[]) Arrays.asList(backStagePassMoreThan10DaysAway, backStagePass10DaysAway, backStagePass5DaysAway).toArray());
+        GildedRose
+            sut =
+            new GildedRose((Item[]) Arrays.asList(backStagePassMoreThan10DaysAway, backStagePass10DaysAway, backStagePass5DaysAway).toArray());
 
         sut.updateQuality();
 
-
-        assertEquals(50, backStagePassMoreThan10DaysAway.getQuality());
-        assertEquals(50, backStagePass10DaysAway.getQuality());
-        assertEquals(50, backStagePass5DaysAway.getQuality());
+        assertEquals(50, backStagePassMoreThan10DaysAway.quality);
+        assertEquals(50, backStagePass10DaysAway.quality);
+        assertEquals(50, backStagePass5DaysAway.quality);
     }
 
 }
