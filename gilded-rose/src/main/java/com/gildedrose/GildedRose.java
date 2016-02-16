@@ -6,8 +6,8 @@ public class GildedRose {
     private static final String AGED_BRIE = "Aged Brie";
     private static final String SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
     private static final int MAX_QUALITY = 50;
-    private static final int NUMBER_OF_DAYS_EARLIER_WITH_DOUBLE_PRIZE = 10;
-    private static final int NUMBER_OF_DAYS_EARLIER_WITH_TRIPLE_PRIZE = 5;
+    private static final int TEN_DAYS = 10;
+    private static final int FIVE_DAYS = 5;
     private static final int MIN_QUALITY = 0;
 
     Item[] items;
@@ -29,6 +29,7 @@ public class GildedRose {
 
                 decreaseItemQualityIfApplies(item);
             }
+
             if (itemName.equals(AGED_BRIE)
                  || itemName.equals(BACKSTAGE_PASSES_TO_A_TAFKAL80_ETC_CONCERT)
                  || itemName.equals(SULFURAS_HAND_OF_RAGNAROS)) {
@@ -37,11 +38,12 @@ public class GildedRose {
             }
 
             if (itemName.equals(BACKSTAGE_PASSES_TO_A_TAFKAL80_ETC_CONCERT)) {
-                if (itemSellIn <= NUMBER_OF_DAYS_EARLIER_WITH_DOUBLE_PRIZE) {
+                if (itemSellIn <= FIVE_DAYS) {
+                    increaseItemQualityIfApplies(item);
                     increaseItemQualityIfApplies(item);
                 }
 
-                if (itemSellIn <= NUMBER_OF_DAYS_EARLIER_WITH_TRIPLE_PRIZE) {
+                if (itemSellIn > FIVE_DAYS && itemSellIn <= TEN_DAYS) {
                     increaseItemQualityIfApplies(item);
                 }
             }
