@@ -30,20 +30,33 @@ public class GildedRose {
                 decreaseItemQualityIfApplies(item);
             }
 
-            if (itemName.equals(AGED_BRIE)
-                 || itemName.equals(BACKSTAGE_PASSES_TO_A_TAFKAL80_ETC_CONCERT)
-                 || itemName.equals(SULFURAS_HAND_OF_RAGNAROS)) {
+            if (itemName.equals(AGED_BRIE)) {
+                if (itemSellIn < 0) {
+                    increaseItemQualityIfApplies(item);
+                    increaseItemQualityIfApplies(item);
+                } else {
+                    increaseItemQualityIfApplies(item);
+                }
+            }
 
+            if (itemName.equals(SULFURAS_HAND_OF_RAGNAROS)) {
                 increaseItemQualityIfApplies(item);
             }
 
             if (itemName.equals(BACKSTAGE_PASSES_TO_A_TAFKAL80_ETC_CONCERT)) {
+
                 if (itemSellIn <= FIVE_DAYS) {
+                    increaseItemQualityIfApplies(item);
                     increaseItemQualityIfApplies(item);
                     increaseItemQualityIfApplies(item);
                 }
 
                 if (itemSellIn > FIVE_DAYS && itemSellIn <= TEN_DAYS) {
+                    increaseItemQualityIfApplies(item);
+                    increaseItemQualityIfApplies(item);
+                }
+
+                if (itemSellIn > TEN_DAYS) {
                     increaseItemQualityIfApplies(item);
                 }
             }
@@ -61,9 +74,6 @@ public class GildedRose {
                 }
             }
 
-            if (itemSellIn < 0 && itemName.equals(AGED_BRIE)) {
-                increaseItemQualityIfApplies(item);
-            }
         }
     }
 
