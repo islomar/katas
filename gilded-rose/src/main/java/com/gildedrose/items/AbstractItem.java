@@ -21,9 +21,11 @@ public abstract class AbstractItem extends Item {
 
     public abstract void updateSellIn();
 
-    public void increaseItemQuality() {
-        if (this.quality < MAX_QUALITY) {
-            this.quality += 1;
+    public void increaseItemQualityBy(int times) {
+        int i = 0;
+        while (i<times && this.quality < MAX_QUALITY) {
+            this.quality++;
+            i++;
         }
     }
 

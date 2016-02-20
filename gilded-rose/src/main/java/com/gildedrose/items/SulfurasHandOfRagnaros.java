@@ -10,7 +10,7 @@ public class SulfurasHandOfRagnaros extends AbstractItem {
 
     @Override
     public void updateQuality() {
-        increaseItemQuality();
+        increaseItemQualityBy(1);
         if (sellIn < 0) {
             setQualityToZero();
         }
