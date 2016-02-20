@@ -1,20 +1,28 @@
 package com.gildedrose;
 
+import com.gildedrose.items.AbstractItem;
+import com.gildedrose.items.AgedBrie;
+import com.gildedrose.items.BackstagePasses;
+import com.gildedrose.items.DexterityVest;
+import com.gildedrose.items.GenericItem;
+import com.gildedrose.items.SulfurasHandOfRagnaros;
+
 public class TexttestFixture {
+
     public static void main(String[] args) {
         System.out.println("OMGHAI!");
 
-        Item[] items = new Item[] {
-                new Item("+5 Dexterity Vest", 10, 20), //
-                new Item("Aged Brie", 2, 0), //
-                new Item("Elixir of the Mongoose", 5, 7), //
-                new Item("Sulfuras, Hand of Ragnaros", 0, 80), //
-                new Item("Sulfuras, Hand of Ragnaros", -1, 80),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
-                // this conjured item does not work properly yet
-                new Item("Conjured Mana Cake", 3, 6) };
+        AbstractItem[] items = new AbstractItem[]{
+            new DexterityVest(10, 20), //
+            new AgedBrie(2, 0), //
+            new GenericItem("Elixir of the Mongoose", 5, 7), //
+            new SulfurasHandOfRagnaros(0, 80), //
+            new SulfurasHandOfRagnaros(-1, 80),
+            new BackstagePasses(15, 20),
+            new BackstagePasses(10, 49),
+            new BackstagePasses(5, 49),
+            // this conjured item does not work properly yet
+            new GenericItem("Conjured Mana Cake", 3, 6)};
 
         GildedRose app = new GildedRose(items);
 
