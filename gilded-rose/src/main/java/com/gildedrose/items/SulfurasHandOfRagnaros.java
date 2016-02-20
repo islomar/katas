@@ -2,7 +2,7 @@ package com.gildedrose.items;
 
 public class SulfurasHandOfRagnaros extends AbstractItem {
 
-    public static final String NAME = "Sulfuras, Hand of Ragnaros";
+    private static final String NAME = "Sulfuras, Hand of Ragnaros";
 
     public SulfurasHandOfRagnaros(int sellIn, int quality) {
         super(NAME, sellIn, quality);

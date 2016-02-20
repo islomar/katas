@@ -2,7 +2,7 @@ package com.gildedrose.items;
 
 public class AgedBrie extends AbstractItem {
 
-    public static final String NAME = "Aged Brie";
+    private static final String NAME = "Aged Brie";
 
     public AgedBrie(int sellIn, int quality) {
         super(NAME, sellIn, quality);

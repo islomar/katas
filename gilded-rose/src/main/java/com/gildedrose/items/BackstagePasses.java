@@ -2,7 +2,7 @@ package com.gildedrose.items;
 
 public class BackstagePasses extends AbstractItem {
 
-    public static final String NAME = "Backstage passes to a TAFKAL80ETC concert";
+    private static final String NAME = "Backstage passes to a TAFKAL80ETC concert";
 
     public BackstagePasses(String name, int sellIn, int quality) {
         super(name, sellIn, quality);
