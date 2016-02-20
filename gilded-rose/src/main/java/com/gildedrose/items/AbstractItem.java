@@ -21,13 +21,13 @@ public abstract class AbstractItem extends Item {
 
     public abstract void updateSellIn();
 
-    public void increaseItemQualityIfApplies() {
+    public void increaseItemQuality() {
         if (this.quality < MAX_QUALITY) {
             this.quality += 1;
         }
     }
 
-    protected void decreaseItemQualityIfApplies() {
+    protected void decreaseItemQuality() {
         if (this.quality > MIN_QUALITY) {
             this.quality -= 1;
         }

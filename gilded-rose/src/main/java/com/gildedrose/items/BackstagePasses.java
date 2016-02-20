@@ -15,18 +15,18 @@ public class BackstagePasses extends AbstractItem {
     @Override
     public void updateQuality() {
         if (sellIn <= FIVE_DAYS) {
-            increaseItemQualityIfApplies();
-            increaseItemQualityIfApplies();
-            increaseItemQualityIfApplies();
+            increaseItemQuality();
+            increaseItemQuality();
+            increaseItemQuality();
         }
 
         if (sellIn > FIVE_DAYS && sellIn <= TEN_DAYS) {
-            increaseItemQualityIfApplies();
-            increaseItemQualityIfApplies();
+            increaseItemQuality();
+            increaseItemQuality();
         }
 
         if (sellIn > TEN_DAYS) {
-            increaseItemQualityIfApplies();
+            increaseItemQuality();
         }
 
         if (sellIn < 0) {

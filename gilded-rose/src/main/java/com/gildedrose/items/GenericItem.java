@@ -9,9 +9,9 @@ public class GenericItem extends AbstractItem {
 
     @Override
     public void updateQuality() {
-        decreaseItemQualityIfApplies();
+        decreaseItemQuality();
         if (sellIn < 0) {
-            decreaseItemQualityIfApplies();
+            decreaseItemQuality();
         }
     }
 

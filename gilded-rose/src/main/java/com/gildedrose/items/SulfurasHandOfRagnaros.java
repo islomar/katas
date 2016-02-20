@@ -1,7 +1,5 @@
 package com.gildedrose.items;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 public class SulfurasHandOfRagnaros extends AbstractItem {
 
     public static final String NAME = "Sulfuras, Hand of Ragnaros";
@@ -12,7 +10,7 @@ public class SulfurasHandOfRagnaros extends AbstractItem {
 
     @Override
     public void updateQuality() {
-        increaseItemQualityIfApplies();
+        increaseItemQuality();
         if (sellIn < 0) {
             setQualityToZero();
         }

@@ -11,10 +11,10 @@ public class AgedBrie extends AbstractItem {
     @Override
     public void updateQuality() {
         if (this.sellIn < 0) {
-            increaseItemQualityIfApplies();
-            increaseItemQualityIfApplies();
+            increaseItemQuality();
+            increaseItemQuality();
         } else {
-            increaseItemQualityIfApplies();
+            increaseItemQuality();
         }
     }
 
