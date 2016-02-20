@@ -1,7 +1,6 @@
 package com.gildedrose;
 
 import com.gildedrose.items.AbstractItem;
-import com.gildedrose.items.AbstractItemFactory;
 import com.gildedrose.items.AgedBrie;
 import com.gildedrose.items.BackstagePasses;
 import com.gildedrose.items.DexterityVest;
