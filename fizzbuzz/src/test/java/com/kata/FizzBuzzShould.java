@@ -1,12 +1,16 @@
 package com.kata;
 
+import com.kata.rules.DivisibleRule;
+import com.kata.rules.FizzBuzzRule;
+
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsNot.not;
-import static org.hamcrest.core.IsNull.nullValue;
 
 @Test
 public class FizzBuzzShould {
@@ -14,10 +18,12 @@ public class FizzBuzzShould {
     private static final String FIZZ = "fizz";
     private static final String BUZZ = "buzz";
     private FizzBuzzCalculator fizzBuzzCalculator;
+    private List<FizzBuzzRule> rules = new ArrayList<>();
 
     @BeforeClass
     public void setUp() {
-        fizzBuzzCalculator = new FizzBuzzCalculator.Builder(null).build();
+        rules.add(new DivisibleRule());
+        fizzBuzzCalculator = new FizzBuzzCalculator(rules);
     }
 
     public void return_one_when_it_receives_one() {
