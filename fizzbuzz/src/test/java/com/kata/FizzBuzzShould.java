@@ -28,7 +28,7 @@ public class FizzBuzzShould {
     @BeforeClass
     public void setUp() {
         rules = generateRules();
-        Function<Integer, String> defaultConverter =  (input) -> String.valueOf(input);
+        Function<Integer, String> defaultConverter = (input) -> String.valueOf(input);
         fizzBuzzCalculator = new FizzBuzzCalculator(rules, defaultConverter);
     }
 
@@ -69,14 +69,35 @@ public class FizzBuzzShould {
     }
 
     public List<FizzBuzzRule> generateRules() {
-        Predicate<Integer> divisibleByThree = input -> input % 3 == 0;
-        Predicate<Integer> divisibleByFive = input -> input % 5 == 0;
-        Predicate<Integer> divisibleBySeven = input -> input % 7 == 0;
-        Predicate<Integer> divisibleByFifteen = input -> input % 15 == 0;
-        rules.add(new DivisibleRule(divisibleByThree, input -> FIZZ, 2));
-        rules.add(new DivisibleRule(divisibleByFive, input -> BUZZ, 2));
-        rules.add(new DivisibleRule(divisibleBySeven, input -> WIZZ, 2));
-        rules.add(new DivisibleRule(divisibleByFifteen, input -> FIZZBUZZ, 1));
+
+        rules.add(createDivisibleByThreeRule());
+        rules.add(createDivisibleByFiveRule());
+        rules.add(createDivisibleBySevenRule());
+        rules.add(createDivisibleByFifteenRule());
         return rules;
+    }
+
+    private FizzBuzzRule createDivisibleByThreeRule() {
+        Predicate<Integer> divisibleByThree = input -> input % 3 == 0;
+        Function<Integer, String> fizzConverter = input -> FIZZ;
+        return new DivisibleRule(divisibleByThree, fizzConverter, 2);
+    }
+
+    private FizzBuzzRule createDivisibleByFiveRule() {
+        Predicate<Integer> divisibleByFive = input -> input % 5 == 0;
+        Function<Integer, String> buzzConverter = input -> BUZZ;
+        return new DivisibleRule(divisibleByFive, buzzConverter, 2);
+    }
+
+    private FizzBuzzRule createDivisibleBySevenRule() {
+        Predicate<Integer> divisibleBySeven = input -> input % 7 == 0;
+        Function<Integer, String> wizzConverter = input -> WIZZ;
+        return new DivisibleRule(divisibleBySeven, wizzConverter, 2);
+    }
+
+    private FizzBuzzRule createDivisibleByFifteenRule() {
+        Predicate<Integer> divisibleByFifteen = input -> input % 15 == 0;
+        Function<Integer, String> fizzbuzzConverter = input -> FIZZBUZZ;
+        return new DivisibleRule(divisibleByFifteen, fizzbuzzConverter, 1);
     }
 }
