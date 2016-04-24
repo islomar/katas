@@ -6,10 +6,10 @@ import java.util.function.Predicate;
 public abstract class FizzBuzzRule {
 
     protected final Predicate<Integer> condition;
-    protected final int priority;
+    protected final RulePriorityEnum priority;
     protected final Function<Integer, String> converter;
 
-    public FizzBuzzRule(Predicate<Integer> condition, Function<Integer, String> converter, int priority) {
+    public FizzBuzzRule(Predicate<Integer> condition, Function<Integer, String> converter, RulePriorityEnum priority) {
 
         this.condition = condition;
         this.converter = converter;
@@ -19,7 +19,7 @@ public abstract class FizzBuzzRule {
     public abstract boolean shouldBeApplied(Integer input);
 
     public int getPriority() {
-        return this.priority;
+        return this.priority.getValue();
     }
 
     public String convert(Integer input) {

@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 public class IntegerToStringConverterRule extends FizzBuzzRule {
 
-    public IntegerToStringConverterRule(Integer input, Predicate<Integer> condition, Function<Integer, String> converter, int priority) {
+    public IntegerToStringConverterRule(Integer input, Predicate<Integer> condition, Function<Integer, String> converter, RulePriorityEnum priority) {
         super(condition, converter, priority);
     }
 

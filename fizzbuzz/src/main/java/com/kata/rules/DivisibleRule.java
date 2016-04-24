@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 public class DivisibleRule extends FizzBuzzRule {
 
-    public DivisibleRule(Predicate<Integer> condition, Function<Integer, String> converter, int priority) {
+    public DivisibleRule(Predicate<Integer> condition, Function<Integer, String> converter, RulePriorityEnum priority) {
         super(condition, converter, priority);
     }
 

@@ -3,6 +3,7 @@ package com.kata;
 import com.kata.rules.DivisibleRule;
 import com.kata.rules.FizzBuzzRule;
 import com.kata.rules.IntegerToStringConverterRule;
+import com.kata.rules.RulePriorityEnum;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -80,24 +81,24 @@ public class FizzBuzzShould {
     private FizzBuzzRule createDivisibleByThreeRule() {
         Predicate<Integer> divisibleByThree = input -> input % 3 == 0;
         Function<Integer, String> fizzConverter = input -> FIZZ;
-        return new DivisibleRule(divisibleByThree, fizzConverter, 2);
+        return new DivisibleRule(divisibleByThree, fizzConverter, RulePriorityEnum.LOW);
     }
 
     private FizzBuzzRule createDivisibleByFiveRule() {
         Predicate<Integer> divisibleByFive = input -> input % 5 == 0;
         Function<Integer, String> buzzConverter = input -> BUZZ;
-        return new DivisibleRule(divisibleByFive, buzzConverter, 2);
+        return new DivisibleRule(divisibleByFive, buzzConverter, RulePriorityEnum.LOW);
     }
 
     private FizzBuzzRule createDivisibleBySevenRule() {
         Predicate<Integer> divisibleBySeven = input -> input % 7 == 0;
         Function<Integer, String> wizzConverter = input -> WIZZ;
-        return new DivisibleRule(divisibleBySeven, wizzConverter, 2);
+        return new DivisibleRule(divisibleBySeven, wizzConverter, RulePriorityEnum.HIGH);
     }
 
     private FizzBuzzRule createDivisibleByFifteenRule() {
         Predicate<Integer> divisibleByFifteen = input -> input % 15 == 0;
         Function<Integer, String> fizzbuzzConverter = input -> FIZZBUZZ;
-        return new DivisibleRule(divisibleByFifteen, fizzbuzzConverter, 1);
+        return new DivisibleRule(divisibleByFifteen, fizzbuzzConverter, RulePriorityEnum.HIGH);
     }
 }
