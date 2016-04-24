@@ -1,7 +1,7 @@
 package com.kata;
 
 
-import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSortedMap;
 
 import java.util.Map;
 
@@ -10,11 +10,11 @@ public class FizzBuzzCalculator {
     private static final Map<Integer, String> rules;
 
     static {
-        rules = ImmutableMap.<Integer, String>builder()
-            .put(15, "fizzbuzz")
+        rules = ImmutableSortedMap.<Integer, String>reverseOrder()
             .put(3, "fizz")
             .put(5, "buzz")
             .put(7, "wizz")
+            .put(15, "fizzbuzz")
             .build();
     }
 
