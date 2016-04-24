@@ -17,7 +17,7 @@ public class FizzBuzzShould {
 
     @BeforeClass
     public void setUp() {
-        fizzBuzzCalculator = new FizzBuzzCalculator();
+        fizzBuzzCalculator = new FizzBuzzCalculator.Builder(null).build();
     }
 
     public void return_one_when_it_receives_one() {
