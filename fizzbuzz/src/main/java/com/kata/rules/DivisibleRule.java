@@ -1,11 +1,12 @@
 package com.kata.rules;
 
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class DivisibleRule extends FizzBuzzRule {
 
-    public DivisibleRule(Predicate<Integer> condition, String result, int priority) {
-        super(condition, result, priority);
+    public DivisibleRule(Predicate<Integer> condition, Function<Integer, String> converter, int priority) {
+        super(condition, converter, priority);
     }
 
     @Override
@@ -13,8 +14,4 @@ public class DivisibleRule extends FizzBuzzRule {
         return this.condition.test(input);
     }
 
-    @Override
-    public String convert(Integer input) {
-        return this.result;
-    }
 }

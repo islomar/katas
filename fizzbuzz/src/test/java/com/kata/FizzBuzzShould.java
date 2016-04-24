@@ -73,10 +73,10 @@ public class FizzBuzzShould {
         Predicate<Integer> divisibleByFive = input -> input % 5 == 0;
         Predicate<Integer> divisibleBySeven = input -> input % 7 == 0;
         Predicate<Integer> divisibleByFifteen = input -> input % 15 == 0;
-        rules.add(new DivisibleRule(divisibleByThree, FIZZ, 2));
-        rules.add(new DivisibleRule(divisibleByFive, BUZZ, 2));
-        rules.add(new DivisibleRule(divisibleBySeven, WIZZ, 2));
-        rules.add(new DivisibleRule(divisibleByFifteen, FIZZBUZZ, 1));
+        rules.add(new DivisibleRule(divisibleByThree, input -> FIZZ, 2));
+        rules.add(new DivisibleRule(divisibleByFive, input -> BUZZ, 2));
+        rules.add(new DivisibleRule(divisibleBySeven, input -> WIZZ, 2));
+        rules.add(new DivisibleRule(divisibleByFifteen, input -> FIZZBUZZ, 1));
         return rules;
     }
 }
