@@ -8,14 +8,18 @@ import com.kata.rules.FizzBuzzRulePriorityComparator;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class FizzBuzzCalculator {
 
     private final List<FizzBuzzRule> fizzBuzzRules;
+    private final Function<Integer, String> defaultConverter;
 
 
-    public FizzBuzzCalculator(List<FizzBuzzRule> fizzBuzzRules) {
+    public FizzBuzzCalculator(List<FizzBuzzRule> fizzBuzzRules, Function<Integer, String> defaultConverter) {
         this.fizzBuzzRules = fizzBuzzRules;
+        this.defaultConverter = defaultConverter;
     }
 
 
@@ -26,6 +30,6 @@ public class FizzBuzzCalculator {
             filter(rule -> rule.shouldBeApplied(input)).
             findFirst().
             map(rule -> rule.convert(input)).
-            orElse(String.valueOf(input));
+            orElse(defaultConverter.apply(input));
     }
 }
