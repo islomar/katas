@@ -2,19 +2,19 @@ package com.kata.rules;
 
 import java.util.function.Predicate;
 
-public class DivisibleRule extends FizzBuzzRule {
+public class IntegerToStringConverterRule extends FizzBuzzRule {
 
-    public DivisibleRule(Predicate<Integer> condition, String result, int priority) {
+    public IntegerToStringConverterRule(Integer input, Predicate<Integer> condition, String result, int priority) {
         super(condition, result, priority);
     }
 
     @Override
     public boolean shouldBeApplied(Integer input) {
-        return this.condition.test(input);
+        return false;
     }
 
     @Override
     public String convert(Integer input) {
-        return this.result;
+        return String.valueOf(input);
     }
 }

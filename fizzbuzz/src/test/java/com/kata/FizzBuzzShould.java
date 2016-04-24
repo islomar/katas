@@ -2,12 +2,14 @@ package com.kata;
 
 import com.kata.rules.DivisibleRule;
 import com.kata.rules.FizzBuzzRule;
+import com.kata.rules.IntegerToStringConverterRule;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -22,7 +24,15 @@ public class FizzBuzzShould {
 
     @BeforeClass
     public void setUp() {
-        rules.add(new DivisibleRule());
+        Predicate<Integer> divisibleByThree = input -> input % 3 == 0;
+        Predicate<Integer> divisibleByFive = input -> input % 5 == 0;
+        Predicate<Integer> divisibleBySeven = input -> input % 7 == 0;
+        Predicate<Integer> divisibleByFifteen = input -> input % 15 == 0;
+        rules.add(new DivisibleRule(divisibleByThree, "fizz", 2));
+        rules.add(new DivisibleRule(divisibleByFive, "buzz", 2));
+        rules.add(new DivisibleRule(divisibleBySeven, "wizz", 2));
+        rules.add(new DivisibleRule(divisibleByFifteen, "fizzbuzz", 1));
+        //rules.add(new IntegerToStringConverterRule());
         fizzBuzzCalculator = new FizzBuzzCalculator(rules);
     }
 
