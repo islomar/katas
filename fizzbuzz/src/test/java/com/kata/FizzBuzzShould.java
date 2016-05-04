@@ -2,7 +2,6 @@ package com.kata;
 
 import com.kata.rules.DivisibleRule;
 import com.kata.rules.FizzBuzzRule;
-import com.kata.rules.IntegerToStringConverterRule;
 import com.kata.rules.RulePriorityEnum;
 
 import org.testng.annotations.BeforeClass;

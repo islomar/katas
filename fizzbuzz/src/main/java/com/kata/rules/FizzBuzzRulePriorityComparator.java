@@ -10,8 +10,4 @@ public class FizzBuzzRulePriorityComparator implements Comparator<FizzBuzzRule> 
         return (rule1.getPriority() > rule2.getPriority()) ? 1 : -1;
     }
 
-    @Override
-    public boolean equals(Object otherRule) {
-        return this.equals(otherRule);
-    }
 }
