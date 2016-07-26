@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/islomar/katas.svg?branch=masater)](https://travis-ci.org/islomar/katas)
+
 #Repository for katas
 
 
