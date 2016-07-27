@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/islomar/katas.svg?branch=master)](https://travis-ci.org/islomar/katas)
+
 #Poker Hands kata
 
 https://www.meetup.com/es/madswcraft/events/232634578/
