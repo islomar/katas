@@ -6,6 +6,13 @@
 * https://github.com/SoftwareCraftsmanshipMadrid/PokerHands
 * http://codingdojo.org/cgi-bin/index.pl?KataPokerHands
 
+##Poker game description
+* https://en.wikipedia.org/wiki/Poker
+* https://en.wikipedia.org/wiki/List_of_poker_hands
 
 #Spock
 https://medium.com/@xala3pa
+
+
+##TODO
+* Leave only one way of creating a card
