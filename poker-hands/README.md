@@ -17,3 +17,5 @@ https://medium.com/@xala3pa
 ##TODO
 * Leave only one way of creating a card
 * Pending FlushRule.creatematchingRuleCardsExtractor()... indeed, why did I need it??
+* Do I need white and black players?
+* Create REAL unit tests...

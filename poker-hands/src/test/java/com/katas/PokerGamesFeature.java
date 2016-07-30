@@ -11,7 +11,7 @@ import static org.hamcrest.core.Is.is;
 @Test
 public class PokerGamesFeature {
 
-    public void calculate_who_wins_when_both_players_have_high_card_value() {
+    public void calculate_who_wins_when_both_players_have_high_card_ace() {
         PokerHand whitePlayerPokerHand = new PokerHand("2C", "3H", "4S", "8C", "AH");
         PokerHand blackPlayerPokerHand = new PokerHand("2H", "3D", "5S", "9C", "KD");
         Player whitePlayer = new Player("White", whitePlayerPokerHand);
