@@ -25,8 +25,6 @@ public class PlayerShould {
     public void be_initialized_with_a_poker_hand() {
         Player player = new Player("White", new PokerHand("2H", "3D", "5S", "9C", "KD"));
 
-        System.out.println(player.getPokerHand().getCards());
-
         assertThat(player.getPokerHand().getCards(), containsInAnyOrder(CardFactory.createCard("2H"),
                                                                         CardFactory.createCard("3D"),
                                                                         CardFactory.createCard("5S"),
