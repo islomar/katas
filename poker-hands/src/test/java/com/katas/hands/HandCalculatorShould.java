@@ -35,9 +35,9 @@ public class HandCalculatorShould {
                                             CardFactory.createCard(card4),
                                             CardFactory.createCard(card5));
 
-        HandType handType = handCalculator.calculateHand(pokerHand);
+        TopUserHand topUserHand = handCalculator.calculateTopHand(pokerHand);
 
-        assertThat(handType, is(expectedHandType));
+        assertThat(topUserHand.getHandType(), is(expectedHandType));
     }
 
 }
