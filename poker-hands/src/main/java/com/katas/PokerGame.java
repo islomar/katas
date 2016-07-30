@@ -27,11 +27,15 @@ public class PokerGame {
 
         if (handTypeForWhitePlayer.getHandType().equals(handTypeForBlackPlayer.getHandType())) {
             if (handTypeForWhitePlayer.getMaxCardValue().getValue() > handTypeForBlackPlayer.getMaxCardValue().getValue()) {
-                return whitePlayer.getPlayerName() + " wins. - with high card: " + handTypeForWhitePlayer.getMaxCardValue().getDescription();
+                return this.createResultMessage(whitePlayer, handTypeForWhitePlayer);
             }
-            return blackPlayer.getPlayerName() + " wins. - with high card: " + handTypeForBlackPlayer.getMaxCardValue().getDescription();
+            return this.createResultMessage(blackPlayer, handTypeForBlackPlayer);
         }
         return null;
+    }
+
+    private String createResultMessage(Player player, TopUserHand topUserHand) {
+        return whitePlayer.getPlayerName() + " wins. - with high card: " + topUserHand.getMaxCardValue().getDescription();
     }
 
 }
