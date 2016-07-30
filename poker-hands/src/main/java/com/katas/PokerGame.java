@@ -24,14 +24,19 @@ public class PokerGame {
 
     public String showDown() {
 
-        TopUserHand handTypeForWhitePlayer = this.handCalculator.calculateTopHand(whitePlayer.getPokerHand());
-        TopUserHand handTypeForBlackPlayer = this.handCalculator.calculateTopHand(blackPlayer.getPokerHand());
+        TopUserHand topHandForWhitePlayer = this.handCalculator.calculateTopHand(whitePlayer.getPokerHand());
+        TopUserHand topHandForBlackPlayer = this.handCalculator.calculateTopHand(blackPlayer.getPokerHand());
 
-        if (handTypeForWhitePlayer.getHandType().equals(handTypeForBlackPlayer.getHandType())) {
-            if (handTypeForWhitePlayer.getMaxCardValue().getValue() > handTypeForBlackPlayer.getMaxCardValue().getValue()) {
-                return this.outputMessageFormatter.createResultMessage(whitePlayer, handTypeForWhitePlayer);
+        if (topHandForWhitePlayer.getHandType().getPriority() == topHandForBlackPlayer.getHandType().getPriority()) {
+
+            int whitePlayerMaxValue = topHandForWhitePlayer.getMaxCardValue().getValue();
+            int blackPlayerMaxValue = topHandForBlackPlayer.getMaxCardValue().getValue();
+            if (whitePlayerMaxValue > blackPlayerMaxValue) {
+                return this.outputMessageFormatter.createResultMessage(whitePlayer, topHandForWhitePlayer);
+            } else if (whitePlayerMaxValue < blackPlayerMaxValue) {
+                return this.outputMessageFormatter.createResultMessage(blackPlayer, topHandForBlackPlayer);
             }
-            return this.outputMessageFormatter.createResultMessage(blackPlayer, handTypeForBlackPlayer);
+            return "Tie.";
         }
         return null;
     }
