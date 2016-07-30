@@ -15,7 +15,12 @@ https://medium.com/@xala3pa
 
 
 ##TODO
+* Implement the missing rules
 * Leave only one way of creating a card
 * Pending FlushRule.creatematchingRuleCardsExtractor()... indeed, why did I need it??
 * Do I need white and black players?
 * Create REAL unit tests...
+* Improve PokerGame:
+  * Extract responsibilities
+  * Do not have "Tie." inside there
+* Avoid using if()
