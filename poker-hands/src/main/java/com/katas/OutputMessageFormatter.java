@@ -5,7 +5,20 @@ import com.katas.hands.TopUserHand;
 public class OutputMessageFormatter {
 
     public String createResultMessage(Player player, TopUserHand topUserHand) {
-        return player.getPlayerName() + " wins. - with high card: " + topUserHand.getMaxCardValue().getDescription();
+        String description;
+
+        switch (topUserHand.getHandType()) {
+            case HIGH_CARD:
+                description = "high card: " + topUserHand.getMaxCardValue().getDescription();
+                break;
+            case FLUSH:
+                description = "flush";
+                break;
+            default:
+                description = "MEEEEC";
+                break;
+        }
+        return player.getPlayerName() + " wins. - with " + description;
     }
 
 }

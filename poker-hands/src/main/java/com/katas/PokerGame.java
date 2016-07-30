@@ -37,6 +37,8 @@ public class PokerGame {
                 return this.outputMessageFormatter.createResultMessage(blackPlayer, topHandForBlackPlayer);
             }
             return "Tie.";
+        } else if ((topHandForWhitePlayer.getHandType().getPriority() > topHandForBlackPlayer.getHandType().getPriority())) {
+            return this.outputMessageFormatter.createResultMessage(whitePlayer, topHandForWhitePlayer);
         }
         return null;
     }

@@ -35,4 +35,16 @@ public class PokerGamesFeature {
         assertThat(result, is("Tie."));
     }
 
+    public void calculate_who_wins_when_white_player_has_flush() {
+        PokerHand whitePlayerPokerHand = new PokerHand("2S", "8S", "AS", "QS",  "3S");
+        PokerHand blackPlayerPokerHand = new PokerHand("2H", "3D", "5S", "9C", "KD");
+        Player whitePlayer = new Player("White", whitePlayerPokerHand);
+        Player blackPlayer = new Player("Black", blackPlayerPokerHand);
+        PokerGame pokerGame = new PokerGame(new HandCalculator(), new OutputMessageFormatter(), whitePlayer, blackPlayer);
+
+        String result = pokerGame.showDown();
+
+        assertThat(result, is("White wins. - with flush"));
+    }
+
 }
