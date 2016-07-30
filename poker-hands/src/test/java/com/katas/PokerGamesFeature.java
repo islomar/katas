@@ -16,7 +16,7 @@ public class PokerGamesFeature {
         PokerHand blackPlayerPokerHand = new PokerHand("2H", "3D", "5S", "9C", "KD");
         Player whitePlayer = new Player("White", whitePlayerPokerHand);
         Player blackPlayer = new Player("Black", blackPlayerPokerHand);
-        PokerGame pokerGame = new PokerGame(new HandCalculator(), whitePlayer, blackPlayer);
+        PokerGame pokerGame = new PokerGame(new HandCalculator(), new OutputMessageFormatter(), whitePlayer, blackPlayer);
 
         String result = pokerGame.showDown();
 

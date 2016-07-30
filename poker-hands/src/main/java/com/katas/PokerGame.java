@@ -12,12 +12,14 @@ public class PokerGame {
     private final HandCalculator handCalculator;
     private final Player whitePlayer;
     private final Player blackPlayer;
+    private final OutputMessageFormatter outputMessageFormatter;
 
-    public PokerGame(HandCalculator handCalculator, Player whitePlayer, Player blackPlayer) {
+    public PokerGame(HandCalculator handCalculator, OutputMessageFormatter outputMessageFormatter, Player whitePlayer, Player blackPlayer) {
 
         this.handCalculator = handCalculator;
         this.whitePlayer = whitePlayer;
         this.blackPlayer = blackPlayer;
+        this.outputMessageFormatter = outputMessageFormatter;
     }
 
     public String showDown() {
@@ -27,15 +29,10 @@ public class PokerGame {
 
         if (handTypeForWhitePlayer.getHandType().equals(handTypeForBlackPlayer.getHandType())) {
             if (handTypeForWhitePlayer.getMaxCardValue().getValue() > handTypeForBlackPlayer.getMaxCardValue().getValue()) {
-                return this.createResultMessage(whitePlayer, handTypeForWhitePlayer);
+                return this.outputMessageFormatter.createResultMessage(whitePlayer, handTypeForWhitePlayer);
             }
-            return this.createResultMessage(blackPlayer, handTypeForBlackPlayer);
+            return this.outputMessageFormatter.createResultMessage(blackPlayer, handTypeForBlackPlayer);
         }
         return null;
     }
-
-    private String createResultMessage(Player player, TopUserHand topUserHand) {
-        return whitePlayer.getPlayerName() + " wins. - with high card: " + topUserHand.getMaxCardValue().getDescription();
-    }
-
 }
