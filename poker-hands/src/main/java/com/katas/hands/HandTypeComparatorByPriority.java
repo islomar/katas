@@ -1,8 +1,9 @@
 package com.katas.hands;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
-public class HandTypeComparatorByPriority implements Comparator<HandType> {
+public class HandTypeComparatorByPriority implements Comparator<HandType>, Serializable {
 
     @Override
     public int compare(HandType handType1, HandType handType2) {
