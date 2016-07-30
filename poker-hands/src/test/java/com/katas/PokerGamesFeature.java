@@ -12,10 +12,8 @@ import static org.hamcrest.core.Is.is;
 public class PokerGamesFeature {
 
     public void calculate_who_wins_when_both_players_have_high_card_ace() {
-        PokerHand whitePlayerPokerHand = new PokerHand("2C", "3H", "4S", "8C", "AH");
-        PokerHand blackPlayerPokerHand = new PokerHand("2H", "3D", "5S", "9C", "KD");
-        Player whitePlayer = new Player("White", whitePlayerPokerHand);
-        Player blackPlayer = new Player("Black", blackPlayerPokerHand);
+        Player whitePlayer = new Player("White", new PokerHand("2C", "3H", "4S", "8C", "AH"));
+        Player blackPlayer = new Player("Black", new PokerHand("2H", "3D", "5S", "9C", "KD"));
         PokerGame pokerGame = new PokerGame(new HandCalculator(), new OutputMessageFormatter(), whitePlayer, blackPlayer);
 
         String result = pokerGame.showDown();
@@ -24,10 +22,8 @@ public class PokerGamesFeature {
     }
 
     public void calculate_who_wins_when_there_is_tie() {
-        PokerHand whitePlayerPokerHand = new PokerHand("2D", "3H", "5C", "9S", "KH");
-        PokerHand blackPlayerPokerHand = new PokerHand("2H", "3D", "5S", "9C", "KD");
-        Player whitePlayer = new Player("White", whitePlayerPokerHand);
-        Player blackPlayer = new Player("Black", blackPlayerPokerHand);
+        Player whitePlayer = new Player("White", new PokerHand("2D", "3H", "5C", "9S", "KH"));
+        Player blackPlayer = new Player("Black", new PokerHand("2H", "3D", "5S", "9C", "KD"));
         PokerGame pokerGame = new PokerGame(new HandCalculator(), new OutputMessageFormatter(), whitePlayer, blackPlayer);
 
         String result = pokerGame.showDown();
@@ -36,10 +32,8 @@ public class PokerGamesFeature {
     }
 
     public void calculate_who_wins_when_white_player_has_flush() {
-        PokerHand whitePlayerPokerHand = new PokerHand("2S", "8S", "AS", "QS",  "3S");
-        PokerHand blackPlayerPokerHand = new PokerHand("2H", "3D", "5S", "9C", "KD");
-        Player whitePlayer = new Player("White", whitePlayerPokerHand);
-        Player blackPlayer = new Player("Black", blackPlayerPokerHand);
+        Player whitePlayer = new Player("White", new PokerHand("2S", "8S", "AS", "QS",  "3S"));
+        Player blackPlayer = new Player("Black", new PokerHand("2H", "3D", "5S", "9C", "KD"));
         PokerGame pokerGame = new PokerGame(new HandCalculator(), new OutputMessageFormatter(), whitePlayer, blackPlayer);
 
         String result = pokerGame.showDown();
