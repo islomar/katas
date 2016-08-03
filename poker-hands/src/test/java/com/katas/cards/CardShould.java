@@ -61,4 +61,12 @@ public class CardShould {
         assertThat(card1, is(not(card2)));
     }
 
+    public void return_a_simplified_symbol_for_itself() {
+        Card card = new Card(CardValueType.THREE, CardSuitType.CLUBS);
+
+        String cardSymbol = card.toSymbol();
+
+        assertThat(cardSymbol, is("3C"));
+    }
+
 }

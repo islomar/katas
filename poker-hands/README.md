@@ -15,6 +15,7 @@ https://medium.com/@xala3pa
 
 
 ##TODO
+* showDown() should return void, and check interaction with OutputWriter.
 * Implement the missing rules
 * Leave only one way of creating a card
 * Pending FlushRule.creatematchingRuleCardsExtractor()... indeed, why did I need it??

@@ -23,6 +23,10 @@ public class Card {
         return this.cardSuit;
     }
 
+    public String toSymbol() {
+        return cardValue.getSymbol() + cardSuit.getSymbol();
+    }
+
 
     @Override
     public boolean equals(Object o) {

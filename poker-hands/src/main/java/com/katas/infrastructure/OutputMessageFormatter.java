@@ -1,5 +1,6 @@
-package com.katas;
+package com.katas.infrastructure;
 
+import com.katas.Player;
 import com.katas.hands.TopUserHand;
 
 public class OutputMessageFormatter {

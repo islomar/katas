@@ -1,10 +1,12 @@
 package com.katas;
 
+import com.katas.cards.Card;
 import com.katas.hands.HandCalculator;
 import com.katas.hands.HandType;
 import com.katas.hands.TopUserHand;
+import com.katas.infrastructure.OutputMessageFormatter;
+import com.katas.infrastructure.OutputWriter;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class PokerGame {
@@ -13,16 +15,20 @@ public class PokerGame {
     private final Player whitePlayer;
     private final Player blackPlayer;
     private final OutputMessageFormatter outputMessageFormatter;
+    private final OutputWriter outputWriter;
 
-    public PokerGame(HandCalculator handCalculator, OutputMessageFormatter outputMessageFormatter, Player whitePlayer, Player blackPlayer) {
+    public PokerGame(HandCalculator handCalculator, OutputMessageFormatter outputMessageFormatter, OutputWriter outputWriter, Player whitePlayer, Player blackPlayer) {
 
         this.handCalculator = handCalculator;
         this.whitePlayer = whitePlayer;
         this.blackPlayer = blackPlayer;
         this.outputMessageFormatter = outputMessageFormatter;
+        this.outputWriter = outputWriter;
     }
 
-    public String showDown() {
+    public void showDown() {
+
+        String resultMessage;
 
         TopUserHand topHandForWhitePlayer = this.handCalculator.calculateTopHand(whitePlayer.getPokerHand());
         TopUserHand topHandForBlackPlayer = this.handCalculator.calculateTopHand(blackPlayer.getPokerHand());
@@ -32,14 +38,29 @@ public class PokerGame {
             int whitePlayerMaxValue = topHandForWhitePlayer.getMaxCardValue().getValue();
             int blackPlayerMaxValue = topHandForBlackPlayer.getMaxCardValue().getValue();
             if (whitePlayerMaxValue > blackPlayerMaxValue) {
-                return this.outputMessageFormatter.createResultMessage(whitePlayer, topHandForWhitePlayer);
+                System.out.println("HELLOOOO");
+                resultMessage = this.outputMessageFormatter.createResultMessage(whitePlayer, topHandForWhitePlayer);
             } else if (whitePlayerMaxValue < blackPlayerMaxValue) {
-                return this.outputMessageFormatter.createResultMessage(blackPlayer, topHandForBlackPlayer);
+                resultMessage = this.outputMessageFormatter.createResultMessage(blackPlayer, topHandForBlackPlayer);
+            } else if (topHandForBlackPlayer.getHandType() == HandType.HIGH_CARD) {
+                //TODO: calculate again the highest card
+                List<Card> sortedWhitePlayerCards = this.handCalculator.sortPokerHandCardsByValue(whitePlayer.getPokerHand());
+                List<Card> sortedBlackPlayerCards = this.handCalculator.sortPokerHandCardsByValue(blackPlayer.getPokerHand());
+
+                resultMessage = this.outputMessageFormatter.createResultMessage(blackPlayer, topHandForBlackPlayer);
+            } else {
+                resultMessage = "Tie.";
             }
-            return "Tie.";
         } else if ((topHandForWhitePlayer.getHandType().getPriority() > topHandForBlackPlayer.getHandType().getPriority())) {
-            return this.outputMessageFormatter.createResultMessage(whitePlayer, topHandForWhitePlayer);
+            resultMessage = this.outputMessageFormatter.createResultMessage(whitePlayer, topHandForWhitePlayer);
+        } else {
+            resultMessage = this.outputMessageFormatter.createResultMessage(blackPlayer, topHandForBlackPlayer);
         }
-        return null;
+
+        this.outputWriter.write(resultMessage);
+    }
+
+    private void xx() {
+
     }
 }
