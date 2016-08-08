@@ -1,8 +1,6 @@
 package com.kata;
 
 
-import com.google.common.collect.ImmutableSortedMap;
-
 import com.kata.rules.DivisibleRule;
 import com.kata.rules.FizzBuzzRule;
 import com.kata.rules.FizzBuzzRulePriorityComparator;
