@@ -8,7 +8,6 @@ import com.kata.rules.RulePriorityEnum;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -38,7 +37,7 @@ public class FizzBuzzCalculator {
             orElse(defaultConverter.apply(input));
     }
 
-    public List<FizzBuzzRule> generateRules() {
+    private List<FizzBuzzRule> generateRules() {
 
         List<FizzBuzzRule> rules = new ArrayList<>();
         rules.add(createDivisibleByThreeRule());
@@ -50,26 +49,24 @@ public class FizzBuzzCalculator {
 
 
     private FizzBuzzRule createDivisibleByThreeRule() {
-        Predicate<Integer> isDivisibleByThree = input -> input % 3 == 0;
-        Function<Integer, String> fizzConverter = input -> FIZZ;
-        return new DivisibleRule(isDivisibleByThree, fizzConverter, RulePriorityEnum.LOW);
+        return this.createDivisibleByNumberRule(3, FIZZ, RulePriorityEnum.LOW);
     }
 
     private FizzBuzzRule createDivisibleByFiveRule() {
-        Predicate<Integer> isDivisibleByFive = input -> input % 5 == 0;
-        Function<Integer, String> buzzConverter = input -> BUZZ;
-        return new DivisibleRule(isDivisibleByFive, buzzConverter, RulePriorityEnum.LOW);
+        return this.createDivisibleByNumberRule(5, BUZZ, RulePriorityEnum.LOW);
     }
 
     private FizzBuzzRule createDivisibleBySevenRule() {
-        Predicate<Integer> isDivisibleBySeven = input -> input % 7 == 0;
-        Function<Integer, String> wizzConverter = input -> WIZZ;
-        return new DivisibleRule(isDivisibleBySeven, wizzConverter, RulePriorityEnum.HIGH);
+        return this.createDivisibleByNumberRule(7, WIZZ, RulePriorityEnum.HIGH);
     }
 
     private FizzBuzzRule createDivisibleByFifteenRule() {
-        Predicate<Integer> isDivisibleByFifteen = input -> input % 15 == 0;
-        Function<Integer, String> fizzbuzzConverter = input -> FIZZBUZZ;
-        return new DivisibleRule(isDivisibleByFifteen, fizzbuzzConverter, RulePriorityEnum.HIGH);
+        return this.createDivisibleByNumberRule(15, FIZZBUZZ, RulePriorityEnum.HIGH);
+    }
+
+    private FizzBuzzRule createDivisibleByNumberRule(int number, String output, RulePriorityEnum rulePriority) {
+        Predicate<Integer> isDivisibleBy = input -> input % number == 0;
+        Function<Integer, String> fizzbuzzConverter = input -> output;
+        return new DivisibleRule(isDivisibleBy, fizzbuzzConverter, rulePriority);
     }
 }
