@@ -20,16 +20,13 @@ public class FizzBuzzShould {
 
     private static final String FIZZ = "fizz";
     private static final String BUZZ = "buzz";
-    public static final String WIZZ = "wizz";
-    public static final String FIZZBUZZ = "fizzbuzz";
+    private static final String WIZZ = "wizz";
+    private static final String FIZZBUZZ = "fizzbuzz";
     private FizzBuzzCalculator fizzBuzzCalculator;
-    private List<FizzBuzzRule> rules = new ArrayList<>();
 
     @BeforeClass
     public void setUp() {
-        rules = generateRules();
-        Function<Integer, String> defaultConverter = (input) -> String.valueOf(input);
-        fizzBuzzCalculator = new FizzBuzzCalculator(rules, defaultConverter);
+        fizzBuzzCalculator = new FizzBuzzCalculator();
     }
 
     public void return_one_when_it_receives_one() {
@@ -68,36 +65,4 @@ public class FizzBuzzShould {
         assertThat(fizzBuzzCalculator.calculate(14), is(WIZZ));
     }
 
-    public List<FizzBuzzRule> generateRules() {
-
-        rules.add(createDivisibleByThreeRule());
-        rules.add(createDivisibleByFiveRule());
-        rules.add(createDivisibleBySevenRule());
-        rules.add(createDivisibleByFifteenRule());
-        return rules;
-    }
-
-    private FizzBuzzRule createDivisibleByThreeRule() {
-        Predicate<Integer> isDivisibleByThree = input -> input % 3 == 0;
-        Function<Integer, String> fizzConverter = input -> FIZZ;
-        return new DivisibleRule(isDivisibleByThree, fizzConverter, RulePriorityEnum.LOW);
-    }
-
-    private FizzBuzzRule createDivisibleByFiveRule() {
-        Predicate<Integer> isDivisibleByFive = input -> input % 5 == 0;
-        Function<Integer, String> buzzConverter = input -> BUZZ;
-        return new DivisibleRule(isDivisibleByFive, buzzConverter, RulePriorityEnum.LOW);
-    }
-
-    private FizzBuzzRule createDivisibleBySevenRule() {
-        Predicate<Integer> isDivisibleBySeven = input -> input % 7 == 0;
-        Function<Integer, String> wizzConverter = input -> WIZZ;
-        return new DivisibleRule(isDivisibleBySeven, wizzConverter, RulePriorityEnum.HIGH);
-    }
-
-    private FizzBuzzRule createDivisibleByFifteenRule() {
-        Predicate<Integer> isDivisibleByFifteen = input -> input % 15 == 0;
-        Function<Integer, String> fizzbuzzConverter = input -> FIZZBUZZ;
-        return new DivisibleRule(isDivisibleByFifteen, fizzbuzzConverter, RulePriorityEnum.HIGH);
-    }
 }
