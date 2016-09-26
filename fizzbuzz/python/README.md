@@ -1,4 +1,4 @@
-#Fizzbuzz in Python 3
+#Fizzbuzz in Python
 
 ##Setup
 1. Requirements:
