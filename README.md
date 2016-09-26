@@ -19,3 +19,5 @@ Currently:
   * http://codingdojo.org/cgi-bin/index.pl?KataBankOCR
   * http://williamdurand.fr/2013/06/03/object-calisthenics/
 * http://codurance.com/2015/11/01/practicing-well-crafted-design/
+* Object literal to query string:
+  * http://www.codesai.com/2016/09/kata-object-literal-to-query-string/
