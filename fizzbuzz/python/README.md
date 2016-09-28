@@ -10,3 +10,8 @@
 
 ##Running the tests
 Execute `mamba --format=documentation fizzbuzz_spec.py`
+
+
+* Doubts for the workshop:
+  * The entry parameter: int or string?
+  * If not done correctly, the order of the "rules" matter
