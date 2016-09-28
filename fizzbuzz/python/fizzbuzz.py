@@ -11,6 +11,9 @@ class DivisibleByRule(object):
     def applies(self, number):
         return number % self.dividend == 0
 
+    def __cmp__(self, other):
+        if hasattr(other, 'priority'):
+            return self.priority.__cmp__(other.priority)
 
 
 PRIORITY_HIGH = 1
@@ -21,13 +24,10 @@ RULES =[DivisibleByRule(3, 'fizz', PRIORITY_LOW),
 ]
 
 def process(number):
-    for rule in sorted(RULES, key=_get_priority):
+    for rule in sorted(RULES):
         if rule.applies(number):
             return rule.result
     return str(number)
 
 def _is_divisible_by(number, divisor):
     return number % divisor == 0
-
-def _get_priority(rule):
-    return rule.priority
