@@ -22,4 +22,4 @@ with describe('Fizzbuzz'):
 
     with context('when processing 5'):
         with it('returns buzz'):
-            expect(fizzbuzz.process(5)).to(equal('buzzz'))            
+            expect(fizzbuzz.process(5)).to(equal('buzz'))            
