@@ -13,15 +13,15 @@ class DivisibleByRule(object):
 
 
 
-RULES = OrderedDict([   (DivisibleByRule(15, 'fizzbuzz'), 'fizzbuzz'), 
-                        (DivisibleByRule(3, 'fizz'), 'fizz'), 
-                        (DivisibleByRule(5, 'buzz'), 'buzz')
-                    ])
+RULES =[DivisibleByRule(15, 'fizzbuzz'), 
+        DivisibleByRule(3, 'fizz'),
+        DivisibleByRule(5, 'buzz')
+]
 
 def process(number):
-    for rule, result in RULES.iteritems():
+    for rule in RULES:
         if rule.applies(number):
-            return result
+            return rule.result
     return str(number)
 
 def _is_divisible_by(number, divisor):
