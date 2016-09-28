@@ -26,4 +26,8 @@ with describe('Fizzbuzz'):
 
     with context('when processing 10'):
         with it('returns buzz'):
-            expect(fizzbuzz.process(10)).to(equal('buzz'))             
+            expect(fizzbuzz.process(10)).to(equal('buzz'))        
+
+    with context('when processing 15'):
+        with it('returns fizzbuzz'):
+            expect(fizzbuzz.process(15)).to(equal('fizzbuzz'))                               
