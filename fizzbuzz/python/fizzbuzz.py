@@ -3,13 +3,13 @@ from collections import OrderedDict
 
 class DivisibleByRule(object):
 
-    def __init__(self, dividend, priority, converter):
-        self.dividend = dividend
+    def __init__(self, condition, priority, converter):
+        self.condition = condition
         self.priority = priority
         self.converter = converter
 
     def applies(self, number):
-        return number % self.dividend == 0
+        return self.condition(number)
 
     def convert(self, number):
         return self.converter(number)
@@ -19,11 +19,23 @@ class DivisibleByRule(object):
             return self.priority.__cmp__(other.priority)
 
 
+def _is_divisible_by_3(number):
+    return _is_divisible_by(number, 3)
+
+def _is_divisible_by_5(number):
+    return _is_divisible_by(number, 5)
+
+def _is_divisible_by_15(number):
+    return _is_divisible_by(number, 15)   
+
+def _is_divisible_by(number, dividend):
+    return number % dividend == 0
+
 PRIORITY_HIGH = 1
 PRIORITY_LOW = 2
-RULES =[DivisibleByRule(3, PRIORITY_LOW, lambda number: 'fizz'),
-        DivisibleByRule(5, PRIORITY_LOW, lambda number: 'buzz'),
-        DivisibleByRule(15, PRIORITY_HIGH, lambda number: 'fizzbuzz')
+RULES =[DivisibleByRule(_is_divisible_by_3, PRIORITY_LOW, lambda number: 'fizz'),
+        DivisibleByRule(_is_divisible_by_5, PRIORITY_LOW, lambda number: 'buzz'),
+        DivisibleByRule(_is_divisible_by_15, PRIORITY_HIGH, lambda number: 'fizzbuzz')
 ]
 
 def process(number):
