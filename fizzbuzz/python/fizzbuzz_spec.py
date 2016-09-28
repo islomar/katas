@@ -1,40 +1,47 @@
 # -*- coding: utf-8 -*-
 
 from expects import *
-import fizzbuzz
+from fizzbuzz import Fizzbuzz
 
 with describe('Fizzbuzz'):
+
+    with before.each:
+        self.fizzbuzz = Fizzbuzz()
+
     with context('when processing 1'):
         with it('returns 1'):
-            expect(fizzbuzz.process(1)).to(equal('1'))
+            expect(self.process(1)).to(equal('1'))
 
     with context('when processing 2'):
         with it('returns 2'):
-            expect(fizzbuzz.process(2)).to(equal('2'))            
+            expect(self.process(2)).to(equal('2'))            
 
     with context('when number is divisible by 3'):
         with context('when processing 3'):
             with it('returns fizz'):
-                expect(fizzbuzz.process(3)).to(equal('fizz'))
+                expect(self.process(3)).to(equal('fizz'))
 
         with context('when processing 9'):
             with it('returns fizz'):
-                expect(fizzbuzz.process(9)).to(equal('fizz'))
+                expect(self.process(9)).to(equal('fizz'))
 
     with context('when number is divisible by 5'):
         with context('when processing 5'):
             with it('returns buzz'):
-                expect(fizzbuzz.process(5)).to(equal('buzz'))            
+                expect(self.process(5)).to(equal('buzz'))            
 
         with context('when processing 10'):
             with it('returns buzz'):
-                expect(fizzbuzz.process(10)).to(equal('buzz'))        
+                expect(self.process(10)).to(equal('buzz'))        
 
     with context('when number is divisible by 15'):
         with context('when processing 15'):
             with it('returns fizzbuzz'):
-                expect(fizzbuzz.process(15)).to(equal('fizzbuzz'))                               
+                expect(self.process(15)).to(equal('fizzbuzz'))                               
 
         with context('when processing 30'):
             with it('returns fizzbuzz'):
-                expect(fizzbuzz.process(30)).to(equal('fizzbuzz'))             
+                expect(self.process(30)).to(equal('fizzbuzz'))    
+
+    def process(self, number):
+        return self.fizzbuzz.process(number)       

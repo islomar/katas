@@ -19,27 +19,30 @@ class DivisibleByRule(object):
             return self.priority.__cmp__(other.priority)
 
 
-def _is_divisible_by_3(number):
-    return _is_divisible_by(number, 3)
+class Fizzbuzz(object):
+    PRIORITY_HIGH = 1
+    PRIORITY_LOW = 2
 
-def _is_divisible_by_5(number):
-    return _is_divisible_by(number, 5)
+    def __init__(self):
+        self.rules = [  DivisibleByRule(self._is_divisible_by_3, self.PRIORITY_LOW, lambda number: 'fizz'),
+                        DivisibleByRule(self._is_divisible_by_5, self.PRIORITY_LOW, lambda number: 'buzz'),
+                        DivisibleByRule(self._is_divisible_by_15, self.PRIORITY_HIGH, lambda number: 'fizzbuzz')
+    ]
 
-def _is_divisible_by_15(number):
-    return _is_divisible_by(number, 15)   
+    def process(self, number):
+        for rule in sorted(self.rules):
+            if rule.applies(number):
+                return rule.convert(number)
+        return str(number)
 
-def _is_divisible_by(number, dividend):
-    return number % dividend == 0
+    def _is_divisible_by_3(self, number):
+        return self._is_divisible_by(number, 3)
 
-PRIORITY_HIGH = 1
-PRIORITY_LOW = 2
-RULES =[DivisibleByRule(_is_divisible_by_3, PRIORITY_LOW, lambda number: 'fizz'),
-        DivisibleByRule(_is_divisible_by_5, PRIORITY_LOW, lambda number: 'buzz'),
-        DivisibleByRule(_is_divisible_by_15, PRIORITY_HIGH, lambda number: 'fizzbuzz')
-]
+    def _is_divisible_by_5(self, number):
+        return self._is_divisible_by(number, 5)
 
-def process(number):
-    for rule in sorted(RULES):
-        if rule.applies(number):
-            return rule.convert(number)
-    return str(number)
+    def _is_divisible_by_15(self, number):
+        return self._is_divisible_by(number, 15)   
+
+    def _is_divisible_by(self, number, dividend):
+        return number % dividend == 0
