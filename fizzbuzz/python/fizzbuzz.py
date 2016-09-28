@@ -1,14 +1,26 @@
 # -*- coding: utf-8 -*-
 from collections import OrderedDict
 
-RULES = OrderedDict([   (15, 'fizzbuzz'), 
-                        (3, 'fizz'), 
-                        (5, 'buzz')
+class DivisibleByRule(object):
+
+    def __init__(self, dividend, result):
+        self.dividend = dividend
+        self.result = result
+
+    def applies(self, number):
+        return number % self.dividend == 0
+
+
+
+
+RULES = OrderedDict([   (DivisibleByRule(15, 'fizzbuzz'), 'fizzbuzz'), 
+                        (DivisibleByRule(3, 'fizz'), 'fizz'), 
+                        (DivisibleByRule(5, 'buzz'), 'buzz')
                     ])
 
 def process(number):
-    for dividend, result in RULES.iteritems():
-        if _is_divisible_by(number, dividend):
+    for rule, result in RULES.iteritems():
+        if rule.applies(number):
             return result
     return str(number)
 
