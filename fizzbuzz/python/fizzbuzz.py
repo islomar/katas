@@ -28,7 +28,7 @@ class Fizzbuzz(object):
         self.rules = sorted([  FizzbuzzRule(self._is_divisible_by_3, self.PRIORITY_LOW, lambda number: 'fizz'),
                                 FizzbuzzRule(self._is_divisible_by_5, self.PRIORITY_LOW, lambda number: 'buzz'),
                                 FizzbuzzRule(self._is_divisible_by_15, self.PRIORITY_HIGH, lambda number: 'fizzbuzz'),
-                                FizzbuzzRule(lambda number: True, self.PRIORITY_FOR_DEFAULT_RULE, lambda number: str(number)),
+                                FizzbuzzRule(self._is_default_rule, self.PRIORITY_FOR_DEFAULT_RULE, lambda number: str(number)),
     ])
 
     def process(self, number):
@@ -47,3 +47,6 @@ class Fizzbuzz(object):
 
     def _is_divisible_by(self, number, dividend):
         return number % dividend == 0
+
+    def _is_default_rule(self, number):
+        return True
