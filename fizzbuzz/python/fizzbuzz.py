@@ -22,11 +22,13 @@ class FizzbuzzRule(object):
 class Fizzbuzz(object):
     PRIORITY_HIGH = 1
     PRIORITY_LOW = 2
+    PRIORITY_FOR_DEFAULT_RULE = 3
 
     def __init__(self):
         self.rules = [  FizzbuzzRule(self._is_divisible_by_3, self.PRIORITY_LOW, lambda number: 'fizz'),
                         FizzbuzzRule(self._is_divisible_by_5, self.PRIORITY_LOW, lambda number: 'buzz'),
-                        FizzbuzzRule(self._is_divisible_by_15, self.PRIORITY_HIGH, lambda number: 'fizzbuzz')
+                        FizzbuzzRule(self._is_divisible_by_15, self.PRIORITY_HIGH, lambda number: 'fizzbuzz'),
+                        FizzbuzzRule(lambda number: True, self.PRIORITY_FOR_DEFAULT_RULE, lambda number: str(number)),
     ]
 
     def process(self, number):
