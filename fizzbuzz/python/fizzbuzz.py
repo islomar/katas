@@ -28,6 +28,3 @@ def process(number):
         if rule.applies(number):
             return rule.result
     return str(number)
-
-def _is_divisible_by(number, divisor):
-    return number % divisor == 0
