@@ -35,7 +35,6 @@ class Fizzbuzz(object):
         for rule in self.rules:
             if rule.applies(number):
                 return rule.convert(number)
-        return str(number)
 
     def _is_divisible_by_3(self, number):
         return self._is_divisible_by(number, 3)
