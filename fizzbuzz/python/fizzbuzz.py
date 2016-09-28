@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from collections import OrderedDict
 
-class DivisibleByRule(object):
+class FizzbuzzRule(object):
 
     def __init__(self, condition, priority, converter):
         self.condition = condition
@@ -24,9 +24,9 @@ class Fizzbuzz(object):
     PRIORITY_LOW = 2
 
     def __init__(self):
-        self.rules = [  DivisibleByRule(self._is_divisible_by_3, self.PRIORITY_LOW, lambda number: 'fizz'),
-                        DivisibleByRule(self._is_divisible_by_5, self.PRIORITY_LOW, lambda number: 'buzz'),
-                        DivisibleByRule(self._is_divisible_by_15, self.PRIORITY_HIGH, lambda number: 'fizzbuzz')
+        self.rules = [  FizzbuzzRule(self._is_divisible_by_3, self.PRIORITY_LOW, lambda number: 'fizz'),
+                        FizzbuzzRule(self._is_divisible_by_5, self.PRIORITY_LOW, lambda number: 'buzz'),
+                        FizzbuzzRule(self._is_divisible_by_15, self.PRIORITY_HIGH, lambda number: 'fizzbuzz')
     ]
 
     def process(self, number):
