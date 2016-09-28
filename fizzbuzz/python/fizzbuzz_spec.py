@@ -12,26 +12,29 @@ with describe('Fizzbuzz'):
         with it('returns 2'):
             expect(fizzbuzz.process(2)).to(equal('2'))            
 
-    with context('when processing 3'):
-        with it('returns fizz'):
-            expect(fizzbuzz.process(3)).to(equal('fizz'))
+    with context('when number is divisible by 3'):
+        with context('when processing 3'):
+            with it('returns fizz'):
+                expect(fizzbuzz.process(3)).to(equal('fizz'))
 
-    with context('when processing 9'):
-        with it('returns fizz'):
-            expect(fizzbuzz.process(9)).to(equal('fizz'))
+        with context('when processing 9'):
+            with it('returns fizz'):
+                expect(fizzbuzz.process(9)).to(equal('fizz'))
 
-    with context('when processing 5'):
-        with it('returns buzz'):
-            expect(fizzbuzz.process(5)).to(equal('buzz'))            
+    with context('when number is divisible by 5'):
+        with context('when processing 5'):
+            with it('returns buzz'):
+                expect(fizzbuzz.process(5)).to(equal('buzz'))            
 
-    with context('when processing 10'):
-        with it('returns buzz'):
-            expect(fizzbuzz.process(10)).to(equal('buzz'))        
+        with context('when processing 10'):
+            with it('returns buzz'):
+                expect(fizzbuzz.process(10)).to(equal('buzz'))        
 
-    with context('when processing 15'):
-        with it('returns fizzbuzz'):
-            expect(fizzbuzz.process(15)).to(equal('fizzbuzz'))                               
+    with context('when number is divisible by 15'):
+        with context('when processing 15'):
+            with it('returns fizzbuzz'):
+                expect(fizzbuzz.process(15)).to(equal('fizzbuzz'))                               
 
-    with context('when processing 30'):
-        with it('returns fizzbuzz'):
-            expect(fizzbuzz.process(30)).to(equal('fizzbuzz'))             
+        with context('when processing 30'):
+            with it('returns fizzbuzz'):
+                expect(fizzbuzz.process(30)).to(equal('fizzbuzz'))             
