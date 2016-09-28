@@ -13,10 +13,11 @@ class DivisibleByRule(object):
 
 
 
-
-RULES =[DivisibleByRule(3, 'fizz', 2),
-        DivisibleByRule(5, 'buzz', 2),
-        DivisibleByRule(15, 'fizzbuzz', 1)
+PRIORITY_HIGH = 1
+PRIORITY_LOW = 2
+RULES =[DivisibleByRule(3, 'fizz', PRIORITY_LOW),
+        DivisibleByRule(5, 'buzz', PRIORITY_LOW),
+        DivisibleByRule(15, 'fizzbuzz', PRIORITY_HIGH)
 ]
 
 def process(number):
