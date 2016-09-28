@@ -25,14 +25,14 @@ class Fizzbuzz(object):
     PRIORITY_FOR_DEFAULT_RULE = 3
 
     def __init__(self):
-        self.rules = [  FizzbuzzRule(self._is_divisible_by_3, self.PRIORITY_LOW, lambda number: 'fizz'),
-                        FizzbuzzRule(self._is_divisible_by_5, self.PRIORITY_LOW, lambda number: 'buzz'),
-                        FizzbuzzRule(self._is_divisible_by_15, self.PRIORITY_HIGH, lambda number: 'fizzbuzz'),
-                        FizzbuzzRule(lambda number: True, self.PRIORITY_FOR_DEFAULT_RULE, lambda number: str(number)),
-    ]
+        self.rules = sorted([  FizzbuzzRule(self._is_divisible_by_3, self.PRIORITY_LOW, lambda number: 'fizz'),
+                                FizzbuzzRule(self._is_divisible_by_5, self.PRIORITY_LOW, lambda number: 'buzz'),
+                                FizzbuzzRule(self._is_divisible_by_15, self.PRIORITY_HIGH, lambda number: 'fizzbuzz'),
+                                FizzbuzzRule(lambda number: True, self.PRIORITY_FOR_DEFAULT_RULE, lambda number: str(number)),
+    ])
 
     def process(self, number):
-        for rule in sorted(self.rules):
+        for rule in self.rules:
             if rule.applies(number):
                 return rule.convert(number)
         return str(number)
