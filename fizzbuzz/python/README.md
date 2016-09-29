@@ -9,7 +9,8 @@
 
 
 ##Running the tests
-Execute `mamba --format=documentation fizzbuzz_spec.py`
+* Execute `mamba --format=documentation fizzbuzz_spec.py`
+* Parametrized tests: `nosetests test_fizzbuzz.py -v`
 
 
 * Doubts for the workshop:
