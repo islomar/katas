@@ -25,7 +25,7 @@ class Fizzbuzz(object):
     PRIORITY_FOR_DEFAULT_RULE = 3
 
     def __init__(self):
-        self.rules = sorted([   FizzbuzzRule(self._is_divisible_by__or_contains_3, self.PRIORITY_LOW, lambda number: 'fizz'),
+        self.rules = sorted([   FizzbuzzRule(self._is_divisible_by_or_contains_3, self.PRIORITY_LOW, lambda number: 'fizz'),
                                 FizzbuzzRule(self._is_divisible_by_5, self.PRIORITY_LOW, lambda number: 'buzz'),
                                 FizzbuzzRule(self._is_divisible_by_15, self.PRIORITY_HIGH, lambda number: 'fizzbuzz'),
                                 FizzbuzzRule(self._is_default_rule, self.PRIORITY_FOR_DEFAULT_RULE, lambda number: str(number)),
@@ -34,7 +34,7 @@ class Fizzbuzz(object):
     def process(self, number):
         return [rule.convert(number) for rule in self.rules if rule.applies(number)][0]
 
-    def _is_divisible_by__or_contains_3(self, number):
+    def _is_divisible_by_or_contains_3(self, number):
         return self._is_divisible_by(number, 3) or str(3) in str(number)
 
     def _is_divisible_by_5(self, number):
