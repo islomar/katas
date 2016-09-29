@@ -2,6 +2,7 @@
 
 Kata description:
 * https://github.com/SoftwareCraftsmanshipMadrid/FizzBuzz
+* http://www.solveet.com/exercises/Kata-FizzBuzz/11 
 * http://c2.com/cgi/wiki?FizzBuzzTest 
 * https://en.wikipedia.org/wiki/Fizz_buzz 
 
