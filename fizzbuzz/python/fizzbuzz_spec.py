@@ -25,6 +25,11 @@ with describe('Fizzbuzz'):
             with it('returns fizz'):
                 expect(self.process(9)).to(equal('fizz'))
 
+    with context('when number is divisible by or contians 3'):
+        with context('when processing 13'):
+            with it('returns fizz'):
+                expect(self.process(13)).to(equal('fizz'))                
+
     with context('when number is divisible by 5'):
         with context('when processing 5'):
             with it('returns buzz'):
