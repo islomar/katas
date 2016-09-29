@@ -36,7 +36,7 @@ class Fizzbuzz(object):
         return [rule.convert(number) for rule in self.rules if rule.applies(number)][0]
 
     def _is_divisible_by_or_contains_3(self, number):
-        return self._is_divisible_by_3(number) or str(3) in str(number)
+        return self._is_divisible_by_3(number) or self._number_contains_digit(number, 3)
 
     def _is_divisible_by_3(self, number):
         return self._is_divisible_by(number, 3)
@@ -52,3 +52,6 @@ class Fizzbuzz(object):
 
     def _is_default_rule(self, number):
         return True
+
+    def _number_contains_digit(self, number, digit):
+        return str(3) in str(number)
