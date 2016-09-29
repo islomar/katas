@@ -26,15 +26,18 @@ class Fizzbuzz(object):
     FIZZ = 'fizz'
 
     def __init__(self):
-        self.rules = sorted([   FizzbuzzRule(self._is_divisible_by_3, self.PRIORITY_LOW, lambda number: self.FIZZ),
-                                FizzbuzzRule(self._is_divisible_by_or_contains_3, self.PRIORITY_LOW, lambda number: self.FIZZ),
-                                FizzbuzzRule(self._is_divisible_by_5, self.PRIORITY_LOW, lambda number: 'buzz'),
-                                FizzbuzzRule(self._is_divisible_by_15, self.PRIORITY_HIGH, lambda number: 'fizzbuzz'),
-                                FizzbuzzRule(self._is_default_rule, self.PRIORITY_FOR_DEFAULT_RULE, lambda number: str(number)),
-    ])
+        self.rules = self._initialize_rules()
 
     def process(self, number):
         return [rule.convert(number) for rule in self.rules if rule.applies(number)][0]
+
+    def _initialize_rules(self):
+        return sorted([ self._rule_that_returns_fizz_if_number_is_divisible_by_3(),
+                        self._rule_that_returns_fizz_if_number_is_divisible_by_or_contains_3(),
+                        self._rule_that_returns_fizz_if_number_is_divisible_by_5(),
+                        self._rule_that_returns_fizzbuzz_if_number_is_divisible_by_15(),
+                        self._default_rule_that_returns_the_same_number_as_string()
+    ])
 
     def _is_divisible_by_or_contains_3(self, number):
         return self._is_divisible_by_3(number) or self._number_contains_digit(number, 3)
@@ -55,4 +58,22 @@ class Fizzbuzz(object):
         return True
 
     def _number_contains_digit(self, number, digit):
-        return str(3) in str(number)
+        return str(digit) in str(number)
+
+    def _rule_that_returns_fizz_if_number_is_divisible_by_3(self):
+        return self._create_fizzbuzz_rule(self._is_divisible_by_3, self.PRIORITY_LOW, lambda number: self.FIZZ)
+
+    def _rule_that_returns_fizz_if_number_is_divisible_by_or_contains_3(self):
+        return self._create_fizzbuzz_rule(self._is_divisible_by_or_contains_3, self.PRIORITY_LOW, lambda number: self.FIZZ)
+
+    def _rule_that_returns_fizz_if_number_is_divisible_by_5(self):
+        return self._create_fizzbuzz_rule(self._is_divisible_by_5, self.PRIORITY_LOW, lambda number: 'buzz')
+
+    def _rule_that_returns_fizzbuzz_if_number_is_divisible_by_15(self):
+        return self._create_fizzbuzz_rule(self._is_divisible_by_15, self.PRIORITY_HIGH, lambda number: 'fizzbuzz')
+
+    def _default_rule_that_returns_the_same_number_as_string(self):
+        return self._create_fizzbuzz_rule(self._is_default_rule, self.PRIORITY_FOR_DEFAULT_RULE, lambda number: str(number))
+
+    def _create_fizzbuzz_rule(self, predicate, priority, converter):
+        return FizzbuzzRule(predicate, priority, converter)        
