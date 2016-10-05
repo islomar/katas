@@ -13,6 +13,20 @@
 * Parametrized tests: `nosetests test_fizzbuzz.py -v`
 
 
-* Doubts for the workshop:
-  * The entry parameter: int or string?
-  * If not done correctly, the order of the "rules" matter
+##Executing the app
+`python main.py`
+
+
+##Other solutions
+https://github.com/APA42/fizzbuzzkata
+https://github.com/jaimegildesagredo/fizzbuzz
+
+
+##Process to install the requirements from local
+
+Download requirements to local:
+`pip install -r requirements-dev.txt --download requirements-downloads`
+`ls requirements-downloads/`
+
+Install requirements from local:
+`pip install --no-index -f requirements-downloads/ -r requirements-dev.txt`
