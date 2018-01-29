@@ -22,7 +22,7 @@ public class FizzBuzzShould {
     void print_1_if_number_is_1() {
         FizzBuzz fizzBuzz = new FizzBuzz(console);
 
-        fizzBuzz.calculate("1");
+        fizzBuzz.calculate(1);
 
         verify(console).print("1");
     }
@@ -32,7 +32,7 @@ public class FizzBuzzShould {
     void print_2_if_number_is_2() {
         FizzBuzz fizzBuzz = new FizzBuzz(console);
 
-        fizzBuzz.calculate("2");
+        fizzBuzz.calculate(2);
 
         verify(console).print("2");
     }
@@ -42,7 +42,7 @@ public class FizzBuzzShould {
     void print_Fizz_if_number_is_3() {
         FizzBuzz fizzBuzz = new FizzBuzz(console);
 
-        fizzBuzz.calculate("3");
+        fizzBuzz.calculate(3);
 
         verify(console).print("Fizz");
     }

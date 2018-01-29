@@ -9,10 +9,10 @@ public class FizzBuzz {
         this.console = console;
     }
 
-    public void calculate(String number) {
-        if (number == "3") {
+    public void calculate(int number) {
+        if (number == 3) {
             this.console.print("Fizz");
         }
-        this.console.print(number);
+        this.console.print(String.valueOf(number));
     }
 }
