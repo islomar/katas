@@ -59,8 +59,16 @@ public class GenerateFizzBuzzShould {
 
     @DisplayName("print Buzz if number is divisible by 5 (e.g. for number 5)")
     @Test
-    void print_Buzz_if_number_is_6() {
+    void print_Buzz_if_number_is_5() {
         generateFizzBuzz.execute(5);
+
+        verify(console).print("Buzz");
+    }
+
+    @DisplayName("print Buzz if number is divisible by 5 (e.g. for number 10)")
+    @Test
+    void print_Buzz_if_number_is_10() {
+        generateFizzBuzz.execute(10);
 
         verify(console).print("Buzz");
     }
