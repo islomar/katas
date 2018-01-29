@@ -1,4 +1,6 @@
 .gradle
+gradlew*
+gradle/
 **/build/
 dest/
 out/
