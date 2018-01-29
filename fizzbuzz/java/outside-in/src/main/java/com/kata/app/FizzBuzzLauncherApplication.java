@@ -6,10 +6,10 @@ import com.kata.model.FizzBuzzCalculator;
 
 import java.util.stream.IntStream;
 
-public class FizzBuzzLauncher {
+public class FizzBuzzLauncherApplication {
     private final GenerateFizzBuzz generateFizzBuzz;
 
-    public FizzBuzzLauncher(GenerateFizzBuzz generateFizzBuzz) {
+    public FizzBuzzLauncherApplication(GenerateFizzBuzz generateFizzBuzz) {
 
         this.generateFizzBuzz = generateFizzBuzz;
     }

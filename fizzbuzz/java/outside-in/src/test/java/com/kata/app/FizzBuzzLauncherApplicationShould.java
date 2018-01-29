@@ -9,17 +9,14 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 import java.util.function.Supplier;
-import java.util.stream.BaseStream;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-public class FizzBuzzLauncherFeature {
+public class FizzBuzzLauncherApplicationShould {
 
     private final static int MAX_NUMBER = 100;
 
@@ -41,9 +38,9 @@ public class FizzBuzzLauncherFeature {
     @DisplayName("The app should print all the FizzBuzz results from 1 to 100")
     @Test
     void print_the_fizzbuzz_result_for_all_the_first_100_numbers() {
-        FizzBuzzLauncher fizzBuzzLauncher = new FizzBuzzLauncher(this.generateFizzBuzz);
+        FizzBuzzLauncherApplication fizzBuzzLauncherApplication = new FizzBuzzLauncherApplication(this.generateFizzBuzz);
 
-        fizzBuzzLauncher.run(this.intRangeSupplier.get());
+        fizzBuzzLauncherApplication.run(this.intRangeSupplier.get());
 
         verifyPrintHasBeenCalledNtimes(MAX_NUMBER);
     }
@@ -51,9 +48,9 @@ public class FizzBuzzLauncherFeature {
     @DisplayName("The app should calculate all the FizzBuzz results from 1 to 100")
     @Test
     void calculate_the_fizzbuzz_result_for_all_the_first_100_numbers() {
-        FizzBuzzLauncher fizzBuzzLauncher = new FizzBuzzLauncher(this.generateFizzBuzz);
+        FizzBuzzLauncherApplication fizzBuzzLauncherApplication = new FizzBuzzLauncherApplication(this.generateFizzBuzz);
 
-        fizzBuzzLauncher.run(this.intRangeSupplier.get());
+        fizzBuzzLauncherApplication.run(this.intRangeSupplier.get());
 
         verifyFizzBuzzIsCalculatedNtimes();
     }
