@@ -14,20 +14,20 @@ public class GenerateFizzBuzzShould {
 
     @Mock
     Console console = new Console();
-
     FizzBuzzCalculator fizzBuzzCalculator;
+
+    GenerateFizzBuzz generateFizzBuzz;
 
     @BeforeEach
     public void setUp() {
         initMocks(this);
         this.fizzBuzzCalculator = new FizzBuzzCalculator();
+        this.generateFizzBuzz = new GenerateFizzBuzz(console, fizzBuzzCalculator);
     }
 
     @DisplayName("print 1 if number is 1")
     @Test
     void print_1_if_number_is_1() {
-        GenerateFizzBuzz generateFizzBuzz = new GenerateFizzBuzz(console, fizzBuzzCalculator);
-
         generateFizzBuzz.execute(1);
 
         verify(console).print("1");
@@ -36,8 +36,6 @@ public class GenerateFizzBuzzShould {
     @DisplayName("print 2 if number is 2")
     @Test
     void print_2_if_number_is_2() {
-        GenerateFizzBuzz generateFizzBuzz = new GenerateFizzBuzz(console, fizzBuzzCalculator);
-
         generateFizzBuzz.execute(2);
 
         verify(console).print("2");
@@ -46,8 +44,6 @@ public class GenerateFizzBuzzShould {
     @DisplayName("print Fizz if number is divisible by 3 (e.g. for number 3)")
     @Test
     void print_Fizz_if_number_is_3() {
-        GenerateFizzBuzz generateFizzBuzz = new GenerateFizzBuzz(console, fizzBuzzCalculator);
-
         generateFizzBuzz.execute(3);
 
         verify(console).print("Fizz");
@@ -56,8 +52,6 @@ public class GenerateFizzBuzzShould {
     @DisplayName("print Fizz if number is divisible by 3 (e.g. for number 6)")
     @Test
     void print_Fizz_if_number_is_6() {
-        GenerateFizzBuzz generateFizzBuzz = new GenerateFizzBuzz(console, fizzBuzzCalculator);
-
         generateFizzBuzz.execute(6);
 
         verify(console).print("Fizz");
@@ -66,8 +60,6 @@ public class GenerateFizzBuzzShould {
     @DisplayName("print Buzz if number is divisible by 5 (e.g. for number 5)")
     @Test
     void print_Buzz_if_number_is_6() {
-        GenerateFizzBuzz generateFizzBuzz = new GenerateFizzBuzz(console, fizzBuzzCalculator);
-
         generateFizzBuzz.execute(5);
 
         verify(console).print("Buzz");
