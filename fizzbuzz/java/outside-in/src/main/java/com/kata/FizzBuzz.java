@@ -1,11 +1,15 @@
 package com.kata;
 
 public class FizzBuzz {
+
+    private final Console console;
+
     public FizzBuzz(Console console) {
 
+        this.console = console;
     }
 
-    public String calculate(String number) {
-        return null;
+    public void calculate(String number) {
+        this.console.print(number);
     }
 }
