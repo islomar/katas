@@ -1,13 +1,16 @@
 package com.kata;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.text.IsEmptyString.isEmptyString;
 
 public class MyClassTest {
 
-    @Test public void testAppHasAGreeting() {
-        MyClass classUnderTest = new MyClass();
-        assertNotNull("app should have a greeting", classUnderTest.getGreeting());
+    @DisplayName("This is an example")
+    @Test
+    void blablabla() {
+        assertThat("", isEmptyString());
     }
 }

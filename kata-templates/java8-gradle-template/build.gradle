@@ -1,10 +1,23 @@
 buildscript {
+    ext {
+        junitPlatformVersion = '1.0.3'
+    }
     repositories {
         mavenCentral()
     }
     dependencies {
-        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.1'
+        classpath("org.junit.platform:junit-platform-gradle-plugin:${junitPlatformVersion}")
     }
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    junitJupiterVersion  = '5.0.3'
+    mockitoVersion  = '2.8.47'
+    hamcrestVersion = "1.3"
 }
 
 apply plugin: 'java'
@@ -13,10 +26,6 @@ apply plugin: 'org.junit.platform.gradle.plugin'
 
 version = '1.0'
 
-repositories {
-    mavenCentral()
-}
-
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 tasks.withType(JavaCompile) {
@@ -24,7 +33,8 @@ tasks.withType(JavaCompile) {
 }
 
 dependencies {
-    testCompileOnly('org.apiguardian:apiguardian-api:1.0.0')
-    testCompile("org.junit.jupiter:junit-jupiter-api:5.0.1")
-    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.1")
+    testCompile("org.hamcrest:hamcrest-all:${hamcrestVersion}")
+    testCompile("org.mockito:mockito-core:${mockitoVersion}")
+    testCompile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
 }
