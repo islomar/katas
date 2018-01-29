@@ -1,15 +1,17 @@
-package com.kata;
+package com.kata.actions;
 
-public class FizzBuzz {
+import com.kata.Console;
+
+public class GenerateFizzBuzz {
 
     private final Console console;
 
-    public FizzBuzz(Console console) {
+    public GenerateFizzBuzz(Console console) {
 
         this.console = console;
     }
 
-    public void calculate(int number) {
+    public void execute(int number) {
         if (number == 3) {
             this.console.print("Fizz");
         }
