@@ -1,6 +1,6 @@
 package com.kata.actions;
 
-import com.kata.Console;
+import com.kata.infrastructure.Console;
 
 public class GenerateFizzBuzz {
 

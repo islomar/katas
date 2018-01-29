@@ -1,6 +1,6 @@
 package com.kata.actions;
 
-import com.kata.Console;
+import com.kata.infrastructure.Console;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
