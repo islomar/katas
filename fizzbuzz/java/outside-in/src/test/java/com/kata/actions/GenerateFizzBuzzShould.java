@@ -72,4 +72,12 @@ public class GenerateFizzBuzzShould {
 
         verify(console).print("Buzz");
     }
+
+    @DisplayName("print FizzBuzz if number is divisible by 3 and 5 (e.g. for number 15)")
+    @Test
+    void print_FizzBuzz_if_number_is_15() {
+        generateFizzBuzz.execute(15);
+
+        verify(console).print("FizzBuzz");
+    }
 }
