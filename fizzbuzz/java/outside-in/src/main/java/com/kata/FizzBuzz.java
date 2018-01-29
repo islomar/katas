@@ -10,6 +10,9 @@ public class FizzBuzz {
     }
 
     public void calculate(String number) {
+        if (number == "3") {
+            this.console.print("Fizz");
+        }
         this.console.print(number);
     }
 }
