@@ -26,4 +26,14 @@ public class FizzBuzzShould {
 
         verify(console).print("1");
     }
+
+    @DisplayName("print 2 if number is 2")
+    @Test
+    void print_2_if_number_is_2() {
+        FizzBuzz fizzBuzz = new FizzBuzz(console);
+
+        fizzBuzz.calculate("2");
+
+        verify(console).print("2");
+    }
 }
