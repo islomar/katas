@@ -15,9 +15,7 @@ public class GenerateFizzBuzz {
     }
 
     public void execute(int number) {
-        if (number == 3) {
-            this.console.print("Fizz");
-        }
-        this.console.print(String.valueOf(number));
+        String result = this.fizzBuzzCalculator.calculate(number);
+        this.console.print(result);
     }
 }
