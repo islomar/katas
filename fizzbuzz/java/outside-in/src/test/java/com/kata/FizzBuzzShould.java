@@ -36,4 +36,14 @@ public class FizzBuzzShould {
 
         verify(console).print("2");
     }
+
+    @DisplayName("print Fizz if number is divisible by 3 (e.g. for number 3)")
+    @Test
+    void print_Fizz_if_number_is_3() {
+        FizzBuzz fizzBuzz = new FizzBuzz(console);
+
+        fizzBuzz.calculate("3");
+
+        verify(console).print("Fizz");
+    }
 }
