@@ -1,6 +1,7 @@
 package com.kata.actions;
 
 import com.kata.infrastructure.Console;
+import com.kata.model.FizzBuzzCalculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,15 +15,18 @@ public class GenerateFizzBuzzShould {
     @Mock
     Console console = new Console();
 
+    FizzBuzzCalculator fizzBuzzCalculator;
+
     @BeforeEach
     public void setUp() {
         initMocks(this);
+        this.fizzBuzzCalculator = new FizzBuzzCalculator();
     }
 
     @DisplayName("print 1 if number is 1")
     @Test
     void print_1_if_number_is_1() {
-        GenerateFizzBuzz generateFizzBuzz = new GenerateFizzBuzz(console);
+        GenerateFizzBuzz generateFizzBuzz = new GenerateFizzBuzz(console, fizzBuzzCalculator);
 
         generateFizzBuzz.execute(1);
 
@@ -32,7 +36,7 @@ public class GenerateFizzBuzzShould {
     @DisplayName("print 2 if number is 2")
     @Test
     void print_2_if_number_is_2() {
-        GenerateFizzBuzz generateFizzBuzz = new GenerateFizzBuzz(console);
+        GenerateFizzBuzz generateFizzBuzz = new GenerateFizzBuzz(console, fizzBuzzCalculator);
 
         generateFizzBuzz.execute(2);
 
@@ -42,7 +46,7 @@ public class GenerateFizzBuzzShould {
     @DisplayName("print Fizz if number is divisible by 3 (e.g. for number 3)")
     @Test
     void print_Fizz_if_number_is_3() {
-        GenerateFizzBuzz generateFizzBuzz = new GenerateFizzBuzz(console);
+        GenerateFizzBuzz generateFizzBuzz = new GenerateFizzBuzz(console, fizzBuzzCalculator);
 
         generateFizzBuzz.execute(3);
 
