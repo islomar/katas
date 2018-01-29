@@ -21,7 +21,6 @@ public class ConsoleShould {
 
     @Test
     void write_to_system_out_println() {
-
         Console console = new Console();
 
         console.print(MESSAGE);
