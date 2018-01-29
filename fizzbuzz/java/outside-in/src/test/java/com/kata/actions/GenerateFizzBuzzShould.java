@@ -52,4 +52,14 @@ public class GenerateFizzBuzzShould {
 
         verify(console).print("Fizz");
     }
+
+    @DisplayName("print Fizz if number is divisible by 3 (e.g. for number 6)")
+    @Test
+    void print_Fizz_if_number_is_6() {
+        GenerateFizzBuzz generateFizzBuzz = new GenerateFizzBuzz(console, fizzBuzzCalculator);
+
+        generateFizzBuzz.execute(6);
+
+        verify(console).print("Fizz");
+    }
 }
