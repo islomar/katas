@@ -1,0 +1,36 @@
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'idea'
+
+version = '1.0'
+
+sourceCompatibility = 1.9
+targetCompatibility = 1.9
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    hamcrestVersion = "1.3"
+}
+
+dependencies {
+    testCompile("org.hamcrest:hamcrest-all:${hamcrestVersion}")
+    testCompile "org.spockframework:spock-core:1.1-groovy-2.4"
+    testCompile 'org.codehaus.groovy:groovy-all:2.4.0'
+}
+
+sourceSets {
+    test {
+        groovy.srcDirs = ['src/test/groovy']
+    }
+}
+
+test {
+    testLogging.exceptionFormat = 'full'
+}
