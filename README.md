@@ -1,4 +1,4 @@
-#Repository for katas
+# Repository for katas
 
 
 Code from katas practiced either on my own or through Coding Dojos, Coderetreats, etc.
@@ -6,7 +6,7 @@ Currently:
 * (The Gilded rose)[./gilded-rose/README.md]
 
 
-##Pending katas
+## Pending katas
 * codekata.com/kata/kata16-business-rules
 * Mars Rover
 * Data Munging:  http://codekata.com/kata/kata04-data-munging/
