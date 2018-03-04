@@ -3,7 +3,7 @@
 
 Code from katas practiced either on my own or through Coding Dojos, Coderetreats, etc.
 Currently:
-* (The Gilded rose)[./gilded-rose/README.md]
+* [The Gilded rose](./gilded-rose/README.md)
 
 
 ## Pending katas
