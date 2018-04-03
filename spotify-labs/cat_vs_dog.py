@@ -3,12 +3,19 @@
 from expects import *
 import pytest
 
+from collections import Counter
+from os import linesep
+
 
 class CatsAndDogsTestCase(object):
     def __init__(self, number_of_cats, number_of_dogs, voters):
         self.number_of_cats = number_of_cats
         self.number_of_dogs = number_of_dogs
         self.voters = voters
+
+    def calculate_maximum_possible_number_of_satisfied_voters(self):
+        voters_counter = Counter(self.voters)
+        return max(voters_counter.values())
 
     def __repr__(self):
         return "%s %s" % (self.__class_name_without_module(), self.__dict__)
@@ -28,6 +35,14 @@ class Voter(object):
 
     def __class_name_without_module(self):
         return self.__class__.__name__.split('.')[-1]
+
+    def __eq__(self, other):
+        if type(other) is type(self):
+            return self.__dict__ == other.__dict__
+        return False
+
+    def __hash__(self):
+        return hash(str(self))
 
 
 class InputToTestCasesMapper(object):
@@ -70,16 +85,7 @@ class InputToTestCasesMapper(object):
         return int(number_of_cats), int(number_of_dogs), int(number_of_voters)
 
 
-# 2
-# 1 1 2
-# C1 D1
-# D1 C1
-# 1 2 4
-# C1 D1
-# C1 D1
-# C1 D2
-# D2 C1
-def test_xx():
+def test_calculate_maximum_possible_number_of_satisfied_voters():
     input = """2
 1 1 2
 C1 D1
@@ -89,6 +95,14 @@ C1 D1
 C1 D1
 C1 D2
 D2 C1"""
-    result = InputToTestCasesMapper().convert_input_to_test_cases(input)
+    expected_output = """1
+3"""
+    test_cases = InputToTestCasesMapper().convert_input_to_test_cases(input)
 
-    print(result)
+    maximum_possible_number_of_satisfied_voters = []
+    for test_case in test_cases:
+        maximum_possible_number_of_satisfied_voters.append(str(test_case.calculate_maximum_possible_number_of_satisfied_voters()))
+
+    output = linesep.join(maximum_possible_number_of_satisfied_voters)
+
+    expect(output).to(equal(expected_output))
