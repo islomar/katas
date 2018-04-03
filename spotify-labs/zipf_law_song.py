@@ -1,11 +1,43 @@
 # -*- coding: utf-8 -*-
 
+import json
 from operator import itemgetter
-from expects import *
-import pytest
 from os import linesep
 
-# IMPLEMENTATION
+from expects import *
+import pytest
+
+
+# IMPLEMENTATION WITH OBJECTS
+class Song(object):
+    def __init__(self, number_of_songs, name, number_of_times_listened, song_index):
+        self.name = name
+        self.quality = number_of_times_listened / (number_of_songs - song_index)
+
+    def __repr__(self):
+        return "%s %s" % (self.__class_name_without_module(), self.__dict__)
+
+    def __class_name_without_module(self):
+        return self.__class__.__name__.split('.')[-1]
+
+def extract_most_listened_songs_names_oo(input):
+    lines = input.splitlines()
+    number_of_songs, number_of_songs_to_select = _parse_first_line(lines)
+    sorted_songs = _sort_all_songs_by_quality_oo(lines, number_of_songs)
+    sorted_name_list = list(map(lambda song: song.name, sorted_songs[:number_of_songs_to_select]))
+    return linesep.join(sorted_name_list)
+
+def _sort_all_songs_by_quality_oo(lines, number_of_songs):
+    songs = []
+    for index, song in enumerate(lines[1:]):
+        name_of_the_song = song.split()[1]
+        number_of_times_listened = int(song.split()[0])
+        songs.append(Song(number_of_songs, name_of_the_song, number_of_times_listened, index))
+    return sorted(songs, key=lambda song: song.quality, reverse=True)
+
+
+
+# IMPLEMENTATION WITH PRIMITIVES
 def extract_most_listened_songs_names(input):
     lines = input.splitlines()
     number_of_songs, number_of_songs_to_select = _parse_first_line(lines)
@@ -14,10 +46,12 @@ def extract_most_listened_songs_names(input):
 
 def _sort_all_songs_by_quality(lines, number_of_songs):
     song_name_to_quality = dict()
+    songs = []
     for index, song in enumerate(lines[1:]):
         normalized_number_of_times_listened = _normalize_number_of_times_listened(song, number_of_songs, index)
         name_of_the_song = song.split()[1]
         song_name_to_quality[name_of_the_song] = normalized_number_of_times_listened
+        songs.append(Song(number_of_songs, name_of_the_song, int(song.split()[0]), index))
     return sorted(song_name_to_quality.items(), key=itemgetter(1), reverse=True)
 
 def _extract_song_names(number_of_songs_to_select, sorted_songs):
@@ -47,7 +81,7 @@ def test_with_four_songs():
 """
     expected_output = """four
 two"""
-    most_listened_songs_names = extract_most_listened_songs_names(input)
+    most_listened_songs_names = extract_most_listened_songs_names_oo(input)
 
     expect(most_listened_songs_names).to(equal(expected_output))
 
