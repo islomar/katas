@@ -46,14 +46,14 @@ class InputToTestCasesMapper(object):
 
     def _extract_test_case(self, test_cases, index_for_next_testcase_header):
             first_test_case_header = test_cases[index_for_next_testcase_header]
-            number_of_cats, number_of_dogs, number_of_voters = _parse_header(first_test_case_header)
+            number_of_cats, number_of_dogs, number_of_voters = self._parse_header(first_test_case_header)
             print('{} number_of_cats, {} number_of_dogs, {} voters'.format(number_of_cats, number_of_dogs, number_of_voters))
 
             test_case_votes = test_cases[index_for_next_testcase_header + 1:index_for_next_testcase_header + 1 + number_of_voters]
             print(test_case_votes)
 
             voters = self._extract_voters(number_of_voters, test_case_votes)
-            
+
             return CatsAndDogsTestCase(number_of_cats, number_of_dogs, voters)
 
     def _extract_voters(self, number_of_voters, test_case_votes):
@@ -64,6 +64,11 @@ class InputToTestCasesMapper(object):
             print(voter)
             voters.append(voter)
         return voters
+
+    def _parse_header(self, header):
+        number_of_cats, number_of_dogs, number_of_voters = header.split()
+        return int(number_of_cats), int(number_of_dogs), int(number_of_voters)
+
 
 # 2
 # 1 1 2
@@ -87,8 +92,3 @@ D2 C1"""
     result = InputToTestCasesMapper().convert_input_to_test_cases(input)
 
     print(result)
-
-
-def _parse_header(header):
-    number_of_cats, number_of_dogs, number_of_voters = header.split()
-    return int(number_of_cats), int(number_of_dogs), int(number_of_voters)
