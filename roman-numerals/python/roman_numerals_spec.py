@@ -3,7 +3,9 @@
 from expects import *
 
 def convert_to_decimal_from_roman(decimal_number):
-    return "I"
+    if decimal_number == 1:
+        return "I"
+    return "II"
 
 
 with describe('Roman Numerals'):
