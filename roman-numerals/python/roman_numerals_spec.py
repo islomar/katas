@@ -20,6 +20,12 @@ with describe('Roman Numerals'):
 
             expect(decimal_number).to(equal("II"))
 
+        with it('converts III to 3'):
+            decimal_number = convert_to_decimal_from_roman(3)
+
+            expect(decimal_number).to(equal("III"))
+
+
 
     with context('from roman numeral to decimal number'):
         with _it('TODO'):
