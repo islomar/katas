@@ -2,7 +2,7 @@
 
 from expects import *
 
-DECIMAL_TO_ROMAN_NUMBERS = { 100: "C", 10: "X", 5: "V", 1: "I" }
+DECIMAL_TO_ROMAN_NUMBERS = { 1000: "M", 100: "C", 10: "X", 5: "V", 1: "I" }
 
 def convert_to_roman_from_decimal(decimal_number):
     # result = ""
