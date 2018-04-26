@@ -27,8 +27,6 @@ def convert_to_roman_from_decimal(decimal_number):
             return DECIMAL_TO_ROMAN_NUMBERS.get(decimal)
     if decimal_number == 4:
         return "IV"
-    if decimal_number == 5:
-        return "V"
     roman_numeral = ""
     for i in range(decimal_number):
         roman_numeral += "I"
