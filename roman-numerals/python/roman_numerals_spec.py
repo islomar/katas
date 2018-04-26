@@ -33,6 +33,12 @@ with describe('Roman Numerals'):
 
             expect(decimal_number).to(equal("IV"))
 
+        with it('converts 5 to V'):
+            decimal_number = convert_to_roman_from_decimal(5)
+
+            expect(decimal_number).to(equal("V"))
+
+
 
     with context('from roman numeral to decimal number'):
         with _it('TODO'):
