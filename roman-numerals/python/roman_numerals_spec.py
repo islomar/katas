@@ -65,6 +65,10 @@ with describe('Roman Numerals'):
 
             expect(decimal_number).to(equal("C"))
 
+        with it('converts 1000 to M'):
+            decimal_number = convert_to_roman_from_decimal(1000)
+
+            expect(decimal_number).to(equal("M"))
 
     with context('from roman numeral to decimal number'):
         with _it('TODO'):
