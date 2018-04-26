@@ -5,27 +5,26 @@ from expects import *
 DECIMAL_TO_ROMAN_NUMBERS = { 1000: "M", 100: "C", 10: "X", 5: "V", 1: "I" }
 
 def convert_to_roman_from_decimal(decimal_number):
-    roman_numeral = ""
-    last_symbol = ""
-    another_decimal_number = decimal_number
-    for decimal, roman in sorted(DECIMAL_TO_ROMAN_NUMBERS.items(), reverse=True):
+    result = ""
+    last_roman_numeral = ""
+    for decimal, roman_numeral in sorted(DECIMAL_TO_ROMAN_NUMBERS.items(), reverse=True):
         number_of_similar_symbols = 0
         current_result = ""
         if decimal_number == decimal:
-            roman_numeral += DECIMAL_TO_ROMAN_NUMBERS.get(decimal)
+            result += DECIMAL_TO_ROMAN_NUMBERS.get(decimal)
             break
-        while another_decimal_number / decimal >= 1:
+        while decimal_number / decimal >= 1:
             current_symbol = DECIMAL_TO_ROMAN_NUMBERS.get(decimal)
             current_result += current_symbol
-            another_decimal_number -= decimal
+            decimal_number -= decimal
             number_of_similar_symbols += 1
             if number_of_similar_symbols == 4:
-                current_result = current_symbol + last_symbol
+                current_result = current_symbol + last_roman_numeral
                 break
-        last_symbol = roman
+        last_roman_numeral = roman_numeral
     number_of_similar_symbols = 0
-    roman_numeral += current_result
-    return roman_numeral
+    result += current_result
+    return result
 
 
 with describe('Roman Numerals'):
