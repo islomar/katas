@@ -26,6 +26,11 @@ with describe('Roman Numerals'):
 
             expect(decimal_number).to(equal("III"))
 
+        with it('converts 4 to IV'):
+            decimal_number = convert_to_decimal_from_roman(4)
+
+            expect(decimal_number).to(equal("IV"))
+
 
     with context('from roman numeral to decimal number'):
         with _it('TODO'):
