@@ -55,6 +55,11 @@ with describe('Roman Numerals'):
 
             expect(decimal_number).to(equal("V"))
 
+        with it('converts 24 to XXIV'):
+            decimal_number = convert_to_roman_from_decimal(24)
+
+            expect(decimal_number).to(equal("XXIV"))
+
         with it('converts 100 to C'):
             decimal_number = convert_to_roman_from_decimal(100)
 
