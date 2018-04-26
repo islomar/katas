@@ -2,7 +2,7 @@
 
 from expects import *
 
-def convert_to_decimal_from_roman(decimal_number):
+def convert_to_roman_from_decimal(decimal_number):
     roman_numeral = ""
     for i in range(decimal_number):
         roman_numeral += "I"
@@ -12,22 +12,22 @@ def convert_to_decimal_from_roman(decimal_number):
 with describe('Roman Numerals'):
     with context('from decimal number to roman numeral'):
         with it('converts 1 to I'):
-            decimal_number = convert_to_decimal_from_roman(1)
+            decimal_number = convert_to_roman_from_decimal(1)
 
             expect(decimal_number).to(equal("I"))
 
         with it('converts 2 to II'):
-            decimal_number = convert_to_decimal_from_roman(2)
+            decimal_number = convert_to_roman_from_decimal(2)
 
             expect(decimal_number).to(equal("II"))
 
         with it('converts 3 to III'):
-            decimal_number = convert_to_decimal_from_roman(3)
+            decimal_number = convert_to_roman_from_decimal(3)
 
             expect(decimal_number).to(equal("III"))
 
         with it('converts 4 to IV'):
-            decimal_number = convert_to_decimal_from_roman(4)
+            decimal_number = convert_to_roman_from_decimal(4)
 
             expect(decimal_number).to(equal("IV"))
 
