@@ -2,8 +2,11 @@
 
 from expects import *
 
-DECIMAL_TO_ROMAN_NUMBERS = { 1000: "M", 500: "D", 100: "C", 50: "L", 10: "X", 5: "V", 1: "I" }
+DECIMAL_TO_ROMAN_NUMBERS = { 1000: "M", 900: "CM", 500: "D", 100: "C", 50: "L", 10: "X", 5: "V", 1: "I" }
 
+# 1 -> I
+# 24 -> XXIV
+# 89 -> LXXXIX
 def convert_to_roman_from_decimal(decimal_number):
     # print(decimal_number)
     result = ""
