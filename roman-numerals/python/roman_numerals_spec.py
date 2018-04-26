@@ -2,7 +2,7 @@
 
 from expects import *
 
-DECIMAL_TO_ROMAN_NUMBERS = { 1000: "M", 900: "CM", 500: "D", 100: "C", 90: "XC", 50: "L", 10: "X", 5: "V", 1: "I" }
+DECIMAL_TO_ROMAN_NUMBERS = { 1000: "M", 900: "CM", 500: "D", 100: "C", 90: "XC", 50: "L", 10: "X", 9: "IX", 5: "V", 1: "I" }
 
 # 1 -> I
 # 24 -> XXIV
@@ -92,6 +92,11 @@ with describe('Roman Numerals'):
             decimal_number = convert_to_roman_from_decimal(1000)
 
             expect(decimal_number).to(equal("M"))
+
+        with it('converts 2739 to M'):
+            decimal_number = convert_to_roman_from_decimal(2739)
+
+            expect(decimal_number).to(equal("MMDCCXXXIX"))
 
     with context('from roman numeral to decimal number'):
         with _it('TODO'):
