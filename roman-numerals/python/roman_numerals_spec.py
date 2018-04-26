@@ -2,7 +2,7 @@
 
 from expects import *
 
-DECIMAL_TO_ROMAN_NUMBERS = { 1000: "M", 100: "C", 50: "L", 10: "X", 5: "V", 1: "I" }
+DECIMAL_TO_ROMAN_NUMBERS = { 1000: "M", 500: "D", 100: "C", 50: "L", 10: "X", 5: "V", 1: "I" }
 
 def convert_to_roman_from_decimal(decimal_number):
     # print(decimal_number)
@@ -69,6 +69,16 @@ with describe('Roman Numerals'):
             decimal_number = convert_to_roman_from_decimal(100)
 
             expect(decimal_number).to(equal("C"))
+
+        with it('converts 500 to D'):
+            decimal_number = convert_to_roman_from_decimal(500)
+
+            expect(decimal_number).to(equal("D"))
+
+        with it('converts 900 to CM'):
+            decimal_number = convert_to_roman_from_decimal(900)
+
+            expect(decimal_number).to(equal("CM"))
 
         with it('converts 1000 to M'):
             decimal_number = convert_to_roman_from_decimal(1000)

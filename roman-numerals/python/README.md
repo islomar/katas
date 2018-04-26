@@ -5,7 +5,7 @@
 Es necesario:
 * Git
 * Python >= 2.7
-* Pip: https://pip.pypa.io/en/stable/installing/ 
+* Pip: https://pip.pypa.io/en/stable/installing/
 * Virtualenv (recomendado)
 * Tu editor favorito (vim)
 
