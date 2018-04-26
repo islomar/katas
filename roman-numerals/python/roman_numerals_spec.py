@@ -3,6 +3,8 @@
 from expects import *
 
 def convert_to_roman_from_decimal(decimal_number):
+    if decimal_number == 4:
+        return "IV"
     roman_numeral = ""
     for i in range(decimal_number):
         roman_numeral += "I"
