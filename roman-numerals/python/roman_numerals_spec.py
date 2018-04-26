@@ -5,7 +5,7 @@ from expects import *
 DECIMAL_TO_ROMAN_NUMBERS = { 1000: "M", 100: "C", 50: "L", 10: "X", 5: "V", 1: "I" }
 
 def convert_to_roman_from_decimal(decimal_number):
-    print(decimal_number)
+    # print(decimal_number)
     result = ""
     last_roman_numeral = ""
     for decimal, roman_numeral in sorted(DECIMAL_TO_ROMAN_NUMBERS.items(), reverse=True):
@@ -15,7 +15,6 @@ def convert_to_roman_from_decimal(decimal_number):
             result += DECIMAL_TO_ROMAN_NUMBERS.get(decimal)
             break
         while decimal_number / decimal >= 1:
-            print("{} is bigger than {}".format(decimal_number, decimal))
             current_symbol = DECIMAL_TO_ROMAN_NUMBERS.get(decimal)
             current_result += current_symbol
             decimal_number -= decimal
@@ -23,11 +22,9 @@ def convert_to_roman_from_decimal(decimal_number):
             if number_of_similar_symbols == 4:
                 current_result = current_symbol + last_roman_numeral
                 break
-            print("current_result: {}".format(current_result))
-        # result += current_result
+        result += current_result
         last_roman_numeral = roman_numeral
     number_of_similar_symbols = 0
-    result += current_result
     return result
 
 
@@ -58,10 +55,10 @@ with describe('Roman Numerals'):
 
             expect(decimal_number).to(equal("V"))
 
-        # with it('converts 24 to XXIV'):
-        #     decimal_number = convert_to_roman_from_decimal(24)
+        with it('converts 24 to XXIV'):
+            decimal_number = convert_to_roman_from_decimal(24)
 
-        #     expect(decimal_number).to(equal("XXIV"))
+            expect(decimal_number).to(equal("XXIV"))
 
         with it('converts 50 to L'):
             decimal_number = convert_to_roman_from_decimal(50)
