@@ -2,9 +2,29 @@
 
 from expects import *
 
-DECIMAL_TO_ROMAN_NUMBERS = { 5: "V", 1: "I" }
+DECIMAL_TO_ROMAN_NUMBERS = { 100: "C", 10: "X", 5: "V", 1: "I" }
 
 def convert_to_roman_from_decimal(decimal_number):
+    # result = ""
+    # another_decimal_number = decimal_number
+    # for decimal, roman in sorted(DECIMAL_TO_ROMAN_NUMBERS.items(), reverse=True):
+    #     print(decimal)
+    #     number_of_similar_symbols = 0
+    #     while another_decimal_number / decimal >= 1:
+    #         print("The number is bigger or equal than the key")
+    #         result += DECIMAL_TO_ROMAN_NUMBERS.get(decimal)
+    #         another_decimal_number -= decimal
+    #         print("New decimal_number: {}".format(another_decimal_number))
+    #         number_of_similar_symbols += 1
+    #         if number_of_similar_symbols == 3:
+    #             print("No va maaaaas")
+    #     number_of_similar_symbols = 0
+    # print("Result: {}".format(result))
+
+    for decimal, roman in sorted(DECIMAL_TO_ROMAN_NUMBERS.items(), reverse=True):
+        print(decimal)
+        if decimal_number == decimal:
+            return DECIMAL_TO_ROMAN_NUMBERS.get(decimal)
     if decimal_number == 4:
         return "IV"
     if decimal_number == 5:
@@ -42,6 +62,10 @@ with describe('Roman Numerals'):
 
             expect(decimal_number).to(equal("V"))
 
+        with it('converts 100 to C'):
+            decimal_number = convert_to_roman_from_decimal(100)
+
+            expect(decimal_number).to(equal("C"))
 
 
     with context('from roman numeral to decimal number'):
