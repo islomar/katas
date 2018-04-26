@@ -2,9 +2,13 @@
 
 from expects import *
 
+DECIMAL_TO_ROMAN_NUMBERS = { 5: "V", 1: "I" }
+
 def convert_to_roman_from_decimal(decimal_number):
     if decimal_number == 4:
         return "IV"
+    if decimal_number == 5:
+        return "V"
     roman_numeral = ""
     for i in range(decimal_number):
         roman_numeral += "I"
