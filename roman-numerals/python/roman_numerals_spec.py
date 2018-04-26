@@ -3,11 +3,10 @@
 from expects import *
 
 def convert_to_decimal_from_roman(decimal_number):
-    if decimal_number == 1:
-        return "I"
-    if decimal_number == 2:
-        return "II"
-    return "III"
+    roman_numeral = ""
+    for i in range(decimal_number):
+        roman_numeral += "I"
+    return roman_numeral
 
 
 with describe('Roman Numerals'):
