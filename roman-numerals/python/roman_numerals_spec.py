@@ -5,31 +5,26 @@ from expects import *
 DECIMAL_TO_ROMAN_NUMBERS = { 1000: "M", 100: "C", 10: "X", 5: "V", 1: "I" }
 
 def convert_to_roman_from_decimal(decimal_number):
-    # result = ""
-    # another_decimal_number = decimal_number
-    # for decimal, roman in sorted(DECIMAL_TO_ROMAN_NUMBERS.items(), reverse=True):
-    #     print(decimal)
-    #     number_of_similar_symbols = 0
-    #     while another_decimal_number / decimal >= 1:
-    #         print("The number is bigger or equal than the key")
-    #         result += DECIMAL_TO_ROMAN_NUMBERS.get(decimal)
-    #         another_decimal_number -= decimal
-    #         print("New decimal_number: {}".format(another_decimal_number))
-    #         number_of_similar_symbols += 1
-    #         if number_of_similar_symbols == 3:
-    #             print("No va maaaaas")
-    #     number_of_similar_symbols = 0
-    # print("Result: {}".format(result))
-
-    for decimal, roman in sorted(DECIMAL_TO_ROMAN_NUMBERS.items(), reverse=True):
-        print(decimal)
-        if decimal_number == decimal:
-            return DECIMAL_TO_ROMAN_NUMBERS.get(decimal)
-    if decimal_number == 4:
-        return "IV"
     roman_numeral = ""
-    for i in range(decimal_number):
-        roman_numeral += "I"
+    last_symbol = ""
+    another_decimal_number = decimal_number
+    for decimal, roman in sorted(DECIMAL_TO_ROMAN_NUMBERS.items(), reverse=True):
+        number_of_similar_symbols = 0
+        current_result = ""
+        if decimal_number == decimal:
+            roman_numeral += DECIMAL_TO_ROMAN_NUMBERS.get(decimal)
+            break
+        while another_decimal_number / decimal >= 1:
+            current_symbol = DECIMAL_TO_ROMAN_NUMBERS.get(decimal)
+            current_result += current_symbol
+            another_decimal_number -= decimal
+            number_of_similar_symbols += 1
+            if number_of_similar_symbols == 4:
+                current_result = current_symbol + last_symbol
+                break
+        last_symbol = roman
+    number_of_similar_symbols = 0
+    roman_numeral += current_result
     return roman_numeral
 
 
