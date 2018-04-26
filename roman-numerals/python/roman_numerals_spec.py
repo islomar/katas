@@ -3,19 +3,20 @@
 from expects import *
 
 MAXIMUM_NUMBER_OF_CONSECUTIVE_SIMILAR_ROMAN_NUMERALS = 3
-DECIMAL_TO_ROMAN_NUMBERS = { 1000: "M", 900: "CM", 500: "D", 100: "C", 90: "XC", 50: "L", 10: "X", 9: "IX", 5: "V", 1: "I" }
+DECIMAL_TO_ROMAN_NUMERALS = { 1000: "M", 900: "CM", 500: "D", 100: "C", 90: "XC", 50: "L", 10: "X", 9: "IX", 5: "V", 1: "I" }
 
 def convert_to_roman_from_decimal(decimal_number):
     result = ""
     last_roman_numeral = ""
-    for decimal, roman_numeral in sorted(DECIMAL_TO_ROMAN_NUMBERS.items(), reverse=True):
-        number_of_similar_symbols = 0
-        current_result = ""
+    for decimal, roman_numeral in sorted(DECIMAL_TO_ROMAN_NUMERALS.items(), reverse=True):
         if decimal_number == decimal:
-            result += DECIMAL_TO_ROMAN_NUMBERS.get(decimal)
+            result += roman_numeral
             break
+
+        current_result = ""
+        number_of_similar_symbols = 0
         while decimal_number / decimal >= 1:
-            current_symbol = DECIMAL_TO_ROMAN_NUMBERS.get(decimal)
+            current_symbol = roman_numeral
             current_result += current_symbol
             decimal_number -= decimal
             number_of_similar_symbols += 1
@@ -24,7 +25,6 @@ def convert_to_roman_from_decimal(decimal_number):
                 break
         result += current_result
         last_roman_numeral = roman_numeral
-    number_of_similar_symbols = 0
     return result
 
 
