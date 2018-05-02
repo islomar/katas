@@ -2,7 +2,7 @@ def convert(in_arabic)
     return "" if in_arabic.zero?
     return "I" if in_arabic == 1
     return "V" if in_arabic == 5
-    "I" + convert(1)
+    "I" + convert(in_arabic - 1)
 end
 
 describe "Converting arabic numbers to roman numerals" do
