@@ -1,5 +1,6 @@
 def convert(in_arabic)
-    ""
+    return "" if in_arabic.zero?
+    "I"
 end
 
 describe "Converting arabic numbers to roman numerals" do
