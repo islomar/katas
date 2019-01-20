@@ -15,7 +15,7 @@ def contains_sequence_1_3_4(numbers):
 
 
 # To run the tests, from the command line type:  python -test_int_array_sequence_detector.py -v
-class TestSequenceDetector(unittest.TestCase):
+class Test134SequenceDetector(unittest.TestCase):
     
     def test_a_long_array_containing_the_sequence_should_resturn_True(self):
         self.assertTrue(contains_sequence_1_3_4([1, 3, 45, 8, 1, 3, 4, 9]))
