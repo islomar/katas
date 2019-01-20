@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import itertools
 import unittest
 
 # Exercise: Given an array of ints, return True if the sequence.. 1, 3, 4 .. appears in the array somewhere
