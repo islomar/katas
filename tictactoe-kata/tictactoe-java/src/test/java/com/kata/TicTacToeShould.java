@@ -15,4 +15,23 @@ public class TicTacToeShould {
 
         assertThat(ticTacToe.currentPlayer(), is(new Player("X")));
     }
+
+    public void alternate_player_X_to_player_O() {
+        final TicTacToe ticTacToe = new TicTacToe();
+        ticTacToe.startGame();
+
+        ticTacToe.nextTurn();
+
+        assertThat(ticTacToe.currentPlayer(), is(new Player("O")));
+    }
+
+    public void alternate_player_O_to_player_X() {
+        final TicTacToe ticTacToe = new TicTacToe();
+        ticTacToe.startGame();
+
+        ticTacToe.nextTurn();
+        ticTacToe.nextTurn();
+
+        assertThat(ticTacToe.currentPlayer(), is(new Player("X")));
+    }
 }
