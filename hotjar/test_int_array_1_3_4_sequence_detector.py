@@ -2,6 +2,10 @@
 import unittest
 
 # Exercise: Given an array of ints, return True if the sequence.. 1, 3, 4 .. appears in the array somewhere
+# Applied YAGNI and KISS: it is a pure function (no OO), only working for [1, 3, 4]. It could be further generalized or applying recursion IFF NEEDED.
+# Other things could be optimised if the sequence to search for were generalized.
+# Time complexity:  O(n)
+# Space complexity: O(1)
 def contains_sequence_1_3_4(numbers):
     searched_sequence = [1, 3, 4]
     searched_sequence_length = len(searched_sequence)
@@ -9,7 +13,9 @@ def contains_sequence_1_3_4(numbers):
     if input_length < searched_sequence_length:
         return False
     for index in range(input_length - searched_sequence_length + 1):
-        if (numbers[index] == searched_sequence[0] and numbers[index + 1] == searched_sequence[1] and numbers[index + 2] == searched_sequence[2]):
+        if (numbers[index] == searched_sequence[0] and 
+            numbers[index + 1] == searched_sequence[1] and 
+            numbers[index + 2] == searched_sequence[2]):
             return True
     return False
 
