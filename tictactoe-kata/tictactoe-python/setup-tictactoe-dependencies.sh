@@ -1,0 +1,1 @@
+pipenv install -r requirements-dev.txt
