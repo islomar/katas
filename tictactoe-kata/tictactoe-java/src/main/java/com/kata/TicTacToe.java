@@ -15,8 +15,8 @@ public class TicTacToe {
   public void nextTurn() {
     if (currentPlayer.equals(new Player("X"))){
       currentPlayer = new Player("O");
-    } else {
-      currentPlayer = new Player("X");
+      return;
     }
+    currentPlayer = new Player("X");
   }
 }
