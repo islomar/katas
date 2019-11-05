@@ -7,6 +7,7 @@ Currently:
 
 
 ## Pending katas
+* https://katalyst.codurance.com/
 * Refactoring katas:
   * https://github.com/emilybache/Email-Sender-Refactoring-Kata/blob/master/java/src/main/java/codingdojo/Server.java
 * http://codekata.com/kata/kata16-business-rules/
