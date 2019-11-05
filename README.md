@@ -7,7 +7,9 @@ Currently:
 
 
 ## Pending katas
-* codekata.com/kata/kata16-business-rules
+* Refactoring katas:
+  * https://github.com/emilybache/Email-Sender-Refactoring-Kata/blob/master/java/src/main/java/codingdojo/Server.java
+* http://codekata.com/kata/kata16-business-rules/
 * Mars Rover
 * Data Munging:  http://codekata.com/kata/kata04-data-munging/
 * Word wrap kata: http://thecleancoder.blogspot.com/2010/10/craftsman-62-dark-path.html
