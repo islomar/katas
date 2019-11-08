@@ -10,3 +10,5 @@ __pycache__/
 *$py.class
 
 .vscode/
+.idea/
+*.iml
