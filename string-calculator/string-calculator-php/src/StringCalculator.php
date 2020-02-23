@@ -8,7 +8,7 @@ use phpDocumentor\Reflection\Types\Integer;
 
 class StringCalculator
 {
-    public function add(string $numbers):Integer {
+    public function add(string $numbers):int {
         return 0;
     }
 }
