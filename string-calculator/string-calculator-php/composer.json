@@ -1,0 +1,17 @@
+{
+    "name": "katas/stringcalculator",
+    "description": "String Calculator kata in PHP",
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
+    },
+    "require": {},
+    "scripts": {
+        "test": "phpunit --bootstrap vendor/autoload.php tests/StringCalculatorTest.php"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kata\\": "src/"
+        }
+
+    }
+}
