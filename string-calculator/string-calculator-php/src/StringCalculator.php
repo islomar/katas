@@ -8,8 +8,10 @@ namespace Kata;
 
 class StringCalculator
 {
+    const DELIMITER = ',';
+
     public function add(string $numbers):int {
-        $numbers = explode(',', $numbers);
+        $numbers = explode(self::DELIMITER, $numbers);
         $convertToInt = function (string $stringElement):int {
             return (int)$stringElement;
         };
