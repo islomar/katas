@@ -9,11 +9,11 @@ class StringCalculator
 {
     const DELIMITER = ',';
 
-    public function add(string $numbers): int
+    public function add(string $stringAddends): int
     {
-        $numbers = explode(self::DELIMITER, $numbers);
-        $array_map = array_map(array($this, 'convertStringToInt'), $numbers);
-        return array_sum($array_map);
+        $addendsArray = explode(self::DELIMITER, $stringAddends);
+        $intAddends = array_map(array($this, 'convertStringToInt'), $addendsArray);
+        return array_sum($intAddends);
     }
 
     private function convertStringToInt(string $stringElement): int
