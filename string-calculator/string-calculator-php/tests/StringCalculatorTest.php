@@ -6,9 +6,6 @@ namespace Kata\Tests;
 use Kata\StringCalculator;
 use PHPUnit\Framework\TestCase;
 
-// "" -> 0
-// "4" -> 4
-// "1,2" -> 3
 class StringCalculatorTest extends TestCase
 {
     public function test_an_empty_list_should_return_0()
@@ -54,5 +51,14 @@ class StringCalculatorTest extends TestCase
         $result = $stringCalculator->add("1\n2,3");
 
         self::assertThat($result, $this->equalTo(6));
+    }
+
+    public function test_adds_a_list_with_custom_separators()
+    {
+        $stringCalculator = new StringCalculator();
+
+        $result = $stringCalculator->add("//;\n1;2");
+
+        self::assertThat($result, $this->equalTo(3));
     }
 }
