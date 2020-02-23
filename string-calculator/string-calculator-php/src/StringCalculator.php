@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Kata;
 
 
-use Exception;
 use Kata\Exceptions\InvalidNumberException;
 
 class StringCalculator
@@ -23,7 +22,7 @@ class StringCalculator
         return array_sum($intAddends);
     }
 
-    private function extractDelimiters(string $stringAddends):string
+    private function extractDelimiters(string $stringAddends): string
     {
         if ($this->hasCustomSeparators($stringAddends)) {
             $delimiters = array();
@@ -52,11 +51,12 @@ class StringCalculator
     {
         $negative_numbers = array_filter($intAddends, array($this, 'isNegative'));
         if (!empty($negative_numbers)) {
-          throw new InvalidNumberException(sprintf('negatives not allowed: %s', implode(' ', $negative_numbers)));
+            throw new InvalidNumberException(sprintf('negatives not allowed: %s', implode(' ', $negative_numbers)));
         }
     }
 
-    private function isNegative(int $number):bool {
+    private function isNegative(int $number): bool
+    {
         return $number < 0;
     }
 }
