@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Kata;
 
 
+use Exception;
+
 class StringCalculator
 {
     const DEFAULT_SEPARATORS_REGEX = '/[,\n]/';
@@ -16,6 +18,7 @@ class StringCalculator
         $delimiters = $this->extractDelimiters($stringAddends);
         $addendsArray = preg_split($delimiters, $stringAddends);
         $intAddends = array_map(array($this, 'convertStringToInt'), $addendsArray);
+        $this->validateAddends($intAddends);
         return array_sum($intAddends);
     }
 
@@ -38,9 +41,21 @@ class StringCalculator
     {
         return (int)$stringElement;
     }
-    
+
     private function hasCustomSeparators(string $stringAddends): bool
     {
         return $this->startsWith($stringAddends, '//');
+    }
+
+    private function validateAddends(array $intAddends)
+    {
+        $negative_numbers = array_filter($intAddends, array($this, 'isNegative'));
+        if (!empty($negative_numbers)) {
+          throw new Exception(sprintf('negatives not allowed: %s', implode(' ', $negative_numbers)));
+        }
+    }
+
+    private function isNegative(int $number):bool {
+        return $number < 0;
     }
 }
