@@ -7,11 +7,11 @@ namespace Kata;
 
 class StringCalculator
 {
-    const DELIMITER = ',';
+    const DELIMITERS = "/[,\n]/";
 
     public function add(string $stringAddends): int
     {
-        $addendsArray = explode(self::DELIMITER, $stringAddends);
+        $addendsArray = preg_split(self::DELIMITERS, $stringAddends);
         $intAddends = array_map(array($this, 'convertStringToInt'), $addendsArray);
         return array_sum($intAddends);
     }

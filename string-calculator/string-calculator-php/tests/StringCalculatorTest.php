@@ -20,7 +20,7 @@ class StringCalculatorTest extends TestCase
         self::assertThat($result, $this->equalTo(0));
     }
 
-    public function test_a_list_with_one_element_returns_that_same_element()
+    public function test_a_list_separated_with_comma_with_one_element_returns_that_same_element()
     {
         $stringCalculator = new StringCalculator();
 
@@ -29,7 +29,7 @@ class StringCalculatorTest extends TestCase
         self::assertThat($result, $this->equalTo(4));
     }
 
-    public function test_adds_a_list_with_two_elements()
+    public function test_adds_a_list_separated_with_comma_with_two_elements()
     {
         $stringCalculator = new StringCalculator();
 
@@ -38,12 +38,21 @@ class StringCalculatorTest extends TestCase
         self::assertThat($result, $this->equalTo(3));
     }
 
-    public function test_adds_a_list_with_many_elements()
+    public function test_adds_a_list_separated_with_comma_with_many_elements()
     {
         $stringCalculator = new StringCalculator();
 
         $result = $stringCalculator->add("1,2,3,4,5,6,7,8,9");
 
         self::assertThat($result, $this->equalTo(45));
+    }
+
+    public function test_adds_a_list_with_newline_separator_and_comma()
+    {
+        $stringCalculator = new StringCalculator();
+
+        $result = $stringCalculator->add("1\n2,3");
+
+        self::assertThat($result, $this->equalTo(6));
     }
 }
