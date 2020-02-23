@@ -7,7 +7,9 @@ namespace Kata;
 
 class StringCalculator
 {
-    const DELIMITERS_REGEX = "/[,\n]/";
+    const DEFAULT_SEPARATORS_REGEX = '/[,\n]/';
+    const CUSTOM_SEPARATORS_PATTERN = '/\/\/(.*)\n/';
+    const REGEX_FORMAT = '/[%s]/';
 
     public function add(string $stringAddends): int
     {
@@ -19,12 +21,12 @@ class StringCalculator
 
     private function extractDelimiters(string $stringAddends):string
     {
-        if ($this->startsWith($stringAddends, '//')) {
+        if ($this->hasCustomSeparators($stringAddends)) {
             $delimiters = array();
-            preg_match('/\/\/(.*)\n/', $stringAddends, $delimiters);
-            return sprintf('/[%s]/', $delimiters[1]);
+            preg_match(self::CUSTOM_SEPARATORS_PATTERN, $stringAddends, $delimiters);
+            return sprintf(self::REGEX_FORMAT, $delimiters[1]);
         }
-        return self::DELIMITERS_REGEX;
+        return self::DEFAULT_SEPARATORS_REGEX;
     }
 
     private function startsWith($haystack, $needle): bool
@@ -35,5 +37,10 @@ class StringCalculator
     private function convertStringToInt(string $stringElement): int
     {
         return (int)$stringElement;
+    }
+    
+    private function hasCustomSeparators(string $stringAddends): bool
+    {
+        return $this->startsWith($stringAddends, '//');
     }
 }
