@@ -28,4 +28,13 @@ class StringCalculatorTest extends TestCase
 
         self::assertThat($result, $this->equalTo(4));
     }
+
+    public function test_adds_a_list_with_two_elements()
+    {
+        $stringCalculator = new StringCalculator();
+
+        $result = $stringCalculator->add("1, 2");
+
+        self::assertThat($result, $this->equalTo(3));
+    }
 }
