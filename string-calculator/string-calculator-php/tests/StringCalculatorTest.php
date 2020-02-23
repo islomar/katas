@@ -37,4 +37,13 @@ class StringCalculatorTest extends TestCase
 
         self::assertThat($result, $this->equalTo(3));
     }
+
+    public function test_adds_a_list_with_many_elements()
+    {
+        $stringCalculator = new StringCalculator();
+
+        $result = $stringCalculator->add("1,2,3,4,5,6,7,8,9");
+
+        self::assertThat($result, $this->equalTo(45));
+    }
 }
