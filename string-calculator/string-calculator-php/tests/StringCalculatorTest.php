@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Kata\Tests;
 
+use Kata\Exceptions\InvalidNumberException;
 use Kata\StringCalculator;
 use PHPUnit\Framework\TestCase;
 
@@ -64,6 +65,7 @@ class StringCalculatorTest extends TestCase
 
     public function test_negatives_are_not_allowed()
     {
+        $this->expectException(InvalidNumberException::class);
         $this->expectExceptionMessage('negatives not allowed: -2 -3');
 
         $stringCalculator = new StringCalculator();
@@ -73,5 +75,4 @@ class StringCalculatorTest extends TestCase
 
     // TODO
     // extract setUp()
-    // create specific exception
 }

@@ -6,6 +6,7 @@ namespace Kata;
 
 
 use Exception;
+use Kata\Exceptions\InvalidNumberException;
 
 class StringCalculator
 {
@@ -51,7 +52,7 @@ class StringCalculator
     {
         $negative_numbers = array_filter($intAddends, array($this, 'isNegative'));
         if (!empty($negative_numbers)) {
-          throw new Exception(sprintf('negatives not allowed: %s', implode(' ', $negative_numbers)));
+          throw new InvalidNumberException(sprintf('negatives not allowed: %s', implode(' ', $negative_numbers)));
         }
     }
 
