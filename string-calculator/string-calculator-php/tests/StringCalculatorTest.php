@@ -65,4 +65,19 @@ class StringCalculatorTest extends TestCase
 
         $this->stringCalculator->add('1,-2,-3');
     }
+
+//Add("1001, 2") // 2
+    public function test_ignore_numbers_bigger_than_1000()
+    {
+        $result = $this->stringCalculator->add("1001, 2");
+
+        self::assertThat($result, $this->equalTo(2));
+    }
+
+    public function test_allow_number_1000()
+    {
+        $result = $this->stringCalculator->add("1000, 2");
+
+        self::assertThat($result, $this->equalTo(1002));
+    }
 }

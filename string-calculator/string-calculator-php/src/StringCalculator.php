@@ -19,7 +19,8 @@ class StringCalculator
         $addendsArray = preg_split($delimiters, $stringAddends);
         $intAddends = array_map(array($this, 'convertStringToInt'), $addendsArray);
         $this->validateAddends($intAddends);
-        return array_sum($intAddends);
+        $valid_numbers = array_filter($intAddends, array($this, 'isLowerThan1000'));
+        return array_sum($valid_numbers);
     }
 
     private function extractDelimiters(string $stringAddends): string
@@ -58,5 +59,10 @@ class StringCalculator
     private function isNegative(int $number): bool
     {
         return $number < 0;
+    }
+
+    private function isLowerThan1000(int $number): bool
+    {
+        return $number <= 1000;
     }
 }
