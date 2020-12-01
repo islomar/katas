@@ -28,6 +28,8 @@ public class CoffeeMachine {
     private String extractDrinkType(String beverageType) {
         if ("chocolate".equalsIgnoreCase(beverageType)) {
             return "H:";
+        } else if ("tea".equalsIgnoreCase(beverageType)) {
+            return "T:";
         }
         return "";
     }
