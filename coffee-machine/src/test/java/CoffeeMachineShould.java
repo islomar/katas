@@ -1,18 +1,18 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
+import org.mockito.Spy;
 
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.MockitoAnnotations.initMocks;
 
 public class CoffeeMachineShould {
 
-    @Mock
+    @Spy
     DrinkMaker drinkMaker;
 
     @BeforeEach
     public void setUp() {
-        initMocks(this);
+        drinkMaker = mock(DrinkMaker.class);
     }
 
     @Test
