@@ -1,6 +1,6 @@
 public class CoffeeMachine {
     private final DrinkMaker drinkMaker;
-    private final String COMMAND_FORMAT = "%s:%s:%s";
+    private static final String COMMAND_FORMAT = "%s:%s:%s";
 
     public CoffeeMachine(DrinkMaker drinkMaker) {
 
