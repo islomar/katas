@@ -8,10 +8,13 @@ public class CoffeeMachine {
     }
 
     public void orderBeverage(Beverage beverage) {
-        String drinkMakerCommand =
-                extractDrinkType(beverage.beverageType()) +
-                        extractNumberOfSugarsAndStick(beverage.numberOfSugars());
+        String drinkMakerCommand = convertBeverageToDrinkMakerCommand(beverage);
         this.drinkMaker.execute(drinkMakerCommand);
+    }
+
+    private String convertBeverageToDrinkMakerCommand(Beverage beverage) {
+        return extractDrinkType(beverage.beverageType()) +
+                extractNumberOfSugarsAndStick(beverage.numberOfSugars());
     }
 
     private String extractNumberOfSugarsAndStick(int numberOfSugars) {
