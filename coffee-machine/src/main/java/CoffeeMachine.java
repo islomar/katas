@@ -1,6 +1,6 @@
 public class CoffeeMachine {
     private final DrinkMaker drinkMaker;
-    private final String COMMAND_FORMAT = "%s:%s";
+    private final String COMMAND_FORMAT = "%s:%s:%s";
 
     public CoffeeMachine(DrinkMaker drinkMaker) {
 
@@ -15,15 +15,24 @@ public class CoffeeMachine {
     private String convertBeverageToDrinkMakerCommand(Beverage beverage) {
         return COMMAND_FORMAT.formatted(
                 extractDrinkType(beverage.beverageType()),
-                extractNumberOfSugarsAndStick(beverage.numberOfSugars())
+                extractNumberOfSugarsAndStick(beverage.numberOfSugars()),
+                extractStick(beverage.numberOfSugars())
         );
     }
 
     private String extractNumberOfSugarsAndStick(int numberOfSugars) {
         if (numberOfSugars > 0) {
-            return numberOfSugars + ":0";
+            return String.valueOf(numberOfSugars);
         } else {
-            return ":";
+            return "";
+        }
+    }
+
+    private String extractStick(int numberOfSugars) {
+        if (numberOfSugars > 0) {
+            return "0";
+        } else {
+            return "";
         }
     }
 
