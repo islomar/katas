@@ -19,7 +19,7 @@ public class CoffeeMachineShould {
     public void order_a_hot_chocolate_without_sugar() {
         CoffeeMachine coffeeMachine = new CoffeeMachine(drinkMaker);
 
-        coffeeMachine.orderBeverage(new Beverage());
+        coffeeMachine.orderBeverage(new Beverage("Chocolate", 0));
 
         verify(this.drinkMaker).execute("H::");
     }
