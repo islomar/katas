@@ -33,4 +33,14 @@ public class CoffeeMachineShould {
         verify(this.drinkMaker).execute("H:1:0");
     }
 
+
+    @Test
+    public void order_a_tea_with_two_sugars_and_stick() {
+        CoffeeMachine coffeeMachine = new CoffeeMachine(drinkMaker);
+
+        coffeeMachine.orderBeverage(new Beverage("tea", 2));
+
+        verify(this.drinkMaker).execute("T:2:0");
+    }
+
 }
