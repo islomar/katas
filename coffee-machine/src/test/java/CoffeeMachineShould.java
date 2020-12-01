@@ -1,13 +1,27 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.Mockito.verify;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 public class CoffeeMachineShould {
 
+    @Mock
+    DrinkMaker drinkMaker;
+
+    @BeforeEach
+    public void setUp() {
+        initMocks(this);
+    }
+
     @Test
-    public void think_a_good_name_and_rename_this_method() {
-        new CoffeeMachine();
-        fail();
+    public void order_a_hot_chocolate_without_sugar() {
+        CoffeeMachine coffeeMachine = new CoffeeMachine(drinkMaker);
+
+        coffeeMachine.orderBeverage(new Beverage());
+
+        verify(this.drinkMaker).execute("H::");
     }
 
 }
