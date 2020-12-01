@@ -30,7 +30,8 @@ public class CoffeeMachine {
             return "H:";
         } else if ("tea".equalsIgnoreCase(beverageType)) {
             return "T:";
+        } else {
+            return "C:";
         }
-        return "";
     }
 }
