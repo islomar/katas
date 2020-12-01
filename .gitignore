@@ -15,3 +15,5 @@ __pycache__/
 
 # PHP
 vendor/
+
+.DS_Store
