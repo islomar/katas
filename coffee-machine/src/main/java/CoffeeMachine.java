@@ -8,15 +8,18 @@ public class CoffeeMachine {
     }
 
     public void orderBeverage(Beverage beverage) {
-        String drinkMakerCommand = "";
-        String drinkType = extractDrinkType(beverage.beverageType());
-        drinkMakerCommand += drinkType;
-        if (beverage.numberOfSugars() > 0) {
-            drinkMakerCommand += beverage.numberOfSugars() + ":0";
-        } else {
-            drinkMakerCommand += ":";
-        }
+        String drinkMakerCommand =
+                extractDrinkType(beverage.beverageType()) +
+                        extractNumberOfSugarsAndStick(beverage.numberOfSugars());
         this.drinkMaker.execute(drinkMakerCommand);
+    }
+
+    private String extractNumberOfSugarsAndStick(int numberOfSugars) {
+        if (numberOfSugars > 0) {
+            return numberOfSugars + ":0";
+        } else {
+            return ":";
+        }
     }
 
     private String extractDrinkType(String beverageType) {
