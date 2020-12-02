@@ -2,11 +2,12 @@
 
 
 Code from katas practiced either on my own or through Coding Dojos, Coderetreats, etc.
-Currently:
-* [The Gilded rose](./gilded-rose/README.md)
 
+## Pending
+* https://github.com/SoftwareCraftsmanshipGrenoble/elections
+* https://codesai.com/2019/04/beverages_prices_kata
 
-## Pending katas
+## Where to find more katas
 * https://katalyst.codurance.com/
 * Refactoring katas:
   * https://github.com/emilybache/Email-Sender-Refactoring-Kata/blob/master/java/src/main/java/codingdojo/Server.java
