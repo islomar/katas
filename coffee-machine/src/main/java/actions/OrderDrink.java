@@ -14,7 +14,7 @@ public class OrderDrink {
     }
 
     public void execute(Drink drink, Money payment) {
-        if (payment.amountInEuroCents().intValue() < drink.drinkPrice().amountInEuroCents().intValue()) {
+        if (payment.isLessThan(drink.drinkPrice())) {
             int missingCents = drink.drinkPrice().amountInEuroCents().intValue() - payment.amountInEuroCents().intValue();
             this.drinkMaker.execute(String.format("There are %s cents missing", missingCents));
             return;
