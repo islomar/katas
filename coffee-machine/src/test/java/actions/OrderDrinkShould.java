@@ -2,10 +2,7 @@ package actions;
 
 import infrastructure.DrinkMaker;
 import model.Money;
-import model.drinks.Chocolate;
-import model.drinks.Coffee;
-import model.drinks.OrangeJuice;
-import model.drinks.Tea;
+import model.drinks.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Spy;
@@ -108,6 +105,33 @@ public class OrderDrinkShould {
         coffeeMachine.execute(new Chocolate(1), new Money(new BigDecimal(32)));
 
         verify(this.drinkMaker).execute("There are 18 cents missing");
+    }
+
+    @Test
+    public void order_extra_hot_tea() {
+        OrderDrink coffeeMachine = new OrderDrink(drinkMaker);
+
+        coffeeMachine.execute(new ExtraHot(new Tea(1)), ONE_EURO);
+
+        verify(this.drinkMaker).execute("Th:1:0");
+    }
+
+    @Test
+    public void order_extra_hot_chocolate() {
+        OrderDrink coffeeMachine = new OrderDrink(drinkMaker);
+
+        coffeeMachine.execute(new ExtraHot(new Chocolate(1)), ONE_EURO);
+
+        verify(this.drinkMaker).execute("Hh:1:0");
+    }
+
+    @Test
+    public void order_extra_hot_coffee() {
+        OrderDrink coffeeMachine = new OrderDrink(drinkMaker);
+
+        coffeeMachine.execute(new ExtraHot(new Coffee(1)), ONE_EURO);
+
+        verify(this.drinkMaker).execute("Ch:1:0");
     }
 
 }
