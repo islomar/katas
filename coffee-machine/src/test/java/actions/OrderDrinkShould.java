@@ -4,6 +4,7 @@ import infrastructure.DrinkMaker;
 import model.Money;
 import model.drinks.Chocolate;
 import model.drinks.Coffee;
+import model.drinks.OrangeJuice;
 import model.drinks.Tea;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -52,6 +53,15 @@ public class OrderDrinkShould {
         coffeeMachine.execute(new Tea(2), ONE_EURO);
 
         verify(this.drinkMaker).execute("T:2:0");
+    }
+
+    @Test
+    public void order_an_orange_juice_for_60_cents_with_two_sugars_and_stick() {
+        OrderDrink coffeeMachine = new OrderDrink(drinkMaker);
+
+        coffeeMachine.execute(new OrangeJuice(2), new Money(new BigDecimal(60)));
+
+        verify(this.drinkMaker).execute("O:2:0");
     }
 
 
