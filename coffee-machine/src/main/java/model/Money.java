@@ -1,5 +1,7 @@
+package model;
+
 import java.math.BigDecimal;
 
 //TODO: create greaterThan, lessThan, equals
-record Money(BigDecimal amountInEuroCents) {
+public record Money(BigDecimal amountInEuroCents) {
 }

@@ -1,4 +1,4 @@
-# Coffee machine kata
+# model.drinks.Coffee machine kata
 https://simcap.github.io/coffeemachine
 
 ## TO DO:

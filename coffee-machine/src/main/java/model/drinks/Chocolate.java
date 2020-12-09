@@ -1,3 +1,7 @@
+package model.drinks;
+
+import model.Money;
+
 import java.math.BigDecimal;
 
 public class Chocolate extends Drink {
@@ -6,12 +10,12 @@ public class Chocolate extends Drink {
     }
 
     @Override
-    Money drinkPrice() {
+    public Money drinkPrice() {
         return new Money(BigDecimal.valueOf(50));
     }
 
     @Override
-    String convertToDrinkMaker() {
+    public String convertToDrinkMaker() {
         return "H";
     }
 }

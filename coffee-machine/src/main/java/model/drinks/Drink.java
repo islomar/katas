@@ -1,3 +1,7 @@
+package model.drinks;
+
+import model.Money;
+
 public abstract class Drink {
     private final int numberOfSugars;
 
@@ -9,7 +13,7 @@ public abstract class Drink {
         return numberOfSugars;
     }
 
-    abstract Money drinkPrice();
+    public abstract Money drinkPrice();
 
-    abstract String convertToDrinkMaker();
+    public abstract String convertToDrinkMaker();
 }

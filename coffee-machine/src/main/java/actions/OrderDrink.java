@@ -1,13 +1,19 @@
-public class CoffeeMachine {
+package actions;
+
+import infrastructure.DrinkMaker;
+import model.Money;
+import model.drinks.Drink;
+
+public class OrderDrink {
     private final DrinkMaker drinkMaker;
     private static final String COMMAND_FORMAT = "%s:%s:%s";
 
-    public CoffeeMachine(DrinkMaker drinkMaker) {
+    public OrderDrink(DrinkMaker drinkMaker) {
 
         this.drinkMaker = drinkMaker;
     }
 
-    public void orderBeverage(Drink drink, Money payment) {
+    public void execute(Drink drink, Money payment) {
         if (payment.amountInEuroCents().intValue() < drink.drinkPrice().amountInEuroCents().intValue()) {
             int missingCents = drink.drinkPrice().amountInEuroCents().intValue() - payment.amountInEuroCents().intValue();
             this.drinkMaker.execute(String.format("There are %s cents missing", missingCents));
