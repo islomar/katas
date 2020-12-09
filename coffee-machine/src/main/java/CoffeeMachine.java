@@ -7,23 +7,23 @@ public class CoffeeMachine {
         this.drinkMaker = drinkMaker;
     }
 
-    public void orderBeverage(Beverage beverage, Money payment) {
-        if (beverage.beverageType() == "Chocolate") {
+    public void orderBeverage(Drink drink, Money payment) {
+        if (drink.beverageType() == "Chocolate") {
             if (payment.amountInEuroCents().intValue() < 50) {
                 int missingCents = 50 - payment.amountInEuroCents().intValue();
                 this.drinkMaker.execute(String.format("There are %s cents missing", missingCents));
                 return;
             }
         }
-        String drinkMakerCommand = convertBeverageToDrinkMakerCommand(beverage);
+        String drinkMakerCommand = convertBeverageToDrinkMakerCommand(drink);
         this.drinkMaker.execute(drinkMakerCommand);
     }
 
-    private String convertBeverageToDrinkMakerCommand(Beverage beverage) {
+    private String convertBeverageToDrinkMakerCommand(Drink drink) {
         return COMMAND_FORMAT.formatted(
-                extractDrinkType(beverage.beverageType()),
-                extractNumberOfSugarsAndStick(beverage.numberOfSugars()),
-                extractStick(beverage.numberOfSugars())
+                extractDrinkType(drink.beverageType()),
+                extractNumberOfSugarsAndStick(drink.numberOfSugars()),
+                extractStick(drink.numberOfSugars())
         );
     }
 
