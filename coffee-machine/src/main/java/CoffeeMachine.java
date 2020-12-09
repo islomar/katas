@@ -7,7 +7,14 @@ public class CoffeeMachine {
         this.drinkMaker = drinkMaker;
     }
 
-    public void orderBeverage(Beverage beverage) {
+    public void orderBeverage(Beverage beverage, Money payment) {
+        if (beverage.beverageType() == "Chocolate") {
+            if (payment.amountInEuroCents().intValue() < 50) {
+                int missingCents = 50 - payment.amountInEuroCents().intValue();
+                this.drinkMaker.execute(String.format("There are %s cents missing", missingCents));
+                return;
+            }
+        }
         String drinkMakerCommand = convertBeverageToDrinkMakerCommand(beverage);
         this.drinkMaker.execute(drinkMakerCommand);
     }
