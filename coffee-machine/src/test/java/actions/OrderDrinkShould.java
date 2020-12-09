@@ -64,13 +64,29 @@ public class OrderDrinkShould {
         verify(this.drinkMaker).execute("C:2:0");
     }
 
-    // One tea is 0,4 euro, a coffee is 0,6 euro, a chocolate is 0,5 euro
-
     @Test
-    public void make_the_drink_only_if_the_correct_amount_of_money_is_given() {
+    public void make_a_coffee_if_60_cents_are_introduced() {
         OrderDrink coffeeMachine = new OrderDrink(drinkMaker);
 
-        coffeeMachine.execute(new Chocolate(1), ONE_EURO);
+        coffeeMachine.execute(new Coffee(1), new Money(new BigDecimal(60)));
+
+        verify(this.drinkMaker).execute("C:1:0");
+    }
+
+    @Test
+    public void make_a_tea_if_40_cents_are_introduced() {
+        OrderDrink coffeeMachine = new OrderDrink(drinkMaker);
+
+        coffeeMachine.execute(new Tea(1), new Money(new BigDecimal(40)));
+
+        verify(this.drinkMaker).execute("T:1:0");
+    }
+
+    @Test
+    public void make_a_chocolate_if_50_cents_are_introduced() {
+        OrderDrink coffeeMachine = new OrderDrink(drinkMaker);
+
+        coffeeMachine.execute(new Chocolate(1), new Money(new BigDecimal(50)));
 
         verify(this.drinkMaker).execute("H:1:0");
     }
