@@ -4,6 +4,8 @@ import infrastructure.DrinkMaker;
 import model.Money;
 import model.drinks.Drink;
 
+import java.math.BigDecimal;
+
 public class OrderDrink {
     private final DrinkMaker drinkMaker;
     private static final String COMMAND_FORMAT = "%s:%s:%s";
@@ -15,7 +17,7 @@ public class OrderDrink {
 
     public void execute(Drink drink, Money payment) {
         if (payment.isLessThan(drink.drinkPrice())) {
-            int missingCents = drink.drinkPrice().amountInEuroCents().intValue() - payment.amountInEuroCents().intValue();
+            BigDecimal missingCents = drink.drinkPrice().differenceInCentsWith(payment);
             this.drinkMaker.execute(String.format("There are %s cents missing", missingCents));
             return;
         }
