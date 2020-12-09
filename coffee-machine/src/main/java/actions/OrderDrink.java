@@ -1,6 +1,7 @@
 package actions;
 
 import infrastructure.DrinkMaker;
+import model.DrinkOrderRepository;
 import model.Money;
 import model.drinks.Drink;
 
@@ -10,7 +11,7 @@ public class OrderDrink {
     private final DrinkMaker drinkMaker;
     private static final String COMMAND_FORMAT = "%s:%s:%s";
 
-    public OrderDrink(DrinkMaker drinkMaker) {
+    public OrderDrink(DrinkMaker drinkMaker, DrinkOrderRepository drinkOrderRepository) {
 
         this.drinkMaker = drinkMaker;
     }
