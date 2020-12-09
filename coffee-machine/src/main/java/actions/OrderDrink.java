@@ -9,11 +9,13 @@ import java.math.BigDecimal;
 
 public class OrderDrink {
     private final DrinkMaker drinkMaker;
+    private final DrinkOrderRepository drinkOrderRepository;
     private static final String COMMAND_FORMAT = "%s:%s:%s";
 
     public OrderDrink(DrinkMaker drinkMaker, DrinkOrderRepository drinkOrderRepository) {
 
         this.drinkMaker = drinkMaker;
+        this.drinkOrderRepository = drinkOrderRepository;
     }
 
     public void execute(Drink drink, Money payment) {
@@ -24,6 +26,7 @@ public class OrderDrink {
         }
         String drinkMakerCommand = convertBeverageToDrinkMakerCommand(drink);
         this.drinkMaker.execute(drinkMakerCommand);
+        this.drinkOrderRepository.save(drink);
     }
 
     private String convertBeverageToDrinkMakerCommand(Drink drink) {
