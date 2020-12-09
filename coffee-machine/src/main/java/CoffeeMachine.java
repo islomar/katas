@@ -8,12 +8,10 @@ public class CoffeeMachine {
     }
 
     public void orderBeverage(Drink drink, Money payment) {
-        if (drink.beverageType() == "Chocolate") {
-            if (payment.amountInEuroCents().intValue() < 50) {
-                int missingCents = 50 - payment.amountInEuroCents().intValue();
-                this.drinkMaker.execute(String.format("There are %s cents missing", missingCents));
-                return;
-            }
+        if (payment.amountInEuroCents().intValue() < drink.drinkPrice().amountInEuroCents().intValue()) {
+            int missingCents = drink.drinkPrice().amountInEuroCents().intValue() - payment.amountInEuroCents().intValue();
+            this.drinkMaker.execute(String.format("There are %s cents missing", missingCents));
+            return;
         }
         String drinkMakerCommand = convertBeverageToDrinkMakerCommand(drink);
         this.drinkMaker.execute(drinkMakerCommand);
@@ -21,7 +19,7 @@ public class CoffeeMachine {
 
     private String convertBeverageToDrinkMakerCommand(Drink drink) {
         return COMMAND_FORMAT.formatted(
-                extractDrinkType(drink.beverageType()),
+                drink.convertToDrinkMaker(),
                 extractNumberOfSugarsAndStick(drink.numberOfSugars()),
                 extractStick(drink.numberOfSugars())
         );

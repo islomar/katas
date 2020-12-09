@@ -21,7 +21,7 @@ public class CoffeeMachineShould {
     public void order_a_hot_chocolate_without_sugar() {
         CoffeeMachine coffeeMachine = new CoffeeMachine(drinkMaker);
 
-        coffeeMachine.orderBeverage(new Drink("Chocolate", 0), new Money(new BigDecimal(50)));
+        coffeeMachine.orderBeverage(new Chocolate(0), new Money(new BigDecimal(100)));
 
         verify(this.drinkMaker).execute("H::");
     }
@@ -30,7 +30,7 @@ public class CoffeeMachineShould {
     public void order_a_hot_chocolate_with_one_sugar_and_stick() {
         CoffeeMachine coffeeMachine = new CoffeeMachine(drinkMaker);
 
-        coffeeMachine.orderBeverage(new Drink("Chocolate", 1), new Money(new BigDecimal(50)));
+        coffeeMachine.orderBeverage(new Chocolate(1), new Money(new BigDecimal(100)));
 
         verify(this.drinkMaker).execute("H:1:0");
     }
@@ -40,7 +40,7 @@ public class CoffeeMachineShould {
     public void order_a_tea_with_two_sugars_and_stick() {
         CoffeeMachine coffeeMachine = new CoffeeMachine(drinkMaker);
 
-        coffeeMachine.orderBeverage(new Drink("tea", 2), new Money(new BigDecimal(50)));
+        coffeeMachine.orderBeverage(new Tea(2), new Money(new BigDecimal(100)));
 
         verify(this.drinkMaker).execute("T:2:0");
     }
@@ -50,7 +50,7 @@ public class CoffeeMachineShould {
     public void order_a_coffee_with_two_sugars_and_stick() {
         CoffeeMachine coffeeMachine = new CoffeeMachine(drinkMaker);
 
-        coffeeMachine.orderBeverage(new Drink("coffee", 2), new Money(new BigDecimal(50)));
+        coffeeMachine.orderBeverage(new Coffee(2), new Money(new BigDecimal(100)));
 
         verify(this.drinkMaker).execute("C:2:0");
     }
@@ -61,7 +61,7 @@ public class CoffeeMachineShould {
     public void make_the_drink_only_if_the_correct_amount_of_money_is_given() {
         CoffeeMachine coffeeMachine = new CoffeeMachine(drinkMaker);
 
-        coffeeMachine.orderBeverage(new Drink("Chocolate", 1), new Money(new BigDecimal(50)));
+        coffeeMachine.orderBeverage(new Chocolate(1), new Money(new BigDecimal(100)));
 
         verify(this.drinkMaker).execute("H:1:0");
     }
@@ -70,7 +70,7 @@ public class CoffeeMachineShould {
     public void show_message_with_the_amount_of_money_missing() {
         CoffeeMachine coffeeMachine = new CoffeeMachine(drinkMaker);
 
-        coffeeMachine.orderBeverage(new Drink("Chocolate", 1), new Money(new BigDecimal(32)));
+        coffeeMachine.orderBeverage(new Chocolate(1), new Money(new BigDecimal(32)));
 
         verify(this.drinkMaker).execute("There are 18 cents missing");
     }
