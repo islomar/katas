@@ -1,29 +1,27 @@
 package actions;
 
 import infrastructure.InMemoryDrinkOrderRepository;
-import model.*;
-import model.drinks.Chocolate;
-import model.drinks.Coffee;
+import model.BeverageQuantityChecker;
+import model.Console;
+import model.DrinkMaker;
+import model.EmailNotifier;
 import model.drinks.OrangeJuice;
 import model.drinks.Tea;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
-import java.math.BigDecimal;
-
 import static org.mockito.Mockito.*;
+import static utils.ChocolateBuilder.aChocolate;
+import static utils.TestData.ONE_EURO;
+import static utils.TestData.aCoffee;
 
 class GenerateDrinkReportTest {
-    private static final Money ONE_EURO = new Money(new BigDecimal(100));
-    @Mock
-    private Console console;
-    @Mock
-    private DrinkMaker drinkMaker;
-    @Mock
-    EmailNotifier emailNotifier;
-    @Mock
-    BeverageQuantityChecker beverageQuantityChecker;
+    @Mock private EmailNotifier emailNotifier;
+    @Mock private BeverageQuantityChecker beverageQuantityChecker;
+    @Mock private Console console;
+    @Mock private DrinkMaker drinkMaker;
+    private InMemoryDrinkOrderRepository drinkOrderRepository;
 
     @BeforeEach
     public void setUp() {
@@ -31,11 +29,12 @@ class GenerateDrinkReportTest {
         drinkMaker = mock(DrinkMaker.class);
         emailNotifier = mock(EmailNotifier.class);
         beverageQuantityChecker = mock(BeverageQuantityChecker.class);
+        drinkOrderRepository = new InMemoryDrinkOrderRepository();
     }
 
     @Test
     public void given_no_drinks_are_made_then_0_cents_are_printed() {
-        GenerateDrinkReport generateDrinkReport = new GenerateDrinkReport(console, new InMemoryDrinkOrderRepository());
+        GenerateDrinkReport generateDrinkReport = new GenerateDrinkReport(console, drinkOrderRepository);
 
         generateDrinkReport.execute();
 
@@ -45,12 +44,11 @@ class GenerateDrinkReportTest {
 
     @Test
     public void a_report_is_printed_including_number_of_drinks_and_total_amount_of_money_earned() {
-        InMemoryDrinkOrderRepository drinkOrderRepository = new InMemoryDrinkOrderRepository();
         GenerateDrinkReport generateDrinkReport = new GenerateDrinkReport(console, drinkOrderRepository);
         OrderDrink orderDrink = new OrderDrink(drinkMaker, drinkOrderRepository, emailNotifier, beverageQuantityChecker);
-        orderDrink.execute(new Chocolate(0), ONE_EURO);
+        orderDrink.execute(aChocolate().build(), ONE_EURO);
         orderDrink.execute(new Tea(0), ONE_EURO);
-        orderDrink.execute(new Coffee(0), ONE_EURO);
+        orderDrink.execute(aCoffee(), ONE_EURO);
         orderDrink.execute(new OrangeJuice(0), ONE_EURO);
 
         generateDrinkReport.execute();
