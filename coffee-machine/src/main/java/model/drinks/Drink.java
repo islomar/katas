@@ -16,4 +16,6 @@ public abstract class Drink {
     public abstract Money drinkPrice();
 
     public abstract String convertToDrinkMaker();
+
+    public abstract String toString();
 }

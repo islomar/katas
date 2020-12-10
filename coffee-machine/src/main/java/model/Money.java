@@ -11,4 +11,9 @@ public record Money(BigDecimal amountInEuroCents) {
     public BigDecimal differenceInCentsWith(Money otherMoney) {
         return this.amountInEuroCents().subtract(otherMoney.amountInEuroCents());
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(this.amountInEuroCents);
+    }
 }

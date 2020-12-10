@@ -8,9 +8,13 @@ import model.Money;
 import model.drinks.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mock;
 
 import java.math.BigDecimal;
+import java.util.stream.Stream;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
@@ -83,40 +87,35 @@ public class OrderDrinkShould {
         verify(this.drinkMaker).execute("C:2:0");
     }
 
-    @Test
-    public void make_a_coffee_if_60_cents_are_introduced() {
+    @ParameterizedTest(name = "{0} costs {1} cents")
+    @MethodSource("providesDrinksWithPrices")
+    public void make_any_drink_if_enough_money_is_introduced(Drink orderedDrink, Money moneyIntroduced, String expectedCommandSentToDrinkMaker) {
         OrderDrink coffeeMachine = anOrderDrink();
 
-        coffeeMachine.execute(new Coffee(1), new Money(new BigDecimal(60)));
+        coffeeMachine.execute(orderedDrink, moneyIntroduced);
 
-        verify(this.drinkMaker).execute("C:1:0");
+        verify(this.drinkMaker).execute(expectedCommandSentToDrinkMaker);
     }
 
-    @Test
-    public void make_a_tea_if_40_cents_are_introduced() {
-        OrderDrink coffeeMachine = anOrderDrink();
-
-        coffeeMachine.execute(new Tea(1), new Money(new BigDecimal(40)));
-
-        verify(this.drinkMaker).execute("T:1:0");
-    }
-
-    @Test
-    public void make_a_chocolate_if_50_cents_are_introduced() {
-        OrderDrink coffeeMachine = anOrderDrink();
-
-        coffeeMachine.execute(new Chocolate(1), new Money(new BigDecimal(50)));
-
-        verify(this.drinkMaker).execute("H:1:0");
+    private static Stream<Arguments> providesDrinksWithPrices() {
+        return Stream.of(
+                Arguments.of(new Chocolate(1), new Money(new BigDecimal(50)), "H:1:0"),
+                Arguments.of(new Tea(1), new Money(new BigDecimal(40)), "T:1:0"),
+                Arguments.of(new Coffee(1), new Money(new BigDecimal(60)), "C:1:0")
+        );
     }
 
     @Test
     public void show_message_with_the_amount_of_money_missing() {
         OrderDrink coffeeMachine = anOrderDrink();
+        Chocolate drinkToBeOrdered = new Chocolate(1);
+        int introducedMoneyInCents = 32;
+        Money moneyIntroduced = new Money(new BigDecimal(introducedMoneyInCents));
 
-        coffeeMachine.execute(new Chocolate(1), new Money(new BigDecimal(32)));
+        coffeeMachine.execute(drinkToBeOrdered, moneyIntroduced);
 
-        verify(this.drinkMaker).execute("There are 18 cents missing");
+        String expectedAmountMissing = String.valueOf(drinkToBeOrdered.drinkPrice().amountInEuroCents().intValue() - introducedMoneyInCents);
+        verify(this.drinkMaker).execute(String.format("There are %s cents missing", expectedAmountMissing));
     }
 
     @Test

@@ -19,4 +19,9 @@ public class ExtraHot extends Drink {
     public String convertToDrinkMaker() {
         return this.drink.convertToDrinkMaker() + "h";
     }
+
+    @Override
+    public String toString() {
+        return "Extra hot";
+    }
 }

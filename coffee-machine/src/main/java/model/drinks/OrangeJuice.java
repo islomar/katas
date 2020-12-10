@@ -18,4 +18,9 @@ public class OrangeJuice extends Drink {
     public String convertToDrinkMaker() {
         return "O";
     }
+
+    @Override
+    public String toString() {
+        return "Orange juice";
+    }
 }

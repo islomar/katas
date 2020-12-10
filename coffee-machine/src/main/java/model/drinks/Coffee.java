@@ -18,4 +18,9 @@ public class Coffee extends Drink {
     public String convertToDrinkMaker() {
         return "C";
     }
+
+    @Override
+    public String toString() {
+        return "Coffee";
+    }
 }
