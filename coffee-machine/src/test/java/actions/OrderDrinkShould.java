@@ -1,7 +1,7 @@
 package actions;
 
-import infrastructure.DrinkMaker;
 import infrastructure.InMemoryDrinkOrderRepository;
+import model.DrinkMaker;
 import model.Money;
 import model.drinks.*;
 import org.junit.jupiter.api.BeforeEach;

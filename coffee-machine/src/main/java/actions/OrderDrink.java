@@ -1,6 +1,6 @@
 package actions;
 
-import infrastructure.DrinkMaker;
+import model.DrinkMaker;
 import model.DrinkOrderRepository;
 import model.Money;
 import model.drinks.Drink;
