@@ -29,7 +29,7 @@ public class OrderDrinkShould {
 
     @Test
     public void order_a_hot_chocolate_without_sugar() {
-        OrderDrink coffeeMachine = new OrderDrink(drinkMaker, drinkOrderRepository, null);
+        OrderDrink coffeeMachine = new OrderDrink(drinkMaker, drinkOrderRepository, null, null);
 
         coffeeMachine.execute(new Chocolate(0), ONE_EURO);
 
@@ -38,7 +38,7 @@ public class OrderDrinkShould {
 
     @Test
     public void order_a_hot_chocolate_with_one_sugar_and_stick() {
-        OrderDrink coffeeMachine = new OrderDrink(drinkMaker, drinkOrderRepository, null);
+        OrderDrink coffeeMachine = new OrderDrink(drinkMaker, drinkOrderRepository, null, null);
 
         coffeeMachine.execute(new Chocolate(1), ONE_EURO);
 
@@ -48,7 +48,7 @@ public class OrderDrinkShould {
 
     @Test
     public void order_a_tea_with_two_sugars_and_stick() {
-        OrderDrink coffeeMachine = new OrderDrink(drinkMaker, drinkOrderRepository, null);
+        OrderDrink coffeeMachine = new OrderDrink(drinkMaker, drinkOrderRepository, null, null);
 
         coffeeMachine.execute(new Tea(2), ONE_EURO);
 
@@ -57,7 +57,7 @@ public class OrderDrinkShould {
 
     @Test
     public void order_an_orange_juice_for_60_cents_with_two_sugars_and_stick() {
-        OrderDrink coffeeMachine = new OrderDrink(drinkMaker, drinkOrderRepository, null);
+        OrderDrink coffeeMachine = new OrderDrink(drinkMaker, drinkOrderRepository, null, null);
 
         coffeeMachine.execute(new OrangeJuice(2), new Money(new BigDecimal(60)));
 
@@ -67,7 +67,7 @@ public class OrderDrinkShould {
 
     @Test
     public void order_a_coffee_with_two_sugars_and_stick() {
-        OrderDrink coffeeMachine = new OrderDrink(drinkMaker, drinkOrderRepository, null);
+        OrderDrink coffeeMachine = new OrderDrink(drinkMaker, drinkOrderRepository, null, null);
 
         coffeeMachine.execute(new Coffee(2), ONE_EURO);
 
@@ -76,7 +76,7 @@ public class OrderDrinkShould {
 
     @Test
     public void make_a_coffee_if_60_cents_are_introduced() {
-        OrderDrink coffeeMachine = new OrderDrink(drinkMaker, drinkOrderRepository, null);
+        OrderDrink coffeeMachine = new OrderDrink(drinkMaker, drinkOrderRepository, null, null);
 
         coffeeMachine.execute(new Coffee(1), new Money(new BigDecimal(60)));
 
@@ -85,7 +85,7 @@ public class OrderDrinkShould {
 
     @Test
     public void make_a_tea_if_40_cents_are_introduced() {
-        OrderDrink coffeeMachine = new OrderDrink(drinkMaker, drinkOrderRepository, null);
+        OrderDrink coffeeMachine = new OrderDrink(drinkMaker, drinkOrderRepository, null, null);
 
         coffeeMachine.execute(new Tea(1), new Money(new BigDecimal(40)));
 
@@ -94,7 +94,7 @@ public class OrderDrinkShould {
 
     @Test
     public void make_a_chocolate_if_50_cents_are_introduced() {
-        OrderDrink coffeeMachine = new OrderDrink(drinkMaker, drinkOrderRepository, null);
+        OrderDrink coffeeMachine = new OrderDrink(drinkMaker, drinkOrderRepository, null, null);
 
         coffeeMachine.execute(new Chocolate(1), new Money(new BigDecimal(50)));
 
@@ -103,7 +103,7 @@ public class OrderDrinkShould {
 
     @Test
     public void show_message_with_the_amount_of_money_missing() {
-        OrderDrink coffeeMachine = new OrderDrink(drinkMaker, drinkOrderRepository, null);
+        OrderDrink coffeeMachine = new OrderDrink(drinkMaker, drinkOrderRepository, null, null);
 
         coffeeMachine.execute(new Chocolate(1), new Money(new BigDecimal(32)));
 
@@ -112,7 +112,7 @@ public class OrderDrinkShould {
 
     @Test
     public void order_extra_hot_tea() {
-        OrderDrink coffeeMachine = new OrderDrink(drinkMaker, drinkOrderRepository, null);
+        OrderDrink coffeeMachine = new OrderDrink(drinkMaker, drinkOrderRepository, null, null);
 
         coffeeMachine.execute(new ExtraHot(new Tea(1)), ONE_EURO);
 
@@ -121,7 +121,7 @@ public class OrderDrinkShould {
 
     @Test
     public void order_extra_hot_chocolate() {
-        OrderDrink coffeeMachine = new OrderDrink(drinkMaker, drinkOrderRepository, null);
+        OrderDrink coffeeMachine = new OrderDrink(drinkMaker, drinkOrderRepository, null, null);
 
         coffeeMachine.execute(new ExtraHot(new Chocolate(1)), ONE_EURO);
 
@@ -130,7 +130,7 @@ public class OrderDrinkShould {
 
     @Test
     public void order_extra_hot_coffee() {
-        OrderDrink coffeeMachine = new OrderDrink(drinkMaker, drinkOrderRepository, null);
+        OrderDrink coffeeMachine = new OrderDrink(drinkMaker, drinkOrderRepository, null, null);
 
         coffeeMachine.execute(new ExtraHot(new Coffee(1)), ONE_EURO);
 
