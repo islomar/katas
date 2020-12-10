@@ -9,7 +9,6 @@ import model.drinks.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.Spy;
 
 import java.math.BigDecimal;
 
@@ -22,9 +21,9 @@ public class OrderDrinkShould {
     private static final Money ONE_EURO = new Money(new BigDecimal(100));
     private InMemoryDrinkOrderRepository drinkOrderRepository;
 
-    @Spy
+    @Mock
     DrinkMaker drinkMaker;
-    @Spy
+    @Mock
     EmailNotifier emailNotifier;
     @Mock
     BeverageQuantityChecker beverageQuantityChecker;
