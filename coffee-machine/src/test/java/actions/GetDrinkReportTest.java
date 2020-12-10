@@ -14,8 +14,7 @@ import org.mockito.Spy;
 
 import java.math.BigDecimal;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 class GetDrinkReportTest {
     private static final Money ONE_EURO = new Money(new BigDecimal(100));
@@ -36,6 +35,7 @@ class GetDrinkReportTest {
 
         generateDrinkReport.execute();
 
+        verify(this.console, times(1)).print(anyString());
         verify(this.console).print("Total amount of money earned: 0 cents");
     }
 
@@ -51,6 +51,7 @@ class GetDrinkReportTest {
 
         generateDrinkReport.execute();
 
+        verify(this.console, times(5)).print(anyString());
         verify(this.console).print("# of H sold: 1");
         verify(this.console).print("# of T sold: 1");
         verify(this.console).print("# of C sold: 1");
