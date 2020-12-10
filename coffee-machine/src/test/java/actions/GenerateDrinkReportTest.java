@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 
 import static org.mockito.Mockito.*;
 
-class GetDrinkReportTest {
+class GenerateDrinkReportTest {
     private static final Money ONE_EURO = new Money(new BigDecimal(100));
     @Mock
     private Console console;
