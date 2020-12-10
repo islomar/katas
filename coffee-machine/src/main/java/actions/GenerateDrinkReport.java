@@ -20,8 +20,6 @@ public class GenerateDrinkReport {
         this.inMemoryDrinkOrderRepository = inMemoryDrinkOrderRepository;
     }
 
-    //TODO: I want to be able to print a report anytime that contains:
-    // how many of each drink was sold and the total amount of money earned so far.
     public void execute() {
         List<Drink> allOrderedDrinks = this.inMemoryDrinkOrderRepository.findAll();
 

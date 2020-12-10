@@ -43,7 +43,7 @@ class GetDrinkReportTest {
     public void a_report_is_printed_including_number_of_drinks_and_total_amount_of_money_earned() {
         InMemoryDrinkOrderRepository drinkOrderRepository = new InMemoryDrinkOrderRepository();
         GenerateDrinkReport generateDrinkReport = new GenerateDrinkReport(console, drinkOrderRepository);
-        OrderDrink orderDrink = new OrderDrink(drinkMaker, drinkOrderRepository);
+        OrderDrink orderDrink = new OrderDrink(drinkMaker, drinkOrderRepository, null);
         orderDrink.execute(new Chocolate(0), ONE_EURO);
         orderDrink.execute(new Tea(0), ONE_EURO);
         orderDrink.execute(new Coffee(0), ONE_EURO);

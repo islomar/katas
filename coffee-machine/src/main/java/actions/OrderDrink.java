@@ -2,6 +2,7 @@ package actions;
 
 import model.DrinkMaker;
 import model.DrinkOrderRepository;
+import model.EmailNotifier;
 import model.Money;
 import model.drinks.Drink;
 
@@ -10,12 +11,14 @@ import java.math.BigDecimal;
 public class OrderDrink {
     private final DrinkMaker drinkMaker;
     private final DrinkOrderRepository drinkOrderRepository;
+    private final EmailNotifier emailNotifier;
     private static final String COMMAND_FORMAT = "%s:%s:%s";
 
-    public OrderDrink(DrinkMaker drinkMaker, DrinkOrderRepository drinkOrderRepository) {
+    public OrderDrink(DrinkMaker drinkMaker, DrinkOrderRepository drinkOrderRepository, EmailNotifier emailNotifier) {
 
         this.drinkMaker = drinkMaker;
         this.drinkOrderRepository = drinkOrderRepository;
+        this.emailNotifier = emailNotifier;
     }
 
     public void execute(Drink drink, Money payment) {
