@@ -1,5 +1,7 @@
 package model;
 
+import model.drinks.Drink;
+
 public interface EmailNotifier {
-    void notifyMissingDrink(String drink);
+    void notifyMissingDrink(Drink drink);
 }

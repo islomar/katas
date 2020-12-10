@@ -21,6 +21,11 @@ public class OrderDrink {
     }
 
     public void execute(Drink drink, Money payment) {
+        if (this.beverageQuantityChecker.isEmpty(drink)) {
+            this.emailNotifier.notifyMissingDrink(drink);
+            this.drinkMaker.execute("Sorry, we have currently a shortage in your drink. A notification has been sent to be refilled.");
+            return;
+        }
         if (payment.isLessThan(drink.drinkPrice())) {
             BigDecimal missingCents = drink.drinkPrice().differenceInCentsWith(payment);
             this.drinkMaker.execute(String.format("There are %s cents missing", missingCents));

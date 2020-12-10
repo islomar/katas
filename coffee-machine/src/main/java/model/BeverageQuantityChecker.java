@@ -1,5 +1,7 @@
 package model;
 
+import model.drinks.Drink;
+
 public interface BeverageQuantityChecker {
-    boolean isEmpty(String drink);
+    boolean isEmpty(Drink drink);
 }
