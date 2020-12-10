@@ -40,7 +40,7 @@ class GetDrinkReportTest {
     }
 
     @Test
-    public void a_report_is_printed_when_orders_were_made() {
+    public void a_report_is_printed_including_number_of_drinks_and_total_amount_of_money_earned() {
         InMemoryDrinkOrderRepository drinkOrderRepository = new InMemoryDrinkOrderRepository();
         GenerateDrinkReport generateDrinkReport = new GenerateDrinkReport(console, drinkOrderRepository);
         OrderDrink orderDrink = new OrderDrink(drinkMaker, drinkOrderRepository);
