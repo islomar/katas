@@ -51,10 +51,10 @@ class GetDrinkReportTest {
 
         generateDrinkReport.execute();
 
+        verify(this.console).print("# of H sold: 1");
+        verify(this.console).print("# of T sold: 1");
+        verify(this.console).print("# of C sold: 1");
+        verify(this.console).print("# of O sold: 1");
         verify(this.console).print("Total amount of money earned: 210 cents");
     }
-
-    //TODO: I want to be able to print a report anytime that contains:
-    // how many of each drink was sold and the total amount of money earned so far.
-
 }
