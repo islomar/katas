@@ -6,6 +6,7 @@ import model.drinks.Drink;
 import java.math.BigDecimal;
 
 public class OrderDrink {
+    public static final String DRINK_SHORTAGE_NOTIFICATION_MESSAGE = "Sorry, we have currently a shortage in your drink. A notification has been sent to be refilled.";
     private final DrinkMaker drinkMaker;
     private final DrinkOrderRepository drinkOrderRepository;
     private final EmailNotifier emailNotifier;
@@ -23,7 +24,7 @@ public class OrderDrink {
     public void execute(Drink drink, Money payment) {
         if (this.beverageQuantityChecker.isEmpty(drink)) {
             this.emailNotifier.notifyMissingDrink(drink);
-            this.drinkMaker.execute("Sorry, we have currently a shortage in your drink. A notification has been sent to be refilled.");
+            this.drinkMaker.execute(DRINK_SHORTAGE_NOTIFICATION_MESSAGE);
             return;
         }
         if (payment.isLessThan(drink.drinkPrice())) {

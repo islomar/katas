@@ -15,8 +15,7 @@ import java.math.BigDecimal;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 public class OrderDrinkShould {
 
@@ -159,6 +158,18 @@ public class OrderDrinkShould {
 
         verify(this.emailNotifier).notifyMissingDrink(orderedDrink);
         verify(this.drinkMaker).execute("Sorry, we have currently a shortage in your drink. A notification has been sent to be refilled.");
+    }
+
+    @Test
+    public void when_enough_drinks_then_do_not_send_email_nor_tell_the_user() {
+        OrderDrink coffeeMachine = new OrderDrink(drinkMaker, drinkOrderRepository, emailNotifier, beverageQuantityChecker);
+        given(beverageQuantityChecker.isEmpty(any())).willReturn(false);
+
+        Coffee orderedDrink = new Coffee(1);
+        coffeeMachine.execute(orderedDrink, ONE_EURO);
+
+        verify(this.emailNotifier, never()).notifyMissingDrink(orderedDrink);
+        verify(this.drinkMaker, never()).execute(OrderDrink.DRINK_SHORTAGE_NOTIFICATION_MESSAGE);
     }
 
 
