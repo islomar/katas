@@ -25,7 +25,9 @@ public class GenerateDrinkReport {
 
         Map<Drink, Long> drinksWithCounter = allOrderedDrinks.stream()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-        drinksWithCounter.forEach((drink, numberOfDrinks) -> this.console.print(String.format("# of %s sold: %s", drink.convertToDrinkMaker(), numberOfDrinks)));
+        drinksWithCounter.forEach(
+                (drink, numberOfDrinks) -> this.console.print(String.format("# of %s sold: %s", drink.convertToDrinkMaker(), numberOfDrinks))
+        );
 
         BigDecimal totalAmountOfMoneyEarned = allOrderedDrinks.stream()
                 .map(drink -> drink.drinkPrice().amountInEuroCents())
