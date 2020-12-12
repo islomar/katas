@@ -6,7 +6,7 @@ public class UserRegistration {
         this.userRepository = userRepository;
     }
 
-    public void register(String s, String anyPassword) {
-
+    public void register(String email, String password) {
+        this.userRepository.save(new User(email, password));
     }
 }
