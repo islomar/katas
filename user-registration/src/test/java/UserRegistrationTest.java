@@ -28,7 +28,7 @@ public class UserRegistrationTest {
     }
 
     @Test
-    public void should_persist_a_new_user_with_an_id() {
+    public void should_persist_a_new_user_with_an_id() throws DuplicatedEmailException {
         UserRegistration userRegistration = new UserRegistration(userRepository);
         String anyPassword = "anyPassword";
 
@@ -43,7 +43,7 @@ public class UserRegistrationTest {
 
     //TODO: this is complex... maybe just return the user and check that they have different ids...
     @Test
-    public void users_should_be_registered_with_different_ids() {
+    public void users_should_be_registered_with_different_ids() throws DuplicatedEmailException {
         UserRegistration userRegistration = new UserRegistration(userRepository);
         String anotherEmail = "another@email.com";
 
@@ -59,8 +59,8 @@ public class UserRegistrationTest {
     }
 
     @Test
-    public void can_not_exist_two_users_with_same_email() {
-        UserRegistration userRegistration = new UserRegistration(userRepository);
+    public void can_not_exist_two_users_with_same_email() throws DuplicatedEmailException {
+        UserRegistration userRegistration = new UserRegistration(new InMemoryUserRepository());
 
         userRegistration.register(ANY_EMAIL, ANY_PASSWORD);
         assertThrows(DuplicatedEmailException.class, () -> {
