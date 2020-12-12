@@ -15,6 +15,8 @@ public class UserRegistrationTest {
     private UserRepository userRepository;
     @Captor
     private ArgumentCaptor<User> user;
+    private static final String ANY_EMAIL = "any@email.com";
+    private static final String ANY_PASSWORD = "anyPassword";
 
 
     @BeforeEach
@@ -24,18 +26,34 @@ public class UserRegistrationTest {
     }
 
     @Test
-    public void should_persist_a_new_user_with_a_random_id() {
+    public void should_persist_a_new_user_with_an_id() {
         UserRegistration userRegistration = new UserRegistration(userRepository);
-        String anyEmail = "any@email.com";
         String anyPassword = "anyPassword";
 
-        userRegistration.register(anyEmail, anyPassword);
+        userRegistration.register(ANY_EMAIL, anyPassword);
 
         verify(userRepository).save(user.capture());
         User savedUser = user.getValue();
-        assertThat(savedUser.email(), is(anyEmail));
+        assertThat(savedUser.email(), is(ANY_EMAIL));
         assertThat(savedUser.password(), is(anyPassword));
         assertThat(savedUser.id(), not(isEmptyString()));
+    }
+
+    //TODO: this is complex... maybe just return the user and check that they have different ids...
+    @Test
+    public void users_should_be_registered_with_different_ids() {
+        UserRegistration userRegistration = new UserRegistration(userRepository);
+        String anotherEmail = "another@email.com";
+
+        userRegistration.register(ANY_EMAIL, ANY_PASSWORD);
+        verify(userRepository, times(1)).save(user.capture());
+        User savedUser1 = user.getValue();
+
+        userRegistration.register(anotherEmail, ANY_PASSWORD);
+        verify(userRepository, times(2)).save(user.capture());
+        User savedUser2 = user.getValue();
+
+        assertThat(savedUser1.id(), not(savedUser2.id()));
     }
 
 }
