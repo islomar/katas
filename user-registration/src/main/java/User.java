@@ -11,6 +11,18 @@ public class User {
         this.password = password;
     }
 
+    public String id() {
+        return id;
+    }
+
+    public String email() {
+        return email;
+    }
+
+    public String password() {
+        return password;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

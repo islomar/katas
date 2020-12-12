@@ -1,3 +1,5 @@
+import java.util.UUID;
+
 public class UserRegistration {
     private final UserRepository userRepository;
 
@@ -7,6 +9,7 @@ public class UserRegistration {
     }
 
     public void register(String email, String password) {
-        this.userRepository.save(new User("", email, password));
+        UUID userId = UUID.randomUUID();
+        this.userRepository.save(new User(userId.toString(), email, password));
     }
 }
