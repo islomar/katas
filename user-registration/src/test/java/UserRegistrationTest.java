@@ -12,7 +12,7 @@ public class UserRegistrationTest {
 
         userRegistration.register(anyEmail, anyPassword);
 
-        verify(userRepository, times(1)).save(new User(anyEmail, anyPassword));
+        verify(userRepository, times(1)).save(new User("", anyEmail, anyPassword));
     }
 
 }

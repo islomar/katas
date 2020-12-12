@@ -7,6 +7,6 @@ public class UserRegistration {
     }
 
     public void register(String email, String password) {
-        this.userRepository.save(new User(email, password));
+        this.userRepository.save(new User("", email, password));
     }
 }
