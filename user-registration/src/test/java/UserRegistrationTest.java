@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -7,6 +8,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.isEmptyString;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -54,6 +56,16 @@ public class UserRegistrationTest {
         User savedUser2 = user.getValue();
 
         assertThat(savedUser1.id(), not(savedUser2.id()));
+    }
+
+    @Test
+    public void can_not_exist_two_users_with_same_email() {
+        UserRegistration userRegistration = new UserRegistration(userRepository);
+
+        userRegistration.register(ANY_EMAIL, ANY_PASSWORD);
+        assertThrows(DuplicatedEmailException.class, () -> {
+            userRegistration.register(ANY_EMAIL, ANY_PASSWORD);
+        });
     }
 
 }
