@@ -38,17 +38,9 @@ public class Yatzy {
     }
 
     public static int score_pair(int die1, int die2, int die3, int die4, int die5) {
-        int[] counts = new int[6];
-        counts[die1 - 1]++;
-        counts[die2 - 1]++;
-        counts[die3 - 1]++;
-        counts[die4 - 1]++;
-        counts[die5 - 1]++;
-        int at;
-        for (at = 0; at != 6; at++)
-            if (counts[6 - at - 1] >= 2)
-                return (6 - at) * 2;
-        return 0;
+        List<Integer> dice = List.of(die1, die2, die3, die4, die5);
+        Integer maximumDieNumber = dice.stream().max(Integer::compare).get();
+        return scoreTheSumOfTheDiceThatReads(dice, maximumDieNumber);
     }
 
     public static int two_pair(int die1, int die2, int die3, int die4, int die5) {
