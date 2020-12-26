@@ -15,9 +15,7 @@ public class YatzyTest {
 
     @Test
     public void yatzy_scores_50() {
-        int expected = 50;
-        int actual = Yatzy.yatzy(4, 4, 4, 4, 4);
-        assertEquals(expected, actual);
+        assertEquals(50, Yatzy.yatzy(4, 4, 4, 4, 4));
         assertEquals(50, Yatzy.yatzy(6, 6, 6, 6, 6));
         assertEquals(0, Yatzy.yatzy(6, 6, 6, 6, 3));
     }
