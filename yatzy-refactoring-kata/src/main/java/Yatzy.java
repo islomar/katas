@@ -1,5 +1,9 @@
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static java.util.function.Function.identity;
 
 public class Yatzy {
 
@@ -79,16 +83,20 @@ public class Yatzy {
     }
 
     public static int three_of_a_kind(int die1, int die2, int die3, int die4, int die5) {
-        int[] t;
-        t = new int[6];
-        t[die1 - 1]++;
-        t[die2 - 1]++;
-        t[die3 - 1]++;
-        t[die4 - 1]++;
-        t[die5 - 1]++;
-        for (int i = 0; i < 6; i++)
-            if (t[i] >= 3)
-                return (i + 1) * 3;
+        Map<Integer, Long> dieNumberToFrequency =
+                List.of(die1, die2, die3, die4, die5).stream().collect(
+                        Collectors.groupingBy(
+                                identity(), Collectors.counting()
+                        )
+                );
+        Optional<Integer> numberThatAppearsAtLeastThreeTimes = dieNumberToFrequency.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue() >= 3)
+                .map(Map.Entry::getKey).findFirst();
+
+        if (numberThatAppearsAtLeastThreeTimes.isPresent()) {
+            return numberThatAppearsAtLeastThreeTimes.get() * 3;
+        }
         return 0;
     }
 
