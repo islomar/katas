@@ -1,5 +1,8 @@
+import java.util.List;
+
 public class Yatzy {
 
+    private final List<Integer> diceList;
     protected int[] dice;
 
     public Yatzy(int die1, int die2, int die3, int die4, int die5) {
@@ -9,6 +12,7 @@ public class Yatzy {
         dice[2] = die3;
         dice[3] = die4;
         dice[4] = die5;
+        diceList = List.of(die1, die2, die3, die4, die5);
     }
 
     public static int chance(int die1, int die2, int die3, int die4, int die5) {
