@@ -77,6 +77,15 @@ public class Yatzy {
                 .reduce(0, Integer::sum);
     }
 
+    private static int calculate_exactly_n_of_a_kind(List<Integer> dice, int numberOfOccurrences) {
+        Map<Integer, Long> dieNumberToFrequency = extractDieNumberToFrequency(dice);
+        return dieNumberToFrequency.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue() == numberOfOccurrences)
+                .map(x -> x.getKey().intValue() * numberOfOccurrences)
+                .reduce(0, Integer::sum);
+    }
+
     private static Map<Integer, Long> extractDieNumberToFrequency(List<Integer> dice) {
         return dice.stream().collect(
                 Collectors.groupingBy(
@@ -103,19 +112,7 @@ public class Yatzy {
 
     public static int fullHouse(int die1, int die2, int die3, int die4, int die5) {
         List<Integer> dice = List.of(die1, die2, die3, die4, die5);
-        Map<Integer, Long> dieNumberToFrequency = extractDieNumberToFrequency(dice);
-        Integer twoOfAKind = dieNumberToFrequency.entrySet()
-                .stream()
-                .filter(entry -> entry.getValue() == 2)
-                .map(x -> x.getKey().intValue() * 2)
-                .reduce(0, Integer::sum);
-        Integer threeOfAKind = dieNumberToFrequency.entrySet()
-                .stream()
-                .filter(entry -> entry.getValue() == 3)
-                .map(x -> x.getKey().intValue() * 3)
-                .reduce(0, Integer::sum);
-
-        return twoOfAKind + threeOfAKind;
+        return calculate_exactly_n_of_a_kind(dice, 2) + calculate_exactly_n_of_a_kind(dice, 3);
     }
 
     private static int scoreTheSumOfTheDiceThatReads(List<Integer> dice, int number) {
