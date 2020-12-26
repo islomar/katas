@@ -189,20 +189,13 @@ public class Yatzy {
     }
 
     public int fives() {
-        int s = 0;
-        int i;
-        for (i = 0; i < dice.length; i++)
-            if (dice[i] == 5)
-                s = s + 5;
-        return s;
+        int numberOfDiceWithValueOne = ((int) this.diceList.stream().filter(die -> die == 5).count());
+        return numberOfDiceWithValueOne * 5;
     }
 
     public int sixes() {
-        int sum = 0;
-        for (int at = 0; at < dice.length; at++)
-            if (dice[at] == 6)
-                sum = sum + 6;
-        return sum;
+        int numberOfDiceWithValueOne = ((int) this.diceList.stream().filter(die -> die == 6).count());
+        return numberOfDiceWithValueOne * 6;
     }
 }
 
