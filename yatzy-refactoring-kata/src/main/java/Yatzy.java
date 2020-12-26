@@ -173,14 +173,7 @@ public class Yatzy {
     }
 
     public int fours() {
-        int sum;
-        sum = 0;
-        for (int at = 0; at != 5; at++) {
-            if (this.diceList.get(at) == 4) {
-                sum += 4;
-            }
-        }
-        return sum;
+        return scoreTheSumOfTheDiceThatReads(this.diceList, 4);
     }
 
     public int fives() {
