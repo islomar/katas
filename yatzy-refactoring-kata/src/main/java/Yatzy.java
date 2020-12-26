@@ -101,19 +101,10 @@ public class Yatzy {
     }
 
     public static int largeStraight(int die1, int die2, int die3, int die4, int die5) {
-        int[] tallies;
-        tallies = new int[6];
-        tallies[die1 - 1] += 1;
-        tallies[die2 - 1] += 1;
-        tallies[die3 - 1] += 1;
-        tallies[die4 - 1] += 1;
-        tallies[die5 - 1] += 1;
-        if (tallies[1] == 1 &&
-                tallies[2] == 1 &&
-                tallies[3] == 1 &&
-                tallies[4] == 1
-                && tallies[5] == 1)
+        List<Integer> sortedDice = List.of(die1, die2, die3, die4, die5).stream().sorted().collect(Collectors.toList());
+        if (sortedDice.equals(List.of(2, 3, 4, 5, 6))) {
             return 20;
+        }
         return 0;
     }
 
