@@ -68,34 +68,32 @@ public class Yatzy {
             return 0;
     }
 
-    public static int four_of_a_kind(int _1, int _2, int die3, int die4, int die5) {
-        int[] tallies;
-        tallies = new int[6];
-        tallies[_1 - 1]++;
-        tallies[_2 - 1]++;
-        tallies[die3 - 1]++;
-        tallies[die4 - 1]++;
-        tallies[die5 - 1]++;
-        for (int i = 0; i < 6; i++)
-            if (tallies[i] >= 4)
-                return (i + 1) * 4;
-        return 0;
+    public static int four_of_a_kind(int die1, int die2, int die3, int die4, int die5) {
+        List<Integer> dice = List.of(die1, die2, die3, die4, die5);
+        int numberOfOccurrences = 4;
+        return calculate_n_of_a_kind(dice, numberOfOccurrences);
     }
 
     public static int three_of_a_kind(int die1, int die2, int die3, int die4, int die5) {
+        List<Integer> dice = List.of(die1, die2, die3, die4, die5);
+        int numberOfOccurences = 3;
+        return calculate_n_of_a_kind(dice, numberOfOccurences);
+    }
+
+    private static int calculate_n_of_a_kind(List<Integer> dice, int numberOfOccurrences) {
         Map<Integer, Long> dieNumberToFrequency =
-                List.of(die1, die2, die3, die4, die5).stream().collect(
+                dice.stream().collect(
                         Collectors.groupingBy(
                                 identity(), Collectors.counting()
                         )
                 );
-        Optional<Integer> numberThatAppearsAtLeastThreeTimes = dieNumberToFrequency.entrySet()
+        Optional<Integer> numberThatAppearsAtLeastNTimes = dieNumberToFrequency.entrySet()
                 .stream()
-                .filter(entry -> entry.getValue() >= 3)
+                .filter(entry -> entry.getValue() >= numberOfOccurrences)
                 .map(Map.Entry::getKey).findFirst();
 
-        if (numberThatAppearsAtLeastThreeTimes.isPresent()) {
-            return numberThatAppearsAtLeastThreeTimes.get() * 3;
+        if (numberThatAppearsAtLeastNTimes.isPresent()) {
+            return numberThatAppearsAtLeastNTimes.get() * numberOfOccurrences;
         }
         return 0;
     }
