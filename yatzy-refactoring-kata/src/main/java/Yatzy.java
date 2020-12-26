@@ -1,6 +1,5 @@
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -71,15 +70,11 @@ public class Yatzy {
 
     private static int calculate_n_of_a_kind(List<Integer> dice, int numberOfOccurrences) {
         Map<Integer, Long> dieNumberToFrequency = extractDieNumberToFrequency(dice);
-        Optional<Integer> numberThatAppearsAtLeastNTimes = dieNumberToFrequency.entrySet()
+        return dieNumberToFrequency.entrySet()
                 .stream()
                 .filter(entry -> entry.getValue() >= numberOfOccurrences)
-                .map(Map.Entry::getKey).findFirst();
-
-        if (numberThatAppearsAtLeastNTimes.isPresent()) {
-            return numberThatAppearsAtLeastNTimes.get() * numberOfOccurrences;
-        }
-        return 0;
+                .map(x -> x.getKey().intValue() * numberOfOccurrences)
+                .reduce(0, Integer::sum);
     }
 
     private static Map<Integer, Long> extractDieNumberToFrequency(List<Integer> dice) {
