@@ -16,13 +16,7 @@ public class Yatzy {
     }
 
     public static int chance(int die1, int die2, int die3, int die4, int die5) {
-        int total = 0;
-        total += die1;
-        total += die2;
-        total += die3;
-        total += die4;
-        total += die5;
-        return total;
+        return die1 + die2 + die3 + die4 + die5;
     }
 
     public static int yatzy(int... dice) {
