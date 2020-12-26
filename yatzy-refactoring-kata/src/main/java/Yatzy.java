@@ -59,7 +59,7 @@ public class Yatzy {
     public static int four_of_a_kind(int die1, int die2, int die3, int die4, int die5) {
         List<Integer> dice = List.of(die1, die2, die3, die4, die5);
         int numberOfOccurrences = 4;
-        return calculate_n_of_a_kind(dice, numberOfOccurrences);
+        return calculate_exactly_n_of_a_kind(dice, numberOfOccurrences);
     }
 
     public static int three_of_a_kind(int die1, int die2, int die3, int die4, int die5) {
