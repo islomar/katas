@@ -48,23 +48,13 @@ public class Yatzy {
     }
 
     public static int two_pair(int die1, int die2, int die3, int die4, int die5) {
-        int[] counts = new int[6];
-        counts[die1 - 1]++;
-        counts[die2 - 1]++;
-        counts[die3 - 1]++;
-        counts[die4 - 1]++;
-        counts[die5 - 1]++;
-        int n = 0;
-        int score = 0;
-        for (int i = 0; i < 6; i += 1)
-            if (counts[6 - i - 1] >= 2) {
-                n++;
-                score += (6 - i);
-            }
-        if (n == 2)
-            return score * 2;
-        else
-            return 0;
+        List<Integer> dice = List.of(die1, die2, die3, die4, die5);
+        Map<Integer, Long> dieNumberToFrequency = extractDieNumberToFrequency(dice);
+        return dieNumberToFrequency.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue() >= 2)
+                .map(x -> x.getKey().intValue() * 2)
+                .reduce(0, Integer::sum);
     }
 
     public static int four_of_a_kind(int die1, int die2, int die3, int die4, int die5) {
@@ -80,12 +70,7 @@ public class Yatzy {
     }
 
     private static int calculate_n_of_a_kind(List<Integer> dice, int numberOfOccurrences) {
-        Map<Integer, Long> dieNumberToFrequency =
-                dice.stream().collect(
-                        Collectors.groupingBy(
-                                identity(), Collectors.counting()
-                        )
-                );
+        Map<Integer, Long> dieNumberToFrequency = extractDieNumberToFrequency(dice);
         Optional<Integer> numberThatAppearsAtLeastNTimes = dieNumberToFrequency.entrySet()
                 .stream()
                 .filter(entry -> entry.getValue() >= numberOfOccurrences)
@@ -95,6 +80,14 @@ public class Yatzy {
             return numberThatAppearsAtLeastNTimes.get() * numberOfOccurrences;
         }
         return 0;
+    }
+
+    private static Map<Integer, Long> extractDieNumberToFrequency(List<Integer> dice) {
+        return dice.stream().collect(
+                Collectors.groupingBy(
+                        identity(), Collectors.counting()
+                )
+        );
     }
 
     public static int smallStraight(int die1, int die2, int die3, int die4, int die5) {
