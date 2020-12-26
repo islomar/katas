@@ -58,7 +58,6 @@ public class YatzyTest {
         assertEquals(18, new Yatzy(6, 5, 6, 6, 5).sixes());
     }
 
-    //TODO: not sure this is fine
     @Test
     public void one_pair() {
         assertEquals(6, Yatzy.score_pair(3, 4, 3, 5, 6));
