@@ -31,8 +31,7 @@ public class Yatzy {
 
     public static int ones(int die1, int die2, int die3, int die4, int die5) {
         List<Integer> dice = List.of(die1, die2, die3, die4, die5);
-        int numberOfDiceWithValueOne = ((int) dice.stream().filter(die -> die == 1).count());
-        return numberOfDiceWithValueOne * 1;
+        return scoreTheSumOfTheDiceThatReads(dice, 1);
     }
 
     public static int twos(int die1, int die2, int die3, int die4, int die5) {
@@ -42,8 +41,7 @@ public class Yatzy {
 
     public static int threes(int die1, int die2, int die3, int die4, int die5) {
         List<Integer> dice = List.of(die1, die2, die3, die4, die5);
-        int numberOfDiceWithValueOne = ((int) dice.stream().filter(die -> die == 3).count());
-        return numberOfDiceWithValueOne * 3;
+        return scoreTheSumOfTheDiceThatReads(dice, 3);
     }
 
     public static int score_pair(int die1, int die2, int die3, int die4, int die5) {
