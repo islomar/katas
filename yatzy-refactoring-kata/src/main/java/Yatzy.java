@@ -7,10 +7,10 @@ import static java.util.function.Function.identity;
 
 public class Yatzy {
 
-    private final List<Integer> diceList;
+    private final List<Integer> dice;
 
     public Yatzy(int die1, int die2, int die3, int die4, int die5) {
-        diceList = List.of(die1, die2, die3, die4, die5);
+        dice = List.of(die1, die2, die3, die4, die5);
     }
 
     public static int chance(int die1, int die2, int die3, int die4, int die5) {
@@ -119,15 +119,15 @@ public class Yatzy {
     }
 
     public int fours() {
-        return scoreTheSumOfTheDiceThatReads(this.diceList, 4);
+        return scoreTheSumOfTheDiceThatReads(this.dice, 4);
     }
 
     public int fives() {
-        return scoreTheSumOfTheDiceThatReads(this.diceList, 5);
+        return scoreTheSumOfTheDiceThatReads(this.dice, 5);
     }
 
     public int sixes() {
-        return scoreTheSumOfTheDiceThatReads(this.diceList, 6);
+        return scoreTheSumOfTheDiceThatReads(this.dice, 6);
     }
 }
 
