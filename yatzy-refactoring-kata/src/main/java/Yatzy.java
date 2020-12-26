@@ -36,13 +36,9 @@ public class Yatzy {
     }
 
     public static int twos(int die1, int die2, int die3, int die4, int die5) {
-        int sum = 0;
-        if (die1 == 2) sum += 2;
-        if (die2 == 2) sum += 2;
-        if (die3 == 2) sum += 2;
-        if (die4 == 2) sum += 2;
-        if (die5 == 2) sum += 2;
-        return sum;
+        List<Integer> dice = List.of(die1, die2, die3, die4, die5);
+        int numberOfDiceWithValueOne = ((int) dice.stream().filter(die -> die == 2).count());
+        return numberOfDiceWithValueOne * 2;
     }
 
     public static int threes(int die1, int die2, int die3, int die4, int die5) {
