@@ -107,37 +107,20 @@ public class Yatzy {
     }
 
     public static int fullHouse(int die1, int die2, int die3, int die4, int die5) {
-        int[] tallies;
-        boolean _2 = false;
-        int i;
-        int _2_at = 0;
-        boolean _3 = false;
-        int _3_at = 0;
+        List<Integer> dice = List.of(die1, die2, die3, die4, die5);
+        Map<Integer, Long> dieNumberToFrequency = extractDieNumberToFrequency(dice);
+        Integer twoOfAKind = dieNumberToFrequency.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue() == 2)
+                .map(x -> x.getKey().intValue() * 2)
+                .reduce(0, Integer::sum);
+        Integer threeOfAKind = dieNumberToFrequency.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue() == 3)
+                .map(x -> x.getKey().intValue() * 3)
+                .reduce(0, Integer::sum);
 
-
-        tallies = new int[6];
-        tallies[die1 - 1] += 1;
-        tallies[die2 - 1] += 1;
-        tallies[die3 - 1] += 1;
-        tallies[die4 - 1] += 1;
-        tallies[die5 - 1] += 1;
-
-        for (i = 0; i != 6; i += 1)
-            if (tallies[i] == 2) {
-                _2 = true;
-                _2_at = i + 1;
-            }
-
-        for (i = 0; i != 6; i += 1)
-            if (tallies[i] == 3) {
-                _3 = true;
-                _3_at = i + 1;
-            }
-
-        if (_2 && _3)
-            return _2_at * 2 + _3_at * 3;
-        else
-            return 0;
+        return twoOfAKind + threeOfAKind;
     }
 
     private static int scoreTheSumOfTheDiceThatReads(List<Integer> dice, int number) {
