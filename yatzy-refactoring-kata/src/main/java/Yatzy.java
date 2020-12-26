@@ -42,14 +42,9 @@ public class Yatzy {
     }
 
     public static int threes(int die1, int die2, int die3, int die4, int die5) {
-        int s;
-        s = 0;
-        if (die1 == 3) s += 3;
-        if (die2 == 3) s += 3;
-        if (die3 == 3) s += 3;
-        if (die4 == 3) s += 3;
-        if (die5 == 3) s += 3;
-        return s;
+        List<Integer> dice = List.of(die1, die2, die3, die4, die5);
+        int numberOfDiceWithValueOne = ((int) dice.stream().filter(die -> die == 3).count());
+        return numberOfDiceWithValueOne * 3;
     }
 
     public static int score_pair(int die1, int die2, int die3, int die4, int die5) {
