@@ -63,10 +63,10 @@ public class Yatzy {
 
     public static int three_of_a_kind(int die1, int die2, int die3, int die4, int die5) {
         List<Integer> dice = List.of(die1, die2, die3, die4, die5);
-        return calculate_n_of_a_kind(dice, 3);
+        return calculate_at_least_n_of_a_kind(dice, 3);
     }
 
-    private static int calculate_n_of_a_kind(List<Integer> dice, int numberOfOccurrences) {
+    private static int calculate_at_least_n_of_a_kind(List<Integer> dice, int numberOfOccurrences) {
         Map<Integer, Long> dieNumberToFrequency = extractDieNumberToFrequency(dice);
         return dieNumberToFrequency.entrySet()
                 .stream()
