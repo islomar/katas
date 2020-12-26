@@ -2,6 +2,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static java.util.function.Function.identity;
 
@@ -18,12 +19,10 @@ public class Yatzy {
     }
 
     public static int yatzy(int... dice) {
-        int[] counts = new int[6];
-        for (int die : dice)
-            counts[die - 1]++;
-        for (int i = 0; i != 6; i++)
-            if (counts[i] == 5)
-                return 50;
+        boolean areAllNumbersEqual = IntStream.of(dice).distinct().count() <= 1;
+        if (areAllNumbersEqual) {
+            return 50;
+        }
         return 0;
     }
 
