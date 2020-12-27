@@ -51,7 +51,11 @@ public class Yatzy {
 
     public static int two_pair(int die1, int die2, int die3, int die4, int die5) {
         List<Integer> dice = List.of(die1, die2, die3, die4, die5);
-        return calculate_at_least_n_of_a_kind(dice, 2);
+        long numberOfPairs = convertToMapWithDieNumberWithMinimumOccurrences(dice, 2).size();
+        if (numberOfPairs >= 2) {
+            return calculate_at_least_n_of_a_kind(dice, 2);
+        }
+        return 0;
     }
 
     public static int four_of_a_kind(int die1, int die2, int die3, int die4, int die5) {
@@ -65,12 +69,19 @@ public class Yatzy {
     }
 
     private static int calculate_at_least_n_of_a_kind(List<Integer> dice, int numberOfOccurrences) {
+        return convertToMapWithDieNumberWithMinimumOccurrences(dice, numberOfOccurrences)
+                .entrySet()
+                .stream()
+                .map(x -> x.getKey().intValue() * numberOfOccurrences)
+                .reduce(0, Integer::sum);
+    }
+
+    private static Map<Integer, Long> convertToMapWithDieNumberWithMinimumOccurrences(List<Integer> dice, int numberOfOccurrences) {
         Map<Integer, Long> dieNumberToFrequency = extractDieNumberToFrequencySortedByDieNumber(dice);
         return dieNumberToFrequency.entrySet()
                 .stream()
                 .filter(entry -> entry.getValue() >= numberOfOccurrences)
-                .map(x -> x.getKey().intValue() * numberOfOccurrences)
-                .reduce(0, Integer::sum);
+                .collect(Collectors.toMap(m -> m.getKey(), m -> m.getValue()));
     }
 
     private static int calculate_exactly_n_of_a_kind_for_max_die_number(List<Integer> dice, int numberOfOccurrences) {
