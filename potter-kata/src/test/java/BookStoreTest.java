@@ -13,4 +13,13 @@ public class BookStoreTest {
 
         assertThat(price, is(8));
     }
+
+    @Test
+    public void when_you_buy_2_different_books_you_get_5_percent_discount() {
+        BookStore bookStore = new BookStore();
+
+        int price = bookStore.priceFor(1, 2);
+
+        assertThat(price, is(15.2));
+    }
 }
