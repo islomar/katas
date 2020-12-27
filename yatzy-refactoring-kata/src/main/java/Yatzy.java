@@ -48,12 +48,7 @@ public class Yatzy {
 
     public static int two_pair(int die1, int die2, int die3, int die4, int die5) {
         List<Integer> dice = List.of(die1, die2, die3, die4, die5);
-        Map<Integer, Long> dieNumberToFrequency = extractDieNumberToFrequency(dice);
-        return dieNumberToFrequency.entrySet()
-                .stream()
-                .filter(entry -> entry.getValue() >= 2)
-                .map(x -> x.getKey().intValue() * 2)
-                .reduce(0, Integer::sum);
+        return calculate_at_least_n_of_a_kind(dice, 2);
     }
 
     public static int four_of_a_kind(int die1, int die2, int die3, int die4, int die5) {
