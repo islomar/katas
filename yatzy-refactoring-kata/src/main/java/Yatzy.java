@@ -1,9 +1,13 @@
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static java.util.Comparator.reverseOrder;
 import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
 
 public class Yatzy {
 
@@ -42,8 +46,7 @@ public class Yatzy {
 
     public static int score_pair(int die1, int die2, int die3, int die4, int die5) {
         List<Integer> dice = List.of(die1, die2, die3, die4, die5);
-        Integer maximumDieNumber = dice.stream().max(Integer::compare).get();
-        return scoreTheSumOfTheDiceThatReads(dice, maximumDieNumber);
+        return calculate_exactly_n_of_a_kind_for_max_die_number(dice, 2);
     }
 
     public static int two_pair(int die1, int die2, int die3, int die4, int die5) {
@@ -53,7 +56,7 @@ public class Yatzy {
 
     public static int four_of_a_kind(int die1, int die2, int die3, int die4, int die5) {
         List<Integer> dice = List.of(die1, die2, die3, die4, die5);
-        return calculate_exactly_n_of_a_kind(dice, 4);
+        return calculate_exactly_n_of_a_kind_for_max_die_number(dice, 4);
     }
 
     public static int three_of_a_kind(int die1, int die2, int die3, int die4, int die5) {
@@ -62,7 +65,7 @@ public class Yatzy {
     }
 
     private static int calculate_at_least_n_of_a_kind(List<Integer> dice, int numberOfOccurrences) {
-        Map<Integer, Long> dieNumberToFrequency = extractDieNumberToFrequency(dice);
+        Map<Integer, Long> dieNumberToFrequency = extractDieNumberToFrequencySortedByDieNumber(dice);
         return dieNumberToFrequency.entrySet()
                 .stream()
                 .filter(entry -> entry.getValue() >= numberOfOccurrences)
@@ -70,21 +73,22 @@ public class Yatzy {
                 .reduce(0, Integer::sum);
     }
 
-    private static int calculate_exactly_n_of_a_kind(List<Integer> dice, int numberOfOccurrences) {
-        Map<Integer, Long> dieNumberToFrequency = extractDieNumberToFrequency(dice);
+    private static int calculate_exactly_n_of_a_kind_for_max_die_number(List<Integer> dice, int numberOfOccurrences) {
+        Map<Integer, Long> dieNumberToFrequency = extractDieNumberToFrequencySortedByDieNumber(dice);
         return dieNumberToFrequency.entrySet()
                 .stream()
                 .filter(entry -> entry.getValue() == numberOfOccurrences)
                 .map(x -> x.getKey().intValue() * numberOfOccurrences)
-                .reduce(0, Integer::sum);
+                .findFirst()
+                .orElse(0);
     }
 
-    private static Map<Integer, Long> extractDieNumberToFrequency(List<Integer> dice) {
-        return dice.stream().collect(
-                Collectors.groupingBy(
-                        identity(), Collectors.counting()
-                )
-        );
+    private static Map<Integer, Long> extractDieNumberToFrequencySortedByDieNumber(List<Integer> dice) {
+        return dice.stream()
+                .sorted(reverseOrder())
+                .collect(
+                        groupingBy(identity(), LinkedHashMap::new, counting())
+                );
     }
 
     public static int smallStraight(int die1, int die2, int die3, int die4, int die5) {
@@ -105,7 +109,7 @@ public class Yatzy {
 
     public static int fullHouse(int die1, int die2, int die3, int die4, int die5) {
         List<Integer> dice = List.of(die1, die2, die3, die4, die5);
-        return calculate_exactly_n_of_a_kind(dice, 2) + calculate_exactly_n_of_a_kind(dice, 3);
+        return calculate_exactly_n_of_a_kind_for_max_die_number(dice, 2) + calculate_exactly_n_of_a_kind_for_max_die_number(dice, 3);
     }
 
     private static int scoreTheSumOfTheDiceThatReads(List<Integer> dice, int number) {
