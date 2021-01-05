@@ -29,6 +29,6 @@ public class BookStoreTest {
 
         double price = bookStore.priceFor(1, 2, 3);
 
-        assertThat(price, is(17.6));
+        assertThat(price, is(21.6));
     }
 }
