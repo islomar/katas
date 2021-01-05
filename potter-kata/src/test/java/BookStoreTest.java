@@ -113,6 +113,15 @@ public class BookStoreTest {
         assertThat(price, is(30d + 8d));
     }
 
+    @Test
+    public void apply_discounts_for_2_sets_of_2_different_series() {
+        BookStore bookStore = new BookStore();
+
+        double price = bookStore.priceFor(new int[]{0, 0, 1, 1});
+
+        assertThat(price, is(2 * ((8 * 2 * 0.95))));
+    }
+
     //2 copies of the first book + 2 copies of the second book + 2 copies of the third book + 1 copy of the fourth book + 1 copy of the fifth book = 51.20 €
     // 5 * 8 * 0.75 = 30
     //4 * 8 * 0.80 = 25.6
