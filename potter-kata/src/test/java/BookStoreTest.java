@@ -27,9 +27,9 @@ public class BookStoreTest {
     public void only_apply_discount_to_the_set_that_matches_2_different_series() {
         BookStore bookStore = new BookStore();
 
-        double price = bookStore.priceFor(1, 2, 1);
+        double price = bookStore.priceFor(1, 2, 1, 2);
 
-        assertThat(price, is(15.2 + 8));
+        assertThat(price, is(15.2 + 8 + 8));
     }
 
     @Test
