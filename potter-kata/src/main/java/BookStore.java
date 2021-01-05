@@ -15,6 +15,9 @@ public class BookStore {
         if (numberOfDifferentBookSeries == 4) {
             return numberOfDifferentBookSeries * ONE_BOOK_BASE_PRICE_IN_EUROS * 0.80;
         }
+        if (numberOfDifferentBookSeries == 5) {
+            return numberOfDifferentBookSeries * ONE_BOOK_BASE_PRICE_IN_EUROS * 0.75;
+        }
         return ONE_BOOK_BASE_PRICE_IN_EUROS;
     }
 }
