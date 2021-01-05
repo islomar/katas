@@ -13,7 +13,7 @@ public class BookStore {
     );
 
 
-    public double priceFor(int... bookSeries) {
+    public double priceFor(int[] bookSeries) {
         int numberOfDifferentBookSeries = (int) IntStream.of(bookSeries).distinct().count();
         int numberOfBooksOutOfSet = bookSeries.length - numberOfDifferentBookSeries;
         return numberOfDifferentBookSeries * ONE_BOOK_BASE_PRICE_IN_EUROS * discountsForNumberOfDifferentSeries.get(numberOfDifferentBookSeries) +
