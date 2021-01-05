@@ -13,7 +13,10 @@ public class BookStoreTest {
 
     private static Stream<Arguments> provideSimpleBookSeries() {
         return Stream.of(
-                Arguments.of(new int[]{1}, 8)
+                Arguments.of(new int[]{1}, 8),
+                Arguments.of(new int[]{2}, 8),
+                Arguments.of(new int[]{3}, 8),
+                Arguments.of(new int[]{4}, 8)
         );
     }
 
@@ -22,9 +25,9 @@ public class BookStoreTest {
     public void one_copy_of_a_book_costs_8_euros(int[] bookSeries, double expectedPrice) {
         BookStore bookStore = new BookStore();
 
-        double price = bookStore.priceFor(new int[]{1});
+        double price = bookStore.priceFor(bookSeries);
 
-        assertThat(price, is(8d));
+        assertThat(price, is(expectedPrice));
     }
 
     @Test
