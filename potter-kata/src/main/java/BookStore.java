@@ -2,7 +2,7 @@ import java.util.stream.IntStream;
 
 public class BookStore {
 
-    public static final int ONE_BOOK_BASE_PRICE_IN_EUROS = 8;
+    private static final int ONE_BOOK_BASE_PRICE_IN_EUROS = 8;
 
     public double priceFor(int... bookSeries) {
         long numberOfDifferentBookSeries = IntStream.of(bookSeries).distinct().count();
