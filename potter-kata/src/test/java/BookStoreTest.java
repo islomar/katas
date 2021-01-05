@@ -24,6 +24,15 @@ public class BookStoreTest {
     }
 
     @Test
+    public void only_apply_discount_to_the_set_that_matches_2_different_series() {
+        BookStore bookStore = new BookStore();
+
+        double price = bookStore.priceFor(1, 2, 1);
+
+        assertThat(price, is(15.2 + 8));
+    }
+
+    @Test
     public void when_you_buy_3_different_books_you_get_10_percent_discount() {
         BookStore bookStore = new BookStore();
 
