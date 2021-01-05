@@ -6,11 +6,11 @@ public class BookStore {
 
     public double priceFor(int... bookSeries) {
         long numberOfDifferentBookSeries = IntStream.of(bookSeries).distinct().count();
+        double numberOfBooksOutOfSet = bookSeries.length - numberOfDifferentBookSeries;
         if (numberOfDifferentBookSeries == 2) {
             return numberOfDifferentBookSeries * ONE_BOOK_BASE_PRICE_IN_EUROS * 0.95;
         }
         if (numberOfDifferentBookSeries == 3) {
-            double numberOfBooksOutOfSet = bookSeries.length - numberOfDifferentBookSeries;
             return numberOfDifferentBookSeries * ONE_BOOK_BASE_PRICE_IN_EUROS * 0.90 + numberOfBooksOutOfSet * ONE_BOOK_BASE_PRICE_IN_EUROS;
         }
         if (numberOfDifferentBookSeries == 4) {
