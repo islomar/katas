@@ -69,4 +69,13 @@ public class BookStoreTest {
 
         assertThat(price, is(30d));
     }
+
+    @Test
+    public void only_apply_discount_to_the_set_that_matches_5_different_series() {
+        BookStore bookStore = new BookStore();
+
+        double price = bookStore.priceFor(1, 2, 3, 4, 5, 1);
+
+        assertThat(price, is(30d + 8d));
+    }
 }
