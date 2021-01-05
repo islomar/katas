@@ -1,4 +1,3 @@
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -122,10 +121,10 @@ public class BookStoreTest {
         assertThat(price, is(expectedPrice));
     }
 
-    //2 copies of the first book + 2 copies of the second book + 2 copies of the third book + 1 copy of the fourth book + 1 copy of the fifth book = 51.20 €
-    // 5 * 8 * 0.75 = 30
-    //4 * 8 * 0.80 = 25.6
-    @Disabled
+    // Test for 2 copies of the first book + 2 copies of the second book + 2 copies of the third book + 1 copy of the fourth book + 1 copy of the fifth book = 51.20 €
+    // 5 * 8 * 0.75 (30) + 3 * 8 * 0.90 (21.6)  == 51.6
+    // BUT you get a bigger discount with  25.6 * 2 = 51.2 (applying the 20% discount twice because there are two groups of 4 different series)
+    @Test
     public void give_as_big_a_discount_as_possible() {
         BookStore bookStore = new BookStore();
 
