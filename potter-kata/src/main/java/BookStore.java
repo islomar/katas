@@ -19,13 +19,13 @@ public class BookStore {
             return numberOfDifferentBookSeries * ONE_BOOK_BASE_PRICE_IN_EUROS * discountsForNumberOfDifferentSeries.get(numberOfDifferentBookSeries) + numberOfBooksOutOfSet * ONE_BOOK_BASE_PRICE_IN_EUROS;
         }
         if (numberOfDifferentBookSeries == 3) {
-            return numberOfDifferentBookSeries * ONE_BOOK_BASE_PRICE_IN_EUROS * 0.90 + numberOfBooksOutOfSet * ONE_BOOK_BASE_PRICE_IN_EUROS;
+            return numberOfDifferentBookSeries * ONE_BOOK_BASE_PRICE_IN_EUROS * discountsForNumberOfDifferentSeries.get(numberOfDifferentBookSeries) + numberOfBooksOutOfSet * ONE_BOOK_BASE_PRICE_IN_EUROS;
         }
         if (numberOfDifferentBookSeries == 4) {
-            return numberOfDifferentBookSeries * ONE_BOOK_BASE_PRICE_IN_EUROS * 0.80 + numberOfBooksOutOfSet * ONE_BOOK_BASE_PRICE_IN_EUROS;
+            return numberOfDifferentBookSeries * ONE_BOOK_BASE_PRICE_IN_EUROS * discountsForNumberOfDifferentSeries.get(numberOfDifferentBookSeries) + numberOfBooksOutOfSet * ONE_BOOK_BASE_PRICE_IN_EUROS;
         }
         if (numberOfDifferentBookSeries == 5) {
-            return numberOfDifferentBookSeries * ONE_BOOK_BASE_PRICE_IN_EUROS * 0.75 + numberOfBooksOutOfSet * ONE_BOOK_BASE_PRICE_IN_EUROS;
+            return numberOfDifferentBookSeries * ONE_BOOK_BASE_PRICE_IN_EUROS * discountsForNumberOfDifferentSeries.get(numberOfDifferentBookSeries) + numberOfBooksOutOfSet * ONE_BOOK_BASE_PRICE_IN_EUROS;
         }
         return ONE_BOOK_BASE_PRICE_IN_EUROS;
     }
