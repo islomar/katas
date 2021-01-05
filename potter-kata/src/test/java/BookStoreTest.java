@@ -20,6 +20,15 @@ public class BookStoreTest {
         );
     }
 
+    private static Stream<Arguments> provideTwoDifferentSeriesSet() {
+        return Stream.of(
+                Arguments.of(new int[]{1, 2}, 15.2),
+                Arguments.of(new int[]{5, 3}, 15.2),
+                Arguments.of(new int[]{4, 1}, 15.2),
+                Arguments.of(new int[]{3, 4}, 15.2)
+        );
+    }
+
     @Test
     public void no_books_costs_0_euros() {
         BookStore bookStore = new BookStore();
@@ -29,7 +38,7 @@ public class BookStoreTest {
         assertThat(price, is(0d));
     }
 
-    @ParameterizedTest(name = "{0} costs {1} cents")
+    @ParameterizedTest(name = "{0} costs {1} euros")
     @MethodSource("provideSimpleBookSeries")
     public void one_copy_of_a_book_costs_8_euros(int[] bookSeries, double expectedPrice) {
         BookStore bookStore = new BookStore();
@@ -39,13 +48,14 @@ public class BookStoreTest {
         assertThat(price, is(expectedPrice));
     }
 
-    @Test
-    public void when_you_buy_2_different_books_you_get_5_percent_discount() {
+    @ParameterizedTest(name = "{0} costs {1} euros")
+    @MethodSource("provideTwoDifferentSeriesSet")
+    public void when_you_buy_2_different_books_you_get_5_percent_discount(int[] bookSeries, double expectedPrice) {
         BookStore bookStore = new BookStore();
 
-        double price = bookStore.priceFor(new int[]{1, 2});
+        double price = bookStore.priceFor(bookSeries);
 
-        assertThat(price, is(15.2));
+        assertThat(price, is(expectedPrice));
     }
 
     @Test
