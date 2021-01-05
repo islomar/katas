@@ -25,7 +25,14 @@ public class BookStoreTest {
                 Arguments.of(new int[]{1, 2}, 15.2),
                 Arguments.of(new int[]{5, 3}, 15.2),
                 Arguments.of(new int[]{4, 1}, 15.2),
-                Arguments.of(new int[]{3, 4}, 15.2)
+                Arguments.of(new int[]{3, 4}, 15.2),
+                Arguments.of(new int[]{0, 0, 1, 1}, 15.2 * 2)
+        );
+    }
+
+    private static Stream<Arguments> provideSeveralDiscounts() {
+        return Stream.of(
+                Arguments.of(new int[]{1, 1, 2, 3, 3, 4}, (8 * 4 * 0.8) + (8 * 2 * 0.95))
         );
     }
 
@@ -130,6 +137,17 @@ public class BookStoreTest {
         double price = bookStore.priceFor(new int[]{1, 1, 2, 2});
 
         assertThat(price, is(2 * ((8 * 2 * 0.95))));
+    }
+
+
+    @ParameterizedTest(name = "{0} costs {1} euros")
+    @MethodSource("provideSeveralDiscounts")
+    public void several_discounts(int[] bookSeries, double expectedPrice) {
+        BookStore bookStore = new BookStore();
+
+        double price = bookStore.priceFor(bookSeries);
+
+        assertThat(price, is(expectedPrice));
     }
 
     //2 copies of the first book + 2 copies of the second book + 2 copies of the third book + 1 copy of the fourth book + 1 copy of the fifth book = 51.20 €
