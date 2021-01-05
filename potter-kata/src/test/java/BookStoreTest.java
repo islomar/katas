@@ -11,31 +11,6 @@ import static org.hamcrest.core.Is.is;
 
 public class BookStoreTest {
 
-    private static Stream<Arguments> provideSimpleBookSeries() {
-        return Stream.of(
-                Arguments.of(new int[]{1}, 8),
-                Arguments.of(new int[]{2}, 8),
-                Arguments.of(new int[]{3}, 8),
-                Arguments.of(new int[]{4}, 8)
-        );
-    }
-
-    private static Stream<Arguments> provideTwoDifferentSeriesSet() {
-        return Stream.of(
-                Arguments.of(new int[]{1, 2}, 15.2),
-                Arguments.of(new int[]{5, 3}, 15.2),
-                Arguments.of(new int[]{4, 1}, 15.2),
-                Arguments.of(new int[]{3, 4}, 15.2),
-                Arguments.of(new int[]{0, 0, 1, 1}, 15.2 * 2)
-        );
-    }
-
-    private static Stream<Arguments> provideSeveralDiscounts() {
-        return Stream.of(
-                Arguments.of(new int[]{1, 1, 2, 3, 3, 4}, (8 * 4 * 0.8) + (8 * 2 * 0.95))
-        );
-    }
-
     @Test
     public void no_books_costs_0_euros() {
         BookStore bookStore = new BookStore();
@@ -83,7 +58,6 @@ public class BookStoreTest {
         assertThat(price, is(21.6));
     }
 
-
     @Test
     public void only_apply_discount_to_the_set_that_matches_3_different_series() {
         BookStore bookStore = new BookStore();
@@ -101,7 +75,6 @@ public class BookStoreTest {
 
         assertThat(price, is(25.6));
     }
-
 
     @Test
     public void only_apply_discount_to_the_set_that_matches_4_different_series() {
@@ -139,7 +112,6 @@ public class BookStoreTest {
         assertThat(price, is(2 * ((8 * 2 * 0.95))));
     }
 
-
     @ParameterizedTest(name = "{0} costs {1} euros")
     @MethodSource("provideSeveralDiscounts")
     public void several_discounts(int[] bookSeries, double expectedPrice) {
@@ -160,5 +132,30 @@ public class BookStoreTest {
         double price = bookStore.priceFor(new int[]{1, 1, 2, 2, 3, 3, 4, 5});
 
         assertThat(price, is(25.6 + 25.6));
+    }
+
+    private static Stream<Arguments> provideSimpleBookSeries() {
+        return Stream.of(
+                Arguments.of(new int[]{1}, 8),
+                Arguments.of(new int[]{2}, 8),
+                Arguments.of(new int[]{3}, 8),
+                Arguments.of(new int[]{4}, 8)
+        );
+    }
+
+    private static Stream<Arguments> provideTwoDifferentSeriesSet() {
+        return Stream.of(
+                Arguments.of(new int[]{1, 2}, 15.2),
+                Arguments.of(new int[]{5, 3}, 15.2),
+                Arguments.of(new int[]{4, 1}, 15.2),
+                Arguments.of(new int[]{3, 4}, 15.2),
+                Arguments.of(new int[]{0, 0, 1, 1}, 15.2 * 2)
+        );
+    }
+
+    private static Stream<Arguments> provideSeveralDiscounts() {
+        return Stream.of(
+                Arguments.of(new int[]{1, 1, 2, 3, 3, 4}, (8 * 4 * 0.8) + (8 * 2 * 0.95))
+        );
     }
 }
