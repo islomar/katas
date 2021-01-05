@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -86,5 +87,17 @@ public class BookStoreTest {
         double price = bookStore.priceFor(1, 2, 3, 4, 5, 1);
 
         assertThat(price, is(30d + 8d));
+    }
+
+    //2 copies of the first book + 2 copies of the second book + 2 copies of the third book + 1 copy of the fourth book + 1 copy of the fifth book = 51.20 €
+    // 5 * 8 * 0.75 = 30
+    //4 * 8 * 0.80 = 25.6
+    @Disabled
+    public void give_as_big_a_discount_as_possible() {
+        BookStore bookStore = new BookStore();
+
+        double price = bookStore.priceFor(1, 1, 2, 2, 3, 3, 4, 5);
+
+        assertThat(price, is(25.6 + 25.6));
     }
 }
