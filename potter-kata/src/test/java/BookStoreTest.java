@@ -20,6 +20,15 @@ public class BookStoreTest {
         );
     }
 
+    @Test
+    public void no_books_costs_0_euros() {
+        BookStore bookStore = new BookStore();
+
+        double price = bookStore.priceFor(new int[]{});
+
+        assertThat(price, is(0d));
+    }
+
     @ParameterizedTest(name = "{0} costs {1} cents")
     @MethodSource("provideSimpleBookSeries")
     public void one_copy_of_a_book_costs_8_euros(int[] bookSeries, double expectedPrice) {

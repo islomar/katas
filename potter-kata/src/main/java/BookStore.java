@@ -5,6 +5,7 @@ public class BookStore {
 
     private static final int ONE_BOOK_BASE_PRICE_IN_EUROS = 8;
     private static final Map<Integer, Double> discountsForNumberOfDifferentSeries = Map.of(
+            0, 0.0,
             1, 1.0,
             2, 0.95,
             3, 0.90,
