@@ -117,7 +117,7 @@ public class BookStoreTest {
     public void apply_discounts_for_2_sets_of_2_different_series() {
         BookStore bookStore = new BookStore();
 
-        double price = bookStore.priceFor(new int[]{0, 0, 1, 1});
+        double price = bookStore.priceFor(new int[]{1, 1, 2, 2});
 
         assertThat(price, is(2 * ((8 * 2 * 0.95))));
     }
