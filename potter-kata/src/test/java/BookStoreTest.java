@@ -123,7 +123,10 @@ public class BookStoreTest {
 
     // Test for 2 copies of the first book + 2 copies of the second book + 2 copies of the third book + 1 copy of the fourth book + 1 copy of the fifth book = 51.20 €
     // 5 * 8 * 0.75 (30) + 3 * 8 * 0.90 (21.6)  == 51.6
-    // BUT you get a bigger discount with  25.6 * 2 = 51.2 (applying the 20% discount twice because there are two groups of 4 different series)
+    // BUT you get a bigger discount with  (4 * 8 * 0.80 (25.6)) * 2 = 51.2 (applying the 20% discount twice because there are two groups of 4 different series)
+    // 1,1,2,3,3,4,5 =
+    //  Option 1: 5 * 8 * 0.75 (30) + 2 * 8 * 0.95 (15.2)  == 45.2
+    //  Option 2: (1,2,3) 3 * 8 * 0.90 (21.6) + (1,3,4,5) 4 * 8 * 0.80 (25.6)  == 47.2
     @Test
     public void give_as_big_a_discount_as_possible() {
         BookStore bookStore = new BookStore();
