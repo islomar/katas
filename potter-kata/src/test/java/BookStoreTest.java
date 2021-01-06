@@ -127,13 +127,14 @@ public class BookStoreTest {
     // 1,1,2,3,3,4,5 =
     //  Option 1: 5 * 8 * 0.75 (30) + 2 * 8 * 0.95 (15.2)  == 45.2
     //  Option 2: (1,2,3) 3 * 8 * 0.90 (21.6) + (1,3,4,5) 4 * 8 * 0.80 (25.6)  == 47.2
-    @Test
-    public void give_as_big_a_discount_as_possible() {
+    @ParameterizedTest(name = "{0} costs {1} euros")
+    @MethodSource("provideEdgeCases")
+    public void give_as_big_a_discount_as_possible(int[] bookSeries, double expectedPrice) {
         BookStore bookStore = new BookStore();
 
-        double price = bookStore.priceFor(new int[]{1, 1, 2, 2, 3, 3, 4, 5});
+        double price = bookStore.priceFor(bookSeries);
 
-        assertThat(price, is(25.6 + 25.6));
+        assertThat(price, is(expectedPrice));
     }
 
     private static Stream<Arguments> provideSimpleBookSeries() {
@@ -158,6 +159,18 @@ public class BookStoreTest {
     private static Stream<Arguments> provideSeveralDiscounts() {
         return Stream.of(
                 Arguments.of(new int[]{1, 1, 2, 3, 3, 4}, (8 * 4 * 0.8) + (8 * 2 * 0.95))
+        );
+    }
+
+    private static Stream<Arguments> provideEdgeCases() {
+        return Stream.of(
+                Arguments.of(new int[]{1, 1, 2, 2, 3, 3, 4, 5}, (8 * 4 * 0.8) + (8 * 4 * 0.8)),
+                Arguments.of(new int[]{1, 1, 1, 1, 1,
+                                2, 2, 2, 2, 2,
+                                3, 3, 3, 3,
+                                4, 4, 4, 4, 4,
+                                5, 5, 5, 5},
+                        3 * (8 * 5 * 0.75) + 2 * (8 * 4 * 0.8))
         );
     }
 }
