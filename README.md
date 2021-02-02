@@ -5,6 +5,11 @@ Code from katas practiced either on my own or through Coding Dojos, Coderetreats
 
 ## Pending
 * https://github.com/SoftwareCraftsmanshipGrenoble/elections
+* https://github.com/emilybache/Lift-Kata-Sample-Tests >> Video https://twitter.com/adibolb/status/1215034204750307335
+* https://www.praqma.com/stories/refactoring-kata/ >> https://github.com/emilybache/Theatrical-Players-Refactoring-Kata
+* Cloud migration refactoring kata: https://twitter.com/emilybache/status/1140951656567312384
+* Clarify exception refactoring kata: https://twitter.com/emilybache/status/1129016750710894592
+* Scrabble kata: https://twitter.com/emilybache/status/1072880924843479040
 * https://codesai.com/2019/04/beverages_prices_kata
 
 ## Where to find more katas
