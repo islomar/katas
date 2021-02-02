@@ -11,6 +11,7 @@ Code from katas practiced either on my own or through Coding Dojos, Coderetreats
 * Clarify exception refactoring kata: https://twitter.com/emilybache/status/1129016750710894592
 * Scrabble kata: https://twitter.com/emilybache/status/1072880924843479040
 * https://codesai.com/2019/04/beverages_prices_kata
+* https://leanmind.es/es/blog/kata-apariencias-impares/
 
 ## Where to find more katas
 * https://katalyst.codurance.com/
