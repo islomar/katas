@@ -9,6 +9,7 @@ Code from katas practiced either on my own or through Coding Dojos, Coderetreats
 * https://www.praqma.com/stories/refactoring-kata/ >> https://github.com/emilybache/Theatrical-Players-Refactoring-Kata
 * Cloud migration refactoring kata: https://twitter.com/emilybache/status/1140951656567312384
 * Clarify exception refactoring kata: https://twitter.com/emilybache/status/1129016750710894592
+* Approval testing: https://mobile.twitter.com/CoachingSamman/status/1339831378326806528
 * Scrabble kata: https://twitter.com/emilybache/status/1072880924843479040
 * https://codesai.com/2019/04/beverages_prices_kata
 * https://leanmind.es/es/blog/kata-apariencias-impares/
