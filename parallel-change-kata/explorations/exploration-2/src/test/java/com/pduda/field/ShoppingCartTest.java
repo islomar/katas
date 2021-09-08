@@ -34,6 +34,17 @@ public class ShoppingCartTest {
     }
 
     @Test
+    public void fourItems_totalPrice() {
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.add(10);
+        shoppingCart.add(1);
+        shoppingCart.add(120);
+        shoppingCart.add(0);
+
+        assertEquals(131, shoppingCart.calculateTotalPrice());
+    }
+
+    @Test
     public void singleItem_hasDiscountIfContainsAtLeastOneProductWorthAtLeast100() {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.add(100);
