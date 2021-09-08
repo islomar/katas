@@ -16,6 +16,16 @@ public class ShoppingCartTest {
     }
 
     @Test
+    public void threeItems_numberOfProductsInTheCart() {
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.add(10);
+        shoppingCart.add(40);
+        shoppingCart.add(30);
+
+        assertEquals(3, shoppingCart.numberOfProducts());
+    }
+
+    @Test
     public void singleItem_totalPrice() {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.add(10);
