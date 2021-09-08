@@ -1,7 +1,8 @@
 package com.pduda.field;
 
-import org.junit.Assert;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class ShoppingCartTest {
 
@@ -11,7 +12,7 @@ public class ShoppingCartTest {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.add(10);
 
-        Assert.assertEquals(1, shoppingCart.numberOfProducts());
+        assertEquals(1, shoppingCart.numberOfProducts());
     }
 
     @Test
@@ -19,7 +20,7 @@ public class ShoppingCartTest {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.add(10);
 
-        Assert.assertEquals(10, shoppingCart.calculateTotalPrice());
+        assertEquals(10, shoppingCart.calculateTotalPrice());
     }
 
     @Test
@@ -27,7 +28,7 @@ public class ShoppingCartTest {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.add(100);
 
-        Assert.assertTrue(shoppingCart.hasDiscount());
+        assertTrue(shoppingCart.hasDiscount());
     }
 
     @Test
@@ -35,7 +36,7 @@ public class ShoppingCartTest {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.add(99);
 
-        Assert.assertFalse(shoppingCart.hasDiscount());
+        assertFalse(shoppingCart.hasDiscount());
     }
 
     @Test
@@ -43,7 +44,7 @@ public class ShoppingCartTest {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.add(10, 20);
 
-        Assert.assertEquals(2, shoppingCart.numberOfProducts());
+        assertEquals(2, shoppingCart.numberOfProducts());
     }
 
     @Test
@@ -51,7 +52,7 @@ public class ShoppingCartTest {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.add(10, 20);
 
-        Assert.assertEquals(30, shoppingCart.calculateTotalPrice());
+        assertEquals(30, shoppingCart.calculateTotalPrice());
     }
 
 }
