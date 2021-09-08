@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCart {
-    private static final List<Integer> prices = new ArrayList<>();
+    private final List<Integer> prices = new ArrayList<>();
     private int price;
 
     public void add(int price) {
+        this.prices.add(price);
         this.price = price;
     }
 
