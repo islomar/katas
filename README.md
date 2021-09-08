@@ -14,6 +14,7 @@ Code from katas practiced either on my own or through Coding Dojos, Coderetreats
 * https://codesai.com/2019/04/beverages_prices_kata
 * https://leanmind.es/es/blog/kata-apariencias-impares/
 * https://github.com/tomphp/untangled-conditionals-kata
+  * https://www.youtube.com/watch?v=NWgY-0Qu4S4
 
 ## Where to find more katas
 * https://katalyst.codurance.com/
