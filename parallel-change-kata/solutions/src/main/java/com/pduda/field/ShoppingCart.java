@@ -16,9 +16,7 @@ public class ShoppingCart {
 
     public boolean hasDiscount() {
         return Arrays.stream(this.prices)
-                .filter(item -> item >= MINIMUM_PRICE_FOR_DISCOUNT)
-                .findAny()
-                .isPresent();
+                .anyMatch(item -> item >= MINIMUM_PRICE_FOR_DISCOUNT);
     }
 
     public int numberOfProducts() {
