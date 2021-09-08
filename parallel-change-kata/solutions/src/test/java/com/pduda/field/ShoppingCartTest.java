@@ -38,4 +38,12 @@ public class ShoppingCartTest {
         Assert.assertFalse(shoppingCart.hasDiscount());
     }
 
+    @Test
+    public void twoItems_numberOfProductsInTheCart() throws Exception {
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.add(10, 20);
+
+        Assert.assertEquals(2, shoppingCart.numberOfProducts());
+    }
+
 }
