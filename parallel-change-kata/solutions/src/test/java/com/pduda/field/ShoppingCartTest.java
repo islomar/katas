@@ -8,7 +8,7 @@ public class ShoppingCartTest {
 
 
     @Test
-    public void singleItem_numberOfProductsInTheCart() throws Exception {
+    public void singleItem_numberOfProductsInTheCart() {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.add(10);
 
@@ -16,7 +16,7 @@ public class ShoppingCartTest {
     }
 
     @Test
-    public void singleItem_totalPrice() throws Exception {
+    public void singleItem_totalPrice() {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.add(10);
 
@@ -24,7 +24,7 @@ public class ShoppingCartTest {
     }
 
     @Test
-    public void singleItem_hasDiscountIfContainsAtLeastOneProductWorthAtLeast100() throws Exception {
+    public void singleItem_hasDiscountIfContainsAtLeastOneProductWorthAtLeast100() {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.add(100);
 
@@ -32,7 +32,7 @@ public class ShoppingCartTest {
     }
 
     @Test
-    public void singleItem_doesNotHaveDiscountIfContainsNoProductsWorthAtLeast100() throws Exception {
+    public void singleItem_doesNotHaveDiscountIfContainsNoProductsWorthAtLeast100() {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.add(99);
 
@@ -40,7 +40,7 @@ public class ShoppingCartTest {
     }
 
     @Test
-    public void twoItems_numberOfProductsInTheCart() throws Exception {
+    public void twoItems_numberOfProductsInTheCart() {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.add(10, 20);
 
@@ -48,7 +48,7 @@ public class ShoppingCartTest {
     }
 
     @Test
-    public void twoItems_totalPrice() throws Exception {
+    public void twoItems_totalPrice() {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.add(10, 20);
 
@@ -59,7 +59,7 @@ public class ShoppingCartTest {
     //the total amount is at least 100? Should it be applied when
     // at least one product is 100 (as mentioned in the test)?
     @Test
-    public void twoItems_hasDiscountIfContainsAtLeastOneProductWorthAtLeast100() throws Exception {
+    public void twoItems_hasDiscountIfContainsAtLeastOneProductWorthAtLeast100() {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.add(40, 100);
 
@@ -67,7 +67,7 @@ public class ShoppingCartTest {
     }
 
     @Test
-    public void twoItems_hasNoDiscountIfNoProductIsWorthAtLeast100() throws Exception {
+    public void twoItems_hasNoDiscountIfNoProductIsWorthAtLeast100() {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.add(40, 60);
 
