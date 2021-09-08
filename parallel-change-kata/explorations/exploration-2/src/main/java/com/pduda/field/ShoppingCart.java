@@ -9,6 +9,7 @@ public class ShoppingCart {
 
     public void add(int price) {
         this.price = price;
+        this.prices.add(price);
     }
 
     public int calculateTotalPrice() {
