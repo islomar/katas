@@ -1,17 +1,16 @@
 package com.pduda.field;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 public class ShoppingCart {
-    private final List<Integer> prices = new ArrayList<>();
+    private int[] prices = null;
 
-    public void add(int price) {
-        this.prices.add(price);
+    public void add(int... prices) {
+        this.prices = prices;
     }
 
     public int calculateTotalPrice() {
-        return this.prices.stream().reduce(0, Integer::sum);
+        return Arrays.stream(this.prices).sum();
     }
 
     public boolean hasDiscount() {
@@ -19,6 +18,6 @@ public class ShoppingCart {
     }
 
     public int numberOfProducts() {
-        return this.prices.size();
+        return this.prices.length;
     }
 }
