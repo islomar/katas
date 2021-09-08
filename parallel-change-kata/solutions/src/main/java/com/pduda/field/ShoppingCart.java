@@ -5,11 +5,9 @@ import java.util.List;
 
 public class ShoppingCart {
     private final List<Integer> prices = new ArrayList<>();
-    private int price;
 
     public void add(int price) {
         this.prices.add(price);
-        this.price = price;
     }
 
     public int calculateTotalPrice() {
