@@ -53,6 +53,16 @@ public class ShoppingCartTest {
     }
 
     @Test
+    public void threeItems_hasDiscountIfContainsAtLeastOneProductWorthAtLeast100() {
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.add(2);
+        shoppingCart.add(100);
+        shoppingCart.add(10);
+
+        assertTrue(shoppingCart.hasDiscount());
+    }
+
+    @Test
     public void singleItem_doesNotHaveDiscountIfContainsNoProductsWorthAtLeast100() {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.add(99);
