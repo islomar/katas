@@ -46,4 +46,12 @@ public class ShoppingCartTest {
         Assert.assertEquals(2, shoppingCart.numberOfProducts());
     }
 
+    @Test
+    public void twoItems_totalPrice() throws Exception {
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.add(10, 20);
+
+        Assert.assertEquals(30, shoppingCart.calculateTotalPrice());
+    }
+
 }
