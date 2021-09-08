@@ -13,7 +13,7 @@ public class ShoppingCart {
     }
 
     public int calculateTotalPrice() {
-        return price;
+        return this.prices.stream().reduce(0, Integer::sum);
     }
 
     public boolean hasDiscount() {
