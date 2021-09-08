@@ -7,7 +7,7 @@ public class ShoppingCartTest {
 
 
     @Test
-    public void singleItem_numberOfProductsInTheCart() throws Exception {
+    public void singleItem_numberOfProductsInTheCart() {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.add(10);
 
@@ -15,7 +15,7 @@ public class ShoppingCartTest {
     }
 
     @Test
-    public void singleItem_totalPrice() throws Exception {
+    public void singleItem_totalPrice() {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.add(10);
 
@@ -23,7 +23,7 @@ public class ShoppingCartTest {
     }
 
     @Test
-    public void singleItem_hasDiscountIfContainsAtLeastOneProductWorthAtLeast100() throws Exception {
+    public void singleItem_hasDiscountIfContainsAtLeastOneProductWorthAtLeast100() {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.add(100);
 
@@ -31,7 +31,7 @@ public class ShoppingCartTest {
     }
 
     @Test
-    public void singleItem_doesNotHaveDiscountIfContainsNoProductsWorthAtLeast100() throws Exception {
+    public void singleItem_doesNotHaveDiscountIfContainsNoProductsWorthAtLeast100() {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.add(99);
 

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ShoppingCart {
     private int price;
-    private List<Integer> prices = new ArrayList<Integer>();
+    private final List<Integer> prices = new ArrayList<>();
 
     public void add(int price) {
         this.price = price;
