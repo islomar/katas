@@ -13,6 +13,7 @@ Code from katas practiced either on my own or through Coding Dojos, Coderetreats
 * Scrabble kata: https://twitter.com/emilybache/status/1072880924843479040
 * https://codesai.com/2019/04/beverages_prices_kata
 * https://leanmind.es/es/blog/kata-apariencias-impares/
+* https://github.com/tomphp/untangled-conditionals-kata
 
 ## Where to find more katas
 * https://katalyst.codurance.com/
