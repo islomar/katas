@@ -14,7 +14,10 @@ public class ShoppingCart {
     }
 
     public boolean hasDiscount() {
-        return this.calculateTotalPrice() >= 100;
+        return Arrays.stream(this.prices)
+                .filter(item -> item >= 100)
+                .findAny()
+                .isPresent();
     }
 
     public int numberOfProducts() {

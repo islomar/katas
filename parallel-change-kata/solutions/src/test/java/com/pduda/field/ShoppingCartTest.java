@@ -55,4 +55,23 @@ public class ShoppingCartTest {
         assertEquals(30, shoppingCart.calculateTotalPrice());
     }
 
+    //TODO: this requirement is not clear: should the discount be applied when
+    //the total amount is at least 100? Should it be applied when
+    // at least one product is 100 (as mentioned in the test)?
+    @Test
+    public void twoItems_hasDiscountIfContainsAtLeastOneProductWorthAtLeast100() throws Exception {
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.add(40, 100);
+
+        assertTrue(shoppingCart.hasDiscount());
+    }
+
+    @Test
+    public void twoItems_hasNoDiscountIfNoProductIsWorthAtLeast100() throws Exception {
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.add(40, 60);
+
+        assertFalse(shoppingCart.hasDiscount());
+    }
+
 }
