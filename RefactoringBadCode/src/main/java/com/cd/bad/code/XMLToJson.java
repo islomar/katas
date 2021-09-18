@@ -66,8 +66,7 @@ public class XMLToJson {
         Document tocDoc = xmlDocumentReader.fromURL(tocURL);
         String jsonString = "[";
 
-        Element node = null;
-        node = selectNodeToConvert(xPathString, tocDoc);
+        Element node = selectNodeToConvert(xPathString, tocDoc);
 
         for (Element element : node.elements()) {
             String eleName = element.getName();
