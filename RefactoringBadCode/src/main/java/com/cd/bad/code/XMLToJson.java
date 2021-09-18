@@ -102,7 +102,6 @@ public class XMLToJson {
 
                 if (attributeList.stream().anyMatch(attribute -> "type".equals(attribute.getName()))) {
                     String typeContent = element.attributeValue("type");
-                    //doc element has type "history"
                     if (typeContent == "history") {
                         jsonString = jsonString.concat(START_ATTRIBUTE_WITH_ID).concat(xPathString).concat("_fth,");
                     }
@@ -132,7 +131,7 @@ public class XMLToJson {
         if (xPathString.equals("/")) {
             node = tocDoc.getRootElement();
         } else {
-            String realXPathString = pathMapping(xPathString);
+            String realXPathString = convertAdHocXPathStringToStandardXPathExpresssion(xPathString);
             System.out.println(realXPathString);
             node = (Element) tocDoc.selectSingleNode(realXPathString);
         }
@@ -172,7 +171,7 @@ public class XMLToJson {
      *
      *
      */
-    public String pathMapping(String shortXPath) throws Exception {
+    public String convertAdHocXPathStringToStandardXPathExpresssion(String shortXPath) throws Exception {
         String tagetString;
         if (shortXPath.equals("")) {
             tagetString = "//toc";
@@ -181,11 +180,11 @@ public class XMLToJson {
         }
 
         int newStart = 0;
-        String segString = "";
-        String valueString = "";
+        String segString;
+        String valueString;
         while (shortXPath.indexOf("_", newStart) > -1) {
-            int keyValueSepPos = 0;
-            String keyString = "";//not necessary key, might be type attribute
+            int keyValueSepPos;
+            String keyString;//not necessary key, might be type attribute
             segString = shortXPath.substring(newStart, shortXPath.indexOf("_", newStart));
             newStart = shortXPath.indexOf("_", newStart) + 1;//new start search point
             if (segString.indexOf(":") > 0) {
