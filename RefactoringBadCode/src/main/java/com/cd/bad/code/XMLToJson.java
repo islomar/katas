@@ -114,9 +114,6 @@ public class XMLToJson {
                     //state set up as "closed" and no need to set up "children" field
                     jsonString = jsonString.concat(",'state':'closed'");
 
-                } else {
-                    //no need to put anything
-                    //jsonString = jsonString.concat("'state':'???'");
                 }
                 jsonString = jsonString.concat("},");
             } else if (eleName == "folder") {
