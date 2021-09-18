@@ -63,60 +63,61 @@ public class XMLToJson {
         Element node = selectNodeToConvert(xPathString, tocDoc);
 
         for (Element element : node.elements()) {
-            jsonString = convertElementToJson(xPathString, jsonString, element);
+            jsonString = jsonString.concat(convertElementToJson(xPathString, element));
         }
         jsonString = jsonString.substring(0, jsonString.length() - 1);
         jsonString = jsonString.concat("]");
         return jsonString;
     }
 
-    private String convertElementToJson(String xPathString, String jsonString, Element element) {
+    private String convertElementToJson(String xPathString, Element element) {
+        String jsonStringElement = "";
         String elementName = element.getName();
         List<Attribute> attributeList = element.attributes();
         String titleAttrContent = element.attributeValue("title");
         String fileAttrContent = element.attributeValue("file");
 
         if ("doc".equals(elementName)) {
-            jsonString = jsonString.concat("{").concat("'data':'").concat(titleAttrContent).concat("',");
+            jsonStringElement = jsonStringElement.concat("{").concat("'data':'").concat(titleAttrContent).concat("',");
 
             if (attributeList.stream().anyMatch(attribute -> "key".equals(attribute.getName()))) {
                 String keyContent = extractKeyContentFromElement(element);
-                jsonString = jsonString.concat(START_ATTRIBUTE_WITH_ID)
+                jsonStringElement = jsonStringElement.concat(START_ATTRIBUTE_WITH_ID)
                         .concat(xPathString).concat("_dk:")
                         .concat(keyContent)
                         .concat("','file':'").concat(fileAttrContent).concat("'}");
             }
             if (attributeList.stream().anyMatch(attribute -> "trnum".equals(attribute.getName()))) {
                 String trnumContent = element.attributeValue("trnum");
-                jsonString = jsonString.concat(START_ATTRIBUTE_WITH_ID)
+                jsonStringElement = jsonStringElement.concat(START_ATTRIBUTE_WITH_ID)
                         .concat(xPathString).concat("_dtrn:")
                         .concat(trnumContent)
                         .concat("','file':'").concat(fileAttrContent).concat("'}");
             }
 
-            jsonString = addClosedStateIfNoChildren(jsonString, element);
-            jsonString = jsonString.concat("},");
+            jsonStringElement = addClosedStateIfNoChildren(jsonStringElement, element);
+            jsonStringElement = jsonStringElement.concat("},");
         }
         if ("folder".equals(elementName)) {
-            jsonString = jsonString.concat("{").concat("'data':'").concat(titleAttrContent).concat("',");
+            jsonStringElement = jsonStringElement.concat("{").concat("'data':'").concat(titleAttrContent).concat("',");
 
             if (attributeList.stream().anyMatch(attribute -> "key".equals(attribute.getName()))) {
                 String keyContent = extractKeyContentFromElement(element);
-                jsonString = jsonString.concat(START_ATTRIBUTE_WITH_ID).concat(xPathString).concat("_fk:").concat(keyContent).concat("'}");
+                jsonStringElement = jsonStringElement.concat(START_ATTRIBUTE_WITH_ID).concat(xPathString).concat("_fk:").concat(keyContent).concat("'}");
                 if (fileAttrContent != null) {
-                    jsonString = jsonString.concat("','file':'").concat(fileAttrContent).concat("'}");
+                    jsonStringElement = jsonStringElement.concat("','file':'").concat(fileAttrContent).concat("'}");
                 }
             }
 
             if (attributeList.stream().anyMatch(attribute -> "type".equals(attribute.getName()))) {
                 String typeContent = element.attributeValue("type");
                 if (typeContent == "history") {
-                    jsonString = jsonString.concat(START_ATTRIBUTE_WITH_ID).concat(xPathString).concat("_fth,");
+                    jsonStringElement = jsonStringElement.concat(START_ATTRIBUTE_WITH_ID).concat(xPathString).concat("_fth,");
                 }
             }
-            jsonString = jsonString.concat("},");
+            jsonStringElement = jsonStringElement.concat("},");
         }
-        return jsonString;
+        return jsonStringElement;
     }
 
     private String extractKeyContentFromElement(Element element) {
