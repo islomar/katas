@@ -1,0 +1,33 @@
+
+<folder key="AMM24" title="CH 24 - Electrical Power">
+    <folder key="AMM24-FM" title="Front Matter">
+        <doc key="CTOC-24" title="Table of Contents" file="CTOC-24.pdf"/>
+    </folder>
+    <folder key="AMM24-00-00" title="24-00-00 - General">
+        <folder key="AMM24-00-00-02" title="General - Maintenance Practices">
+            <doc key="AMM24-00-00-700-801"
+                 title="TASK 24-00-00-700-801 - AC Power, DC Power and Battery Maintenance Practice Recommendations"
+                 file="AMM24-00-00-700-801.pdf"/>
+            <doc trnum="1234"
+                 title="TASK 24-00-00-700-801 - AC Power, DC Power and Battery Maintenance Practice Recommendations"
+                 file="AMM24-00-00-700-801.pdf"/>
+
+            <folder key="LOETR" type="loetr" title="List of Effective TRs" file="loetr.html" >
+                <doc type="tr" trnum="TR12-118" trdate="May 07/2012" title="[TR12-118] TASK AMM12-31-00-660-806 - Inspection and Removal of De-Hydrated Anti-Icing Fluid inside the Flight Control Surfaces" file="TR12-118.pdf" refloc="AMM12-31-00-660-806">
+                    <folder type="history" title="History of AMM12-31-00-660-806">
+                        <doc title="TASK 12-31-00-660-806 - Inspection and Removal of De-Hydrated Anti-Icing Fluid inside the Flight Control Surfaces" file="AMM12-31-00-660-806.pdf" type="history" refloc="AMM12-31-00-660-806"/>
+                    </folder>
+                </doc>
+            </folder>
+            <folder type="loetr" title="List of Effective TRs" file="loetr.html">
+                <doc type="tr" trnum="TR12-118" trdate="May 07/2012" title="[TR12-118] TASK AMM12-31-00-660-806 - Inspection and Removal of De-Hydrated Anti-Icing Fluid inside the Flight Control Surfaces" file="TR12-118.pdf" refloc="AMM12-31-00-660-806">
+                </doc>
+            </folder>
+            <folder type="history" title="History of AMM12-31-00-660-806">
+                <doc title="TASK 12-31-00-660-806 - Inspection and Removal of De-Hydrated Anti-Icing Fluid inside the Flight Control Surfaces" file="AMM12-31-00-660-806.pdf" type="history" refloc="AMM12-31-00-660-806"/>
+            </folder>
+        </folder>
+    </folder>
+</folder>
+
+
