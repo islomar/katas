@@ -57,10 +57,10 @@ public class XMLToJson {
 
     @SuppressWarnings({"unchecked"})
     public String getJson(URL tocURL, String xPathString) throws Exception {
-        Document tocDoc = xmlDocumentReader.fromURL(tocURL);
+        Document tocDocument = xmlDocumentReader.fromURL(tocURL);
         String jsonString = "[";
 
-        Element node = selectNodeToConvert(xPathString, tocDoc);
+        Element node = selectNodeToConvert(xPathString, tocDocument);
 
         for (Element element : node.elements()) {
             jsonString = jsonString.concat(convertElementToJson(xPathString, element));
