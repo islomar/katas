@@ -9,7 +9,7 @@ import java.net.URL;
 public class XMLDocumentReader
 {
 
-    private SAXReader reader;
+    private final SAXReader reader;
 
     public XMLDocumentReader() {
         this.reader = new SAXReader();
