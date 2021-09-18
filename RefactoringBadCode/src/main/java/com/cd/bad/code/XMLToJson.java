@@ -15,33 +15,32 @@ import java.util.*;
  * doc type only seen two "tr" and "history" in toc??-- it only has one child
  * node with "folder type="history"" is the only child of it parent either "<doc type="tr" key="xxx" trnum="xxx"....." or "<doc type="tr"  trnum="xxx""
  * <folder type="history"  could has more then one doc children .e.g. title="History of AMM31-32-00-720-807" in 700/amm
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
  * folder element has the follwing to identify itself:
- * 	1, key
- * 	2, type="history",  in this case, folder is the only child of doc element with type ="tr"?????
- *
+ * 1, key
+ * 2, type="history",  in this case, folder is the only child of doc element with type ="tr"?????
+ * <p>
  * doc element has the following to identify itself
- * 	1, key
- * 	2, type="tr" trnum="xxxxx"
- * 	3, type="history", in this case, doc isthe only child of a folder element???
- *
- *
- *
+ * 1, key
+ * 2, type="tr" trnum="xxxxx"
+ * 3, type="history", in this case, doc isthe only child of a folder element???
+ * <p>
+ * <p>
+ * <p>
  * the return json format likes following:
  * [
  * { "data" : "A node", "children" , "state" : "open" },
  * { "data" : "Only child", "state" : "closed" },
- *	"Ajax node"
- *	]
+ * "Ajax node"
+ * ]
  */
 
-public class XMLToJson
-{
+public class XMLToJson {
     private static final Map<String, String> pathMap;
-    static
-    {
+
+    static {
         Map<String, String> aMap = new HashMap<String, String>();
         aMap.put("fk", "folder[@key");
         aMap.put("ft", "folder[@type");
@@ -62,20 +61,16 @@ public class XMLToJson
      *
      * sample xPathString : "fk:AMM24_fk:AMM24-FM_dk"
      */
-    @SuppressWarnings({ "unchecked" })
-    public String getJson(URL url, String xPathString) throws Exception
-    {
+    @SuppressWarnings({"unchecked"})
+    public String getJson(URL url, String xPathString) throws Exception {
         Document TOCDoc = xmlDocumentReader.fromURL(url);
         String jsonString = "[";
 
         Element node = null;
-        if (xPathString.equals("/"))
-        {
+        if (xPathString.equals("/")) {
 
             node = TOCDoc.getRootElement();
-        }
-        else
-        {
+        } else {
             String realXPathString = pathMapping(xPathString);
             System.out.println(realXPathString);
             node = (Element) TOCDoc.selectSingleNode(realXPathString);
@@ -84,8 +79,7 @@ public class XMLToJson
         for (Element element : node.elements()) {
             String eleName = element.getName();
             Boolean hasChildren = false;
-            if (!element.elements().isEmpty())
-            {
+            if (!element.elements().isEmpty()) {
                 hasChildren = true;
                 //current element has children itself, state shoud be "closed"
 
@@ -94,26 +88,21 @@ public class XMLToJson
             String titleAttrContent = element.attributeValue("title");
             String fileAttrContent = element.attributeValue("file");
             //if  (fileAttrContent.isEmpty() )
-            if (eleName == "doc")
-            {
+            if (eleName == "doc") {
                 //doc element always has "file" attribute
 
-                for (Attribute attribute : list)
-                {
+                for (Attribute attribute : list) {
                     jsonString = jsonString.concat("{");
                     String attrName = attribute.getName();
                     //System.out.println("doc arribute Name : " + attrName);
                     //each one has to have "data" line, "attr" line "state" line and "children" line
                     jsonString = jsonString.concat("'data':'").concat(titleAttrContent).concat("',");
-                    if (attrName.equals("key"))
-                    {
+                    if (attrName.equals("key")) {
                         String keyContent = element.attributeValue("key");
                         jsonString = jsonString.concat("'attr':{'id':'").concat(xPathString).concat("_dk:").concat(keyContent).concat("','file':'").concat(fileAttrContent).concat("'}");
 
                         break;
-                    }
-                    else if (attrName.equals("trnum"))
-                    {
+                    } else if (attrName.equals("trnum")) {
 
                         String trnumContent = element.attributeValue("trnum");
                         jsonString = jsonString.concat("'attr':{'id':'").concat(xPathString).concat("_dtrn:").concat(trnumContent).concat("','file':'").concat(fileAttrContent).concat("'}");
@@ -121,49 +110,35 @@ public class XMLToJson
                         break;
                     }
                 }
-                if (hasChildren)
-                {
+                if (hasChildren) {
                     //state set up as "closed" and no need to set up "children" field
                     jsonString = jsonString.concat(",'state':'closed'");
 
-                }
-                else
-                {
+                } else {
                     //no need to put anything
                     //jsonString = jsonString.concat("'state':'???'");
                 }
                 jsonString = jsonString.concat("},");
-            }
-
-            else if (eleName == "folder")
-            {
+            } else if (eleName == "folder") {
                 jsonString = jsonString.concat("{");
-                for (Attribute attribute : list)
-                {
+                for (Attribute attribute : list) {
                     String attrName = attribute.getName();
                     jsonString = jsonString.concat("'data':'").concat(titleAttrContent).concat("',");
-                    if (attrName.equals("key"))
-                    {
+                    if (attrName.equals("key")) {
                         String keyContent = element.attributeValue("key");
                         jsonString = jsonString.concat("'attr':{'id':'").concat(xPathString).concat("_fk:").concat(keyContent).concat("'}");
-                        if (fileAttrContent != null)
-                        {
+                        if (fileAttrContent != null) {
                             jsonString = jsonString.concat("','file':'").concat(fileAttrContent).concat("'}");
                         }
 
                         break;
-                    }
-                    else if (attrName.equals("type"))
-                    {
+                    } else if (attrName.equals("type")) {
                         String typeContent = element.attributeValue("type");
                         //doc element has type "history"
-                        if (typeContent == "history")
-                        {
+                        if (typeContent == "history") {
                             jsonString = jsonString.concat("'attr':{'id':'").concat(xPathString).concat("_fth,");
 
-                        }
-                        else if (typeContent == "?????")
-                        {
+                        } else if (typeContent == "?????") {
                             //any values need to concern????
                         }
                         break;
@@ -215,15 +190,11 @@ public class XMLToJson
      *
      *
      */
-    public String pathMapping(String shortXPath) throws Exception
-    {
+    public String pathMapping(String shortXPath) throws Exception {
         String tagetString = null;
-        if (shortXPath.equals(""))
-        {
+        if (shortXPath.equals("")) {
             tagetString = "//toc";
-        }
-        else
-        {
+        } else {
             tagetString = "//";
         }
 
@@ -233,24 +204,19 @@ public class XMLToJson
         //dth???
         //need mapping all senarios
         //already??
-        while (shortXPath.indexOf("_", newStart) > -1)
-        {
+        while (shortXPath.indexOf("_", newStart) > -1) {
             int keyValueSepPos = 0;
             String keyString = "";//not necessary key, might be type attribute
             segString = shortXPath.substring(newStart, shortXPath.indexOf("_", newStart));
             newStart = shortXPath.indexOf("_", newStart) + 1;//new start search point
             //System.out.println(newStart);
-            if (segString.indexOf(":") > 0)
-            {
+            if (segString.indexOf(":") > 0) {
                 keyValueSepPos = segString.indexOf(":");
                 keyString = segString.substring(0, keyValueSepPos);
                 valueString = segString.substring(keyValueSepPos + 1);
-                if (pathMap.get(keyString).length() > 0)
-                {
+                if (pathMap.get(keyString).length() > 0) {
                     tagetString = tagetString.concat(pathMap.get(keyString));
-                }
-                else
-                {
+                } else {
                     throw new Exception("no mapping found");
                 }
                 tagetString = tagetString.concat("='").concat(valueString).concat("']/");
@@ -259,17 +225,13 @@ public class XMLToJson
         //this is for scenerio either no "_" or sub string after "_"
         segString = shortXPath.substring(newStart);
         System.out.println(segString);
-        if (segString.indexOf(":") > 0)
-        {
+        if (segString.indexOf(":") > 0) {
             int lastKeyValueSepPos = segString.indexOf(":");
             String lastKeyString = segString.substring(0, lastKeyValueSepPos);
             String lastValueString = segString.substring(lastKeyValueSepPos + 1);
-            if (pathMap.get(lastKeyString).length() > 0)
-            {
+            if (pathMap.get(lastKeyString).length() > 0) {
                 tagetString = tagetString.concat(pathMap.get(lastKeyString));
-            }
-            else
-            {
+            } else {
                 throw new Exception("no mapping found");
             }
             tagetString = tagetString.concat("='").concat(lastValueString).concat("']");
@@ -278,8 +240,7 @@ public class XMLToJson
 
     }
 
-    public static void main(String[] args) throws Exception
-    {
+    public static void main(String[] args) throws Exception {
         XMLToJson x2j = new XMLToJson();
         String test = "fk:AMM24_fk:AMM24-FM";
 
