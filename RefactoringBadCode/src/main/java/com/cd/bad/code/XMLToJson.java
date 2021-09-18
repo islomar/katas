@@ -38,7 +38,8 @@ import java.util.*;
  */
 
 public class XMLToJson {
-    private static final Map<String, String> pathMap;
+    private static final Map<String, String> PATH_MAP;
+    private static final String START_ATTRIBUTE_WITH_ID = "'attr':{'id':'";
 
     static {
         Map<String, String> aMap = new HashMap<String, String>();
@@ -49,7 +50,7 @@ public class XMLToJson {
         aMap.put("dt", "doc[@type");
         aMap.put("dth", "doc[@type='history'");
         aMap.put("dtrn", "doc[@trnum");
-        pathMap = Collections.unmodifiableMap(aMap);
+        PATH_MAP = Collections.unmodifiableMap(aMap);
     }
 
     XMLDocumentReader xmlDocumentReader = new XMLDocumentReader();
@@ -75,16 +76,21 @@ public class XMLToJson {
             String fileAttrContent = element.attributeValue("file");
 
             if ("doc".equals(elementName)) {
-                jsonString = jsonString.concat("{");
-                jsonString = jsonString.concat("'data':'").concat(titleAttrContent).concat("',");
+                jsonString = jsonString.concat("{").concat("'data':'").concat(titleAttrContent).concat("',");
 
                 if (attributeList.stream().anyMatch(attribute -> "key".equals(attribute.getName()))) {
                     String keyContent = extractKeyContentFromElement(element);
-                    jsonString = jsonString.concat("'attr':{'id':'").concat(xPathString).concat("_dk:").concat(keyContent).concat("','file':'").concat(fileAttrContent).concat("'}");
+                    jsonString = jsonString.concat(START_ATTRIBUTE_WITH_ID)
+                            .concat(xPathString).concat("_dk:")
+                            .concat(keyContent)
+                            .concat("','file':'").concat(fileAttrContent).concat("'}");
                 }
                 if (attributeList.stream().anyMatch(attribute -> "trnum".equals(attribute.getName()))) {
                     String trnumContent = element.attributeValue("trnum");
-                    jsonString = jsonString.concat("'attr':{'id':'").concat(xPathString).concat("_dtrn:").concat(trnumContent).concat("','file':'").concat(fileAttrContent).concat("'}");
+                    jsonString = jsonString.concat(START_ATTRIBUTE_WITH_ID)
+                            .concat(xPathString).concat("_dtrn:")
+                            .concat(trnumContent)
+                            .concat("','file':'").concat(fileAttrContent).concat("'}");
                 }
 
                 jsonString = addClosedStateIfNoChildren(jsonString, element);
@@ -96,7 +102,7 @@ public class XMLToJson {
                     jsonString = jsonString.concat("'data':'").concat(titleAttrContent).concat("',");
                     if (attributeName.equals("key")) {
                         String keyContent = extractKeyContentFromElement(element);
-                        jsonString = jsonString.concat("'attr':{'id':'").concat(xPathString).concat("_fk:").concat(keyContent).concat("'}");
+                        jsonString = jsonString.concat(START_ATTRIBUTE_WITH_ID).concat(xPathString).concat("_fk:").concat(keyContent).concat("'}");
                         if (fileAttrContent != null) {
                             jsonString = jsonString.concat("','file':'").concat(fileAttrContent).concat("'}");
                         }
@@ -106,7 +112,7 @@ public class XMLToJson {
                         String typeContent = element.attributeValue("type");
                         //doc element has type "history"
                         if (typeContent == "history") {
-                            jsonString = jsonString.concat("'attr':{'id':'").concat(xPathString).concat("_fth,");
+                            jsonString = jsonString.concat(START_ATTRIBUTE_WITH_ID).concat(xPathString).concat("_fth,");
 
                         }
                         break;
@@ -201,8 +207,8 @@ public class XMLToJson {
                 keyValueSepPos = segString.indexOf(":");
                 keyString = segString.substring(0, keyValueSepPos);
                 valueString = segString.substring(keyValueSepPos + 1);
-                if (pathMap.get(keyString).length() > 0) {
-                    tagetString = tagetString.concat(pathMap.get(keyString));
+                if (PATH_MAP.get(keyString).length() > 0) {
+                    tagetString = tagetString.concat(PATH_MAP.get(keyString));
                 } else {
                     throw new Exception("no mapping found");
                 }
@@ -216,8 +222,8 @@ public class XMLToJson {
             int lastKeyValueSepPos = segString.indexOf(":");
             String lastKeyString = segString.substring(0, lastKeyValueSepPos);
             String lastValueString = segString.substring(lastKeyValueSepPos + 1);
-            if (pathMap.get(lastKeyString).length() > 0) {
-                tagetString = tagetString.concat(pathMap.get(lastKeyString));
+            if (PATH_MAP.get(lastKeyString).length() > 0) {
+                tagetString = tagetString.concat(PATH_MAP.get(lastKeyString));
             } else {
                 throw new Exception("no mapping found");
             }
