@@ -80,21 +80,19 @@ public class XMLToJson
             System.out.println(realXPathString);
             node = (Element) TOCDoc.selectSingleNode(realXPathString);
         }
-        //List<Element>  li = node.elements();
-        for (Iterator<Element> i = node.elementIterator(); i.hasNext();)
-        {
-            Element elem = (Element) i.next();
-            String eleName = elem.getName();
+
+        for (Element element : node.elements()) {
+            String eleName = element.getName();
             Boolean hasChildren = false;
-            if ((elem.elements().size() > 0))
+            if ((element.elements().size() > 0))
             {
                 hasChildren = true;
                 //current element has children itself, state shoud be "closed"
 
             }
-            List<Attribute> list = elem.attributes();
-            String titleAttrContent = elem.attributeValue("title");
-            String fileAttrContent = elem.attributeValue("file");
+            List<Attribute> list = element.attributes();
+            String titleAttrContent = element.attributeValue("title");
+            String fileAttrContent = element.attributeValue("file");
             //if  (fileAttrContent.isEmpty() )
             if (eleName == "doc")
             {
@@ -109,7 +107,7 @@ public class XMLToJson
                     jsonString = jsonString.concat("'data':'").concat(titleAttrContent).concat("',");
                     if (attrName.equals("key"))
                     {
-                        String keyContent = elem.attributeValue("key");
+                        String keyContent = element.attributeValue("key");
                         jsonString = jsonString.concat("'attr':{'id':'").concat(xPathString).concat("_dk:").concat(keyContent).concat("','file':'").concat(fileAttrContent).concat("'}");
 
                         break;
@@ -117,7 +115,7 @@ public class XMLToJson
                     else if (attrName.equals("trnum"))
                     {
 
-                        String trnumContent = elem.attributeValue("trnum");
+                        String trnumContent = element.attributeValue("trnum");
                         jsonString = jsonString.concat("'attr':{'id':'").concat(xPathString).concat("_dtrn:").concat(trnumContent).concat("','file':'").concat(fileAttrContent).concat("'}");
 
                         break;
@@ -146,7 +144,7 @@ public class XMLToJson
                     jsonString = jsonString.concat("'data':'").concat(titleAttrContent).concat("',");
                     if (attrName.equals("key"))
                     {
-                        String keyContent = elem.attributeValue("key");
+                        String keyContent = element.attributeValue("key");
                         jsonString = jsonString.concat("'attr':{'id':'").concat(xPathString).concat("_fk:").concat(keyContent).concat("'}");
                         if (fileAttrContent != null)
                         {
@@ -157,7 +155,7 @@ public class XMLToJson
                     }
                     else if (attrName.equals("type"))
                     {
-                        String typeContent = elem.attributeValue("type");
+                        String typeContent = element.attributeValue("type");
                         //doc element has type "history"
                         if (typeContent == "history")
                         {
