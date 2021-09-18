@@ -94,7 +94,6 @@ public class XMLToJson
             }
             List<Attribute> list = elem.attributes();
             String titleAttrContent = elem.attributeValue("title");
-            //Boolean isFileAttr = false;
             String fileAttrContent = elem.attributeValue("file");
             //if  (fileAttrContent.isEmpty() )
             if (eleName == "doc")
@@ -123,21 +122,6 @@ public class XMLToJson
 
                         break;
                     }
-					/*		else if (attrName.equals("type"))//type attribute for doc element won't determite what exactly the element is
-							{
-								String typeContent = elem.attributeValue("type");
-								//doc element has type "history"
-								if (typeContent == "history"){
-									jsonString = jsonString.concat("'attr':{'id':'").concat(xPathString).concat("_dth,");
-								}else if (typeContent == "?????"){
-									//any values for type attribute need to concern????
-								}
-
-							}
-							else if (attrName.equals("file"))
-							{
-
-							}*/
                 }
                 if (hasChildren)
                 {
