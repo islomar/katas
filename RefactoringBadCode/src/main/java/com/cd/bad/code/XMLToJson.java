@@ -128,8 +128,6 @@ public class XMLToJson {
                         if (typeContent == "history") {
                             jsonString = jsonString.concat("'attr':{'id':'").concat(xPathString).concat("_fth,");
 
-                        } else if (typeContent == "?????") {
-                            //any values need to concern????
                         }
                         break;
 
