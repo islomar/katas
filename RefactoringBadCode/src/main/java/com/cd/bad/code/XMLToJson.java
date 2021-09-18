@@ -55,13 +55,6 @@ public class XMLToJson {
 
     XMLDocumentReader xmlDocumentReader = new XMLDocumentReader();
 
-    /*
-     * @param url the path to TOC.xml
-     * @param xPathString the short format searched node path
-     * @throws DocumentException
-     *
-     * sample xPathString : "fk:AMM24_fk:AMM24-FM_dk"
-     */
     @SuppressWarnings({"unchecked"})
     public String getJson(URL tocURL, String xPathString) throws Exception {
         Document tocDoc = xmlDocumentReader.fromURL(tocURL);
@@ -95,28 +88,24 @@ public class XMLToJson {
 
                 jsonString = addClosedStateIfNoChildren(jsonString, element);
                 jsonString = jsonString.concat("},");
-            } else if ("folder".equals(elementName)) {
-                jsonString = jsonString.concat("{");
-                for (Attribute attribute : attributeList) {
-                    String attributeName = attribute.getName();
-                    jsonString = jsonString.concat("'data':'").concat(titleAttrContent).concat("',");
-                    if ("key".equals(attributeName)) {
-                        String keyContent = extractKeyContentFromElement(element);
-                        jsonString = jsonString.concat(START_ATTRIBUTE_WITH_ID).concat(xPathString).concat("_fk:").concat(keyContent).concat("'}");
-                        if (fileAttrContent != null) {
-                            jsonString = jsonString.concat("','file':'").concat(fileAttrContent).concat("'}");
-                        }
+            }
+            if ("folder".equals(elementName)) {
+                jsonString = jsonString.concat("{").concat("'data':'").concat(titleAttrContent).concat("',");
 
-                        break;
-                    } else if ("type".equals(attributeName)) {
-                        String typeContent = element.attributeValue("type");
-                        //doc element has type "history"
-                        if ("history".equals(typeContent)) {
-                            jsonString = jsonString.concat(START_ATTRIBUTE_WITH_ID).concat(xPathString).concat("_fth,");
-                        }
-                        break;
+                if (attributeList.stream().anyMatch(attribute -> "key".equals(attribute.getName()))) {
+                    String keyContent = extractKeyContentFromElement(element);
+                    jsonString = jsonString.concat(START_ATTRIBUTE_WITH_ID).concat(xPathString).concat("_fk:").concat(keyContent).concat("'}");
+                    if (fileAttrContent != null) {
+                        jsonString = jsonString.concat("','file':'").concat(fileAttrContent).concat("'}");
                     }
+                }
 
+                if (attributeList.stream().anyMatch(attribute -> "type".equals(attribute.getName()))) {
+                    String typeContent = element.attributeValue("type");
+                    //doc element has type "history"
+                    if (typeContent == "history") {
+                        jsonString = jsonString.concat(START_ATTRIBUTE_WITH_ID).concat(xPathString).concat("_fth,");
+                    }
                 }
                 jsonString = jsonString.concat("},");
             }
