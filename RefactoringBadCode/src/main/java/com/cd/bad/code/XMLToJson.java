@@ -69,54 +69,40 @@ public class XMLToJson {
         Element node = selectNodeToConvert(xPathString, tocDoc);
 
         for (Element element : node.elements()) {
-            String eleName = element.getName();
-            List<Attribute> list = element.attributes();
+            String elementName = element.getName();
+            List<Attribute> attributeList = element.attributes();
             String titleAttrContent = element.attributeValue("title");
             String fileAttrContent = element.attributeValue("file");
-            //if  (fileAttrContent.isEmpty() )
-            if (eleName == "doc") {
-                //doc element always has "file" attribute
 
-                for (Attribute attribute : list) {
-                    jsonString = jsonString.concat("{");
-                    String attrName = attribute.getName();
-                    //System.out.println("doc arribute Name : " + attrName);
-                    //each one has to have "data" line, "attr" line "state" line and "children" line
-                    jsonString = jsonString.concat("'data':'").concat(titleAttrContent).concat("',");
-                    if (attrName.equals("key")) {
-                        String keyContent = element.attributeValue("key");
-                        jsonString = jsonString.concat("'attr':{'id':'").concat(xPathString).concat("_dk:").concat(keyContent).concat("','file':'").concat(fileAttrContent).concat("'}");
-
-                        break;
-                    } else if (attrName.equals("trnum")) {
-
-                        String trnumContent = element.attributeValue("trnum");
-                        jsonString = jsonString.concat("'attr':{'id':'").concat(xPathString).concat("_dtrn:").concat(trnumContent).concat("','file':'").concat(fileAttrContent).concat("'}");
-
-                        break;
-                    }
-                }
-
-                boolean hasChildren = !element.elements().isEmpty();
-                if (hasChildren) {
-                    jsonString = jsonString.concat(",'state':'closed'");
-                }
-
-                jsonString = jsonString.concat("},");
-            } else if (eleName == "folder") {
+            if ("doc".equals(elementName)) {
                 jsonString = jsonString.concat("{");
-                for (Attribute attribute : list) {
-                    String attrName = attribute.getName();
+                jsonString = jsonString.concat("'data':'").concat(titleAttrContent).concat("',");
+
+                if (attributeList.stream().anyMatch(attribute -> "key".equals(attribute.getName()))) {
+                    String keyContent = extractKeyContentFromElement(element);
+                    jsonString = jsonString.concat("'attr':{'id':'").concat(xPathString).concat("_dk:").concat(keyContent).concat("','file':'").concat(fileAttrContent).concat("'}");
+                }
+                if (attributeList.stream().anyMatch(attribute -> "trnum".equals(attribute.getName()))) {
+                    String trnumContent = element.attributeValue("trnum");
+                    jsonString = jsonString.concat("'attr':{'id':'").concat(xPathString).concat("_dtrn:").concat(trnumContent).concat("','file':'").concat(fileAttrContent).concat("'}");
+                }
+
+                jsonString = addClosedStateIfNoChildren(jsonString, element);
+                jsonString = jsonString.concat("},");
+            } else if ("folder".equals(elementName)) {
+                jsonString = jsonString.concat("{");
+                for (Attribute attribute : attributeList) {
+                    String attributeName = attribute.getName();
                     jsonString = jsonString.concat("'data':'").concat(titleAttrContent).concat("',");
-                    if (attrName.equals("key")) {
-                        String keyContent = element.attributeValue("key");
+                    if (attributeName.equals("key")) {
+                        String keyContent = extractKeyContentFromElement(element);
                         jsonString = jsonString.concat("'attr':{'id':'").concat(xPathString).concat("_fk:").concat(keyContent).concat("'}");
                         if (fileAttrContent != null) {
                             jsonString = jsonString.concat("','file':'").concat(fileAttrContent).concat("'}");
                         }
 
                         break;
-                    } else if (attrName.equals("type")) {
+                    } else if (attributeName.equals("type")) {
                         String typeContent = element.attributeValue("type");
                         //doc element has type "history"
                         if (typeContent == "history") {
@@ -132,11 +118,22 @@ public class XMLToJson {
             }
             continue;
         }
-        //return list;
         jsonString = jsonString.substring(0, jsonString.length() - 1);
         jsonString = jsonString.concat("]");
         return jsonString;
 
+    }
+
+    private String extractKeyContentFromElement(Element element) {
+        return element.attributeValue("key");
+    }
+
+    private String addClosedStateIfNoChildren(String jsonString, Element element) {
+        boolean hasChildren = !element.elements().isEmpty();
+        if (hasChildren) {
+            jsonString = jsonString.concat(",'state':'closed'");
+        }
+        return jsonString;
     }
 
     private Element selectNodeToConvert(String xPathString, Document tocDoc) throws Exception {
