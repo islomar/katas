@@ -62,18 +62,18 @@ public class XMLToJson {
      * sample xPathString : "fk:AMM24_fk:AMM24-FM_dk"
      */
     @SuppressWarnings({"unchecked"})
-    public String getJson(URL url, String xPathString) throws Exception {
-        Document TOCDoc = xmlDocumentReader.fromURL(url);
+    public String getJson(URL tocURL, String xPathString) throws Exception {
+        Document tocDoc = xmlDocumentReader.fromURL(tocURL);
         String jsonString = "[";
 
         Element node = null;
         if (xPathString.equals("/")) {
 
-            node = TOCDoc.getRootElement();
+            node = tocDoc.getRootElement();
         } else {
             String realXPathString = pathMapping(xPathString);
             System.out.println(realXPathString);
-            node = (Element) TOCDoc.selectSingleNode(realXPathString);
+            node = (Element) tocDoc.selectSingleNode(realXPathString);
         }
 
         for (Element element : node.elements()) {
