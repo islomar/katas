@@ -8,7 +8,7 @@ import java.net.URL;
 
 public class XMLDocumentReader
 {
-    public Document getDocument(URL url)
+    public Document fromURL(URL url)
     {
         SAXReader reader = new SAXReader();
         Document document = null;

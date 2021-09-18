@@ -65,7 +65,7 @@ public class XMLToJson
     @SuppressWarnings({ "unchecked" })
     public String getJson(URL url, String xPathString) throws Exception
     {
-        Document TOCDoc = xmlDocumentReader.getDocument(url);
+        Document TOCDoc = xmlDocumentReader.fromURL(url);
         String jsonString = "[";
 
         Element node = null;
