@@ -70,12 +70,6 @@ public class XMLToJson {
 
         for (Element element : node.elements()) {
             String eleName = element.getName();
-            Boolean hasChildren = false;
-            if (!element.elements().isEmpty()) {
-                hasChildren = true;
-                //current element has children itself, state shoud be "closed"
-
-            }
             List<Attribute> list = element.attributes();
             String titleAttrContent = element.attributeValue("title");
             String fileAttrContent = element.attributeValue("file");
@@ -102,11 +96,12 @@ public class XMLToJson {
                         break;
                     }
                 }
-                if (hasChildren) {
-                    //state set up as "closed" and no need to set up "children" field
-                    jsonString = jsonString.concat(",'state':'closed'");
 
+                boolean hasChildren = !element.elements().isEmpty();
+                if (hasChildren) {
+                    jsonString = jsonString.concat(",'state':'closed'");
                 }
+
                 jsonString = jsonString.concat("},");
             } else if (eleName == "folder") {
                 jsonString = jsonString.concat("{");
