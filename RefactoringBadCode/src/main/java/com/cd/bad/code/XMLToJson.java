@@ -122,7 +122,6 @@ public class XMLToJson {
                 }
                 jsonString = jsonString.concat("},");
             }
-            continue;
         }
         jsonString = jsonString.substring(0, jsonString.length() - 1);
         jsonString = jsonString.concat("]");
