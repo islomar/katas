@@ -65,9 +65,13 @@ public class XMLToJson {
         for (Element element : node.elements()) {
             jsonString = jsonString.concat(convertElementToJson(xPathString, element));
         }
-        jsonString = jsonString.substring(0, jsonString.length() - 1);
+        jsonString = deleteTrailingComma(jsonString);
         jsonString = jsonString.concat("]");
         return jsonString;
+    }
+
+    private String deleteTrailingComma(String jsonString) {
+        return jsonString.substring(0, jsonString.length() - 1);
     }
 
     private String convertElementToJson(String xPathString, Element element) {
