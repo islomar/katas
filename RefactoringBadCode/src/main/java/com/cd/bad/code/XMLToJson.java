@@ -100,7 +100,7 @@ public class XMLToJson {
                 for (Attribute attribute : attributeList) {
                     String attributeName = attribute.getName();
                     jsonString = jsonString.concat("'data':'").concat(titleAttrContent).concat("',");
-                    if (attributeName.equals("key")) {
+                    if ("key".equals(attributeName)) {
                         String keyContent = extractKeyContentFromElement(element);
                         jsonString = jsonString.concat(START_ATTRIBUTE_WITH_ID).concat(xPathString).concat("_fk:").concat(keyContent).concat("'}");
                         if (fileAttrContent != null) {
@@ -108,15 +108,13 @@ public class XMLToJson {
                         }
 
                         break;
-                    } else if (attributeName.equals("type")) {
+                    } else if ("type".equals(attributeName)) {
                         String typeContent = element.attributeValue("type");
                         //doc element has type "history"
-                        if (typeContent == "history") {
+                        if ("history".equals(typeContent)) {
                             jsonString = jsonString.concat(START_ATTRIBUTE_WITH_ID).concat(xPathString).concat("_fth,");
-
                         }
                         break;
-
                     }
 
                 }
@@ -126,7 +124,6 @@ public class XMLToJson {
         jsonString = jsonString.substring(0, jsonString.length() - 1);
         jsonString = jsonString.concat("]");
         return jsonString;
-
     }
 
     private String extractKeyContentFromElement(Element element) {
