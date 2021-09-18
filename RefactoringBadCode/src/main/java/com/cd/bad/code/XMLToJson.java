@@ -53,7 +53,7 @@ public class XMLToJson
         pathMap = Collections.unmodifiableMap(aMap);
     }
 
-    Util util = new Util();
+    XMLDocumentReader xmlDocumentReader = new XMLDocumentReader();
 
     /*
      * @param url the path to TOC.xml
@@ -65,7 +65,7 @@ public class XMLToJson
     @SuppressWarnings({ "unchecked" })
     public String getJson(URL url, String xPathString) throws Exception
     {
-        Document TOCDoc = util.getDocument(url);
+        Document TOCDoc = xmlDocumentReader.getDocument(url);
         String jsonString = "[";
 
         Element node = null;
@@ -198,15 +198,6 @@ public class XMLToJson
         jsonString = jsonString.concat("]");
         return jsonString;
 
-    }
-
-    /*
-     * read xpathstring from post request and generate the real xpath for toc
-     */
-    public String getXPathString()
-    {
-        //readPostRequest()
-        return null;
     }
 
     /*

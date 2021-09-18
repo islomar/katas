@@ -6,7 +6,7 @@ import org.dom4j.io.SAXReader;
 
 import java.net.URL;
 
-public class Util
+public class XMLDocumentReader
 {
     public Document getDocument(URL url)
     {
