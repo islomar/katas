@@ -67,14 +67,7 @@ public class XMLToJson {
         String jsonString = "[";
 
         Element node = null;
-        if (xPathString.equals("/")) {
-
-            node = tocDoc.getRootElement();
-        } else {
-            String realXPathString = pathMapping(xPathString);
-            System.out.println(realXPathString);
-            node = (Element) tocDoc.selectSingleNode(realXPathString);
-        }
+        node = selectNodeToConvert(xPathString, tocDoc);
 
         for (Element element : node.elements()) {
             String eleName = element.getName();
@@ -154,6 +147,18 @@ public class XMLToJson {
 
     }
 
+    private Element selectNodeToConvert(String xPathString, Document tocDoc) throws Exception {
+        Element node;
+        if (xPathString.equals("/")) {
+            node = tocDoc.getRootElement();
+        } else {
+            String realXPathString = pathMapping(xPathString);
+            System.out.println(realXPathString);
+            node = (Element) tocDoc.selectSingleNode(realXPathString);
+        }
+        return node;
+    }
+
     /*
      * post string looks like : "fk:LOETR_dtrn:TR12-118_fth_dth"
      * it represents the inner doc elemnet:
@@ -188,7 +193,7 @@ public class XMLToJson {
      *
      */
     public String pathMapping(String shortXPath) throws Exception {
-        String tagetString = null;
+        String tagetString;
         if (shortXPath.equals("")) {
             tagetString = "//toc";
         } else {
@@ -198,15 +203,11 @@ public class XMLToJson {
         int newStart = 0;
         String segString = "";
         String valueString = "";
-        //dth???
-        //need mapping all senarios
-        //already??
         while (shortXPath.indexOf("_", newStart) > -1) {
             int keyValueSepPos = 0;
             String keyString = "";//not necessary key, might be type attribute
             segString = shortXPath.substring(newStart, shortXPath.indexOf("_", newStart));
             newStart = shortXPath.indexOf("_", newStart) + 1;//new start search point
-            //System.out.println(newStart);
             if (segString.indexOf(":") > 0) {
                 keyValueSepPos = segString.indexOf(":");
                 keyString = segString.substring(0, keyValueSepPos);
@@ -243,7 +244,5 @@ public class XMLToJson {
 
         test = "";
         System.out.println(x2j.getJson(new URL("http://localhost:8080/WebNavSpring/q400/amm/toc.xml"), test));
-        //System.out.println(x2j.pathMapping(test));
-
     }
 }
