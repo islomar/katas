@@ -20,6 +20,7 @@ Code from katas practiced either on my own or through Coding Dojos, Coderetreats
 * https://katalyst.codurance.com/
 * Refactoring katas:
   * https://github.com/emilybache/Email-Sender-Refactoring-Kata/blob/master/java/src/main/java/codingdojo/Server.java
+  * https://github.com/emilybache/OvertimeCalculation-Refactoring-Kata
 * http://codekata.com/kata/kata16-business-rules/
 * Mars Rover
 * Data Munging:  http://codekata.com/kata/kata04-data-munging/
@@ -32,5 +33,6 @@ Code from katas practiced either on my own or through Coding Dojos, Coderetreats
   * http://codingdojo.org/cgi-bin/index.pl?KataBankOCR
   * http://williamdurand.fr/2013/06/03/object-calisthenics/
 * http://codurance.com/2015/11/01/practicing-well-crafted-design/
+* [Fractions kata](https://github.com/SoftwareCraftersMurcia/fractions-kata)
 * Object literal to query string:
   * http://www.codesai.com/2016/09/kata-object-literal-to-query-string/
