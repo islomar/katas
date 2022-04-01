@@ -22,6 +22,7 @@ Code from katas practiced either on my own or through Coding Dojos, Coderetreats
   * https://github.com/emilybache/Email-Sender-Refactoring-Kata/blob/master/java/src/main/java/codingdojo/Server.java
   * https://github.com/emilybache/OvertimeCalculation-Refactoring-Kata
 * http://codekata.com/kata/kata16-business-rules/
+* To practice DDD: https://medium.com/nick-tune-tech-strategy-blog/architecture-ddd-kata-online-car-dealership-540c534121e2
 * Mars Rover
 * Data Munging:  http://codekata.com/kata/kata04-data-munging/
 * Word wrap kata: http://thecleancoder.blogspot.com/2010/10/craftsman-62-dark-path.html
