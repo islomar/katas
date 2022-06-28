@@ -10,10 +10,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class DNIShould {
 
-    public static final String VALID_DNI = "21515717E";
-
     @ParameterizedTest
-    @ValueSource(strings = { VALID_DNI })
+    @ValueSource(strings = { "31970165G", "10448738E", "90250990W" })
     public void have_9_characters(String dniCandidate) {
         Either<DNIErrors, DNI> dni = DNI.from(dniCandidate);
 
