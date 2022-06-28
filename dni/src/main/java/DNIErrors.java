@@ -1,12 +1,12 @@
 public class DNIErrors {
-    private final String description;
+    private final String reason;
 
-    public DNIErrors(String description) {
+    public DNIErrors(String reason) {
 
-        this.description = description;
+        this.reason = reason;
     }
 
-    public String getDescription() {
-        return description;
+    public String reason() {
+        return reason;
     }
 }

@@ -22,7 +22,7 @@ public class DNIShould {
         Either<DNIErrors, DNI> dni = DNI.from("12345678");
 
         assertTrue(dni.isLeft());
-        assertThat(dni.getLeft().getDescription(), is("The DNI should have 9 characters (no more, no less)"));
+        assertThat(dni.getLeft().reason(), is("The DNI should have 9 characters (no more, no less)"));
     }
 
     @Test
@@ -30,6 +30,6 @@ public class DNIShould {
         Either<DNIErrors, DNI> dni = DNI.from("0123456789");
 
         assertTrue(dni.isLeft());
-        assertThat(dni.getLeft().getDescription(), is("The DNI should have 9 characters (no more, no less)"));
+        assertThat(dni.getLeft().reason(), is("The DNI should have 9 characters (no more, no less)"));
     }
 }
