@@ -76,10 +76,9 @@ public class DNI {
     }
 
     private static String calculateExpectedLastLetter(String value) {
-        String CHARACTER_SET = "TRWAGMYFPDXBNJZSQVHLCKE";
         Integer numericDigits = numericDigitsFor(value);
         int module = numericDigits % 23;
-        return String.valueOf(CHARACTER_SET.charAt(module));
+        return String.valueOf("TRWAGMYFPDXBNJZSQVHLCKE".charAt(module));
     }
 
     private static Integer numericDigitsFor(String value) {
@@ -92,9 +91,7 @@ public class DNI {
 
     private static String replaceFirstLetterWithNumber(String value, String firstCharacter) {
         int numberForFirstNIELetter = NIE_FIRST_LETTER_TO_NUMBER.get(firstCharacter);
-        char[] chars = value.toCharArray();
-        chars[0] = Integer.toString(numberForFirstNIELetter).charAt(0);
-        return String.valueOf(chars);
+        return value.replaceFirst(firstCharacter, String.valueOf(numberForFirstNIELetter));
     }
 
     private static boolean isNumeric(String value) {
