@@ -11,24 +11,17 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class DNIShould {
 
     @ParameterizedTest
-    @ValueSource(strings = { "31970165G", "10448738E", "90250990W" })
-    public void have_9_characters(String dniCandidate) {
-        Either<DNIErrors, DNI> dni = DNI.from(dniCandidate);
+    @ValueSource(strings = { "31970165G", "10448738E", "90250990W", "94985972C" })
+    public void have_9_characters(String dniValue) {
+        Either<DNIErrors, DNI> dni = DNI.from(dniValue);
 
         assertTrue(dni.isRight());
     }
 
-    @Test
-    public void be_invalid_with_8_characters() {
-        Either<DNIErrors, DNI> dni = DNI.from("12345678");
-
-        assertTrue(dni.isLeft());
-        assertThat(dni.getLeft().reason(), is("The DNI should have 9 characters (no more, no less)"));
-    }
-
-    @Test
-    public void be_invalid_with_10_characters() {
-        Either<DNIErrors, DNI> dni = DNI.from("0123456789");
+    @ParameterizedTest
+    @ValueSource(strings = { "", "12345678", "0123456789" })
+    public void be_invalid_when_length_is_not_8_characters(String dniValue) {
+        Either<DNIErrors, DNI> dni = DNI.from(dniValue);
 
         assertTrue(dni.isLeft());
         assertThat(dni.getLeft().reason(), is("The DNI should have 9 characters (no more, no less)"));
