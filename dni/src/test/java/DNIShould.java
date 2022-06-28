@@ -12,4 +12,11 @@ public class DNIShould {
 
         assertTrue(dni.isRight());
     }
+
+    @Test
+    public void be_invalid_with_8_characters() {
+        Either<DNIErrors, DNI> dni = DNI.from("12345678");
+
+        assertTrue(dni.isLeft());
+    }
 }

@@ -8,6 +8,9 @@ public class DNI {
         this.value = value;
     }
     public static Either<DNIErrors, DNI> from(String value) {
+        if (value.length() == 8) {
+            return Either.left(new DNIErrors("The DNI should have 9 characters (no more, no less)"));
+        }
         return Either.right(new DNI(value));
     }
 }
