@@ -1,6 +1,7 @@
 import io.vavr.control.Either;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -37,11 +38,15 @@ public class DNIShould {
         assertThat(dni.getLeft().reasons().get(0), is("The DNI should have 9 characters (no more, no less)"));
     }
 
-    @Test
-    public void have_8_numbers_and_a_letter_at_the_end() {
-        Either<DNIErrors, DNI> dni = DNI.from("A12345678");
+    @ParameterizedTest
+    @CsvSource({
+            "A12345678, The first 8 characters of the DNI should be numbers",
+            "12C345678, The first 8 characters of the DNI should be numbers"
+    })
+    public void have_8_numbers_and_a_letter_at_the_end(String dniValue, String errorMessage) {
+        Either<DNIErrors, DNI> dni = DNI.from(dniValue);
 
         assertTrue(dni.isLeft());
-        assertThat(dni.getLeft().reasons().get(0), is("The first 8 characters of the DNI should be numbers"));
+        assertThat(dni.getLeft().reasons().get(0), is(errorMessage));
     }
 }
