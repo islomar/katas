@@ -1,12 +1,19 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class DNIErrors {
-    private final String reason;
+    private List<String> reasons = new ArrayList<>();
 
-    public DNIErrors(String reason) {
-
-        this.reason = reason;
+    public List<String> reasons() {
+        return Collections.unmodifiableList(this.reasons);
     }
 
-    public String reason() {
-        return reason;
+    public void add(String reason) {
+        this.reasons.add(reason);
+    }
+
+    public boolean containsAny() {
+        return !this.reasons.isEmpty();
     }
 }

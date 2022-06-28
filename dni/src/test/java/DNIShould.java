@@ -27,7 +27,7 @@ public class DNIShould {
         Either<DNIErrors, DNI> dni = DNI.from(dniValue);
 
         assertTrue(dni.isLeft());
-        assertThat(dni.getLeft().reason(), is("The DNI should have 9 characters (no more, no less)"));
+        assertThat(dni.getLeft().reasons().get(0), is("The DNI should have 9 characters (no more, no less)"));
     }
 
     @ParameterizedTest
@@ -37,6 +37,14 @@ public class DNIShould {
         Either<DNIErrors, DNI> dni = DNI.from(dniValue);
 
         assertTrue(dni.isLeft());
-        assertThat(dni.getLeft().reason(), is("The DNI should have 9 characters (no more, no less)"));
+        assertThat(dni.getLeft().reasons().get(0), is("The DNI should have 9 characters (no more, no less)"));
+    }
+
+    @Test
+    public void have_8_numbers_and_a_letter_at_the_end() {
+        Either<DNIErrors, DNI> dni = DNI.from("A12345678");
+
+        assertTrue(dni.isLeft());
+        assertThat(dni.getLeft().reasons().get(0), is("The first 8 characters of the DNI should be numbers"));
     }
 }
