@@ -31,7 +31,7 @@ public class DNI {
 
     private static DNIErrors validateNumber(String value) {
         DNIErrors errors = new DNIErrors();
-        String number = value.substring(0, DNI_LENGTH - 2);
+        String number = value.substring(0, DNI_LENGTH - 1);
         boolean isNumeric = number.chars().allMatch(Character::isDigit);
         if (!isNumeric) {
             errors.add("The first 8 characters of the DNI should be numbers");

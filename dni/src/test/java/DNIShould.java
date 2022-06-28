@@ -41,9 +41,10 @@ public class DNIShould {
     @ParameterizedTest
     @CsvSource({
             "A12345678, The first 8 characters of the DNI should be numbers",
-            "12C345678, The first 8 characters of the DNI should be numbers"
+            "12C345678, The first 8 characters of the DNI should be numbers",
+            "1234567AB, The first 8 characters of the DNI should be numbers",
     })
-    public void have_8_numbers_and_a_letter_at_the_end(String dniValue, String errorMessage) {
+    public void have_8_numbers_at_the_beginning(String dniValue, String errorMessage) {
         Either<DNIErrors, DNI> dni = DNI.from(dniValue);
 
         assertTrue(dni.isLeft());
