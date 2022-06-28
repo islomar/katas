@@ -1,5 +1,7 @@
 import io.vavr.control.Either;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -10,9 +12,10 @@ public class DNIShould {
 
     public static final String VALID_DNI = "21515717E";
 
-    @Test
-    public void have_9_characters() {
-        Either<DNIErrors, DNI> dni = DNI.from(VALID_DNI);
+    @ParameterizedTest
+    @ValueSource(strings = { VALID_DNI })
+    public void have_9_characters(String dniCandidate) {
+        Either<DNIErrors, DNI> dni = DNI.from(dniCandidate);
 
         assertTrue(dni.isRight());
     }
