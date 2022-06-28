@@ -19,4 +19,11 @@ public class DNIShould {
 
         assertTrue(dni.isLeft());
     }
+
+    @Test
+    public void be_invalid_with_10_characters() {
+        Either<DNIErrors, DNI> dni = DNI.from("0123456789");
+
+        assertTrue(dni.isLeft());
+    }
 }
