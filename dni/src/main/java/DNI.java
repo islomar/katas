@@ -9,17 +9,24 @@ public class DNI {
         this.value = value;
     }
     public static Either<DNIErrors, DNI> from(String value) {
-        if (value == null || value.length() != DNI_LENGTH) {
-            DNIErrors errors = new DNIErrors();
-            errors.add(String.format("The DNI should have %s characters (no more, no less)", DNI_LENGTH));
-            return Either.left(errors);
+        DNIErrors lengthValidationErrors = validateLength(value);
+        if (lengthValidationErrors.containsAny()) {
+            return Either.left(lengthValidationErrors);
         }
-        DNIErrors validationErrors = validateNumber(value);
-        if (validationErrors.containsAny()) {
-            return Either.left(validationErrors);
+        DNIErrors numberValidationErrors = validateNumber(value);
+        if (numberValidationErrors.containsAny()) {
+            return Either.left(numberValidationErrors);
         }
 
         return Either.right(new DNI(value));
+    }
+
+    private static DNIErrors validateLength(String value) {
+        DNIErrors errors = new DNIErrors();
+        if (value == null || value.length() != DNI_LENGTH) {
+            errors.add(String.format("The DNI should have %s characters (no more, no less)", DNI_LENGTH));
+        }
+        return errors;
     }
 
     private static DNIErrors validateNumber(String value) {
