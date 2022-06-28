@@ -18,6 +18,7 @@ Code from katas practiced either on my own or through Coding Dojos, Coderetreats
 
 ## Where to find more katas
 * https://katalyst.codurance.com/
+* https://sammancoaching.org/kata_descriptions/index.html
 * Refactoring katas:
   * https://github.com/emilybache/Email-Sender-Refactoring-Kata/blob/master/java/src/main/java/codingdojo/Server.java
   * https://github.com/emilybache/OvertimeCalculation-Refactoring-Kata
