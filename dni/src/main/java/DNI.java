@@ -1,8 +1,11 @@
 import io.vavr.control.Either;
 
+import java.util.List;
+
 public class DNI {
 
     public static final int DNI_LENGTH = 9;
+    public static final List<String> NIE_VALID_FIRST_LETTERS = List.of("X", "Y", "Z");
     private final String value;
 
     private DNI(String value) {
@@ -35,11 +38,23 @@ public class DNI {
 
     private static DNIErrors validateNumber(String value) {
         DNIErrors errors = new DNIErrors();
-        String number = value.substring(0, DNI_LENGTH - 1);
-        if (!isNumeric(number)) {
+        String numberWithoutFirstCharacter = value.substring(1, DNI_LENGTH - 1);
+        if (containsAnyLetter(numberWithoutFirstCharacter)) {
             errors.add("The first 8 characters of the DNI should be numbers");
         }
+        if (!isFirstCharacterValid(value)) {
+            errors.add("The first character should be a number or a valid NIE letter");
+        }
         return errors;
+    }
+
+    private static boolean isFirstCharacterValid(String value) {
+        String firstCharacter = String.valueOf(value.charAt(0));
+        return isNumeric(firstCharacter) || mightBeNIE(firstCharacter);
+    }
+
+    private static boolean mightBeNIE(String value) {
+       return NIE_VALID_FIRST_LETTERS.contains(value);
     }
 
     private static DNIErrors validateLetter(String value) {
@@ -53,5 +68,9 @@ public class DNI {
 
     private static boolean isNumeric(String value) {
         return value.chars().allMatch(Character::isDigit);
+    }
+
+    private static boolean containsAnyLetter(String value) {
+        return !isNumeric(value);
     }
 }

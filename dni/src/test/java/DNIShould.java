@@ -20,6 +20,14 @@ public class DNIShould {
     }
 
     @ParameterizedTest
+    @ValueSource(strings = { "Z5090857L", "Y0468622B", "X4326926M" })
+    public void be_valid_for_NIE(String nieValue) {
+        Either<DNIErrors, DNI> nie = DNI.from(nieValue);
+
+        assertTrue(nie.isRight());
+    }
+
+    @ParameterizedTest
     @ValueSource(strings = { "12345678", "0123456789" })
     public void be_invalid_when_length_is_not_8_characters(String dniValue) {
         Either<DNIErrors, DNI> dni = DNI.from(dniValue);
@@ -40,11 +48,11 @@ public class DNIShould {
 
     @ParameterizedTest
     @CsvSource({
-            "A12345678, The first 8 characters of the DNI should be numbers",
-            "12C345678, The first 8 characters of the DNI should be numbers",
+            "A1234567C, The first character should be a number or a valid NIE letter",
+            "12C34567D, The first 8 characters of the DNI should be numbers",
             "1234567AB, The first 8 characters of the DNI should be numbers",
     })
-    public void have_8_numbers_at_the_beginning(String dniValue, String errorMessage) {
+    public void have_8_numbers_at_the_beginning_for_NIF(String dniValue, String errorMessage) {
         Either<DNIErrors, DNI> dni = DNI.from(dniValue);
 
         assertTrue(dni.isLeft());
