@@ -1,11 +1,17 @@
 import io.vavr.control.Either;
 
 import java.util.List;
+import java.util.Map;
 
 public class DNI {
 
-    public static final int DNI_LENGTH = 9;
-    public static final List<String> NIE_VALID_FIRST_LETTERS = List.of("X", "Y", "Z");
+    private static final int DNI_LENGTH = 9;
+    private static final List<String> NIE_VALID_FIRST_LETTERS = List.of("X", "Y", "Z");
+    private static final Map<String, Integer> NIE_FIRST_LETTER_TO_NUMBER = Map.of(
+            "X", 0,
+            "Y", 1,
+            "Z", 2
+    );
     private final String value;
 
     private DNI(String value) {
@@ -20,7 +26,7 @@ public class DNI {
         if (numberValidationErrors.containsAny()) {
             return Either.left(numberValidationErrors);
         }
-        DNIErrors letterValidationErrors = validateLetter(value);
+        DNIErrors letterValidationErrors = validateLastCharacter(value);
         if (letterValidationErrors.containsAny()) {
             return Either.left(letterValidationErrors);
         }
@@ -57,13 +63,33 @@ public class DNI {
        return NIE_VALID_FIRST_LETTERS.contains(value);
     }
 
-    private static DNIErrors validateLetter(String value) {
+    private static DNIErrors validateLastCharacter(String value) {
         DNIErrors errors = new DNIErrors();
-        String letter = value.substring(DNI_LENGTH - 1);
-        if (isNumeric(letter)) {
+        String lastCharacter = value.substring(DNI_LENGTH - 1);
+        if (isNumeric(lastCharacter)) {
             errors.add("The last character of the DNI should be a valid letter");
         }
+        String expectedLastLetter = calculateExpectedLastLetter(value);
+        if (!expectedLastLetter.equalsIgnoreCase(lastCharacter)) {
+            errors.add(String.format("The last character of the DNI is not the right letter: expected %s but found %s", expectedLastLetter, lastCharacter));
+        }
         return errors;
+    }
+
+    private static String calculateExpectedLastLetter(String value) {
+        String CHARACTER_SET = "TRWAGMYFPDXBNJZSQVHLCKE";
+        String numericDigits = null;
+        String firstCharacter = String.valueOf(value.charAt(0));
+        if (mightBeNIE(firstCharacter)) {
+            int numberForFirstNIELetter = NIE_FIRST_LETTER_TO_NUMBER.get(firstCharacter);
+            char[] chars = value.toCharArray();
+            chars[0] = Integer.toString(numberForFirstNIELetter).charAt(0);
+            value = String.valueOf(chars);
+        }
+        numericDigits = value.substring(0, DNI_LENGTH - 1);
+
+        int module = Integer.parseInt(numericDigits) % 23;
+        return String.valueOf(CHARACTER_SET.charAt(module));
     }
 
     private static boolean isNumeric(String value) {

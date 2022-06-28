@@ -1,5 +1,4 @@
 import io.vavr.control.Either;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -13,7 +12,7 @@ public class DNIShould {
 
     @ParameterizedTest
     @ValueSource(strings = { "31970165G", "10448738E", "90250990W", "94985972C" })
-    public void have_9_characters(String dniValue) {
+    public void be_valid_for_DNI(String dniValue) {
         Either<DNIErrors, DNI> dni = DNI.from(dniValue);
 
         assertTrue(dni.isRight());
@@ -29,7 +28,7 @@ public class DNIShould {
 
     @ParameterizedTest
     @ValueSource(strings = { "12345678", "0123456789" })
-    public void be_invalid_when_length_is_not_8_characters(String dniValue) {
+    public void be_invalid_when_length_is_not_9_characters(String dniValue) {
         Either<DNIErrors, DNI> dni = DNI.from(dniValue);
 
         assertTrue(dni.isLeft());
@@ -62,6 +61,7 @@ public class DNIShould {
     @ParameterizedTest
     @CsvSource({
             "123456789, The last character of the DNI should be a valid letter",
+            "31970165E, The last character of the DNI is not the right letter: expected G but found E",
     })
     public void have_a_valid_letter_at_the_end(String dniValue, String errorMessage) {
         Either<DNIErrors, DNI> dni = DNI.from(dniValue);
