@@ -76,6 +76,8 @@ public class DNI {
 
     private static String calculateExpectedLastLetter(String value) {
         Integer numericDigits = numericDigitsFor(value);
+        // The reason why the module is for 23 is because from the 27 Spanish letters, four of them are removed
+        // for avoiding different issues: U, I, O and Ñ
         int module = numericDigits % 23;
         return String.valueOf("TRWAGMYFPDXBNJZSQVHLCKE".charAt(module));
     }

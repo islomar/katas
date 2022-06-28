@@ -7,3 +7,5 @@
 ## TODO
 - "21 515717E": valid, trim it and save it correctly.
 - Simplify DNIErrors: it does not need a list right now...
+- Is "DNI" a good name, since it might keep a NIE as well? Should it be called something else? Should I model two different value objects?
+  - The description of the kata is wrong/misleading... a NIE is not a DNI.
