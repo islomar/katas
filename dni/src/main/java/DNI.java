@@ -6,7 +6,6 @@ import java.util.Map;
 public class DNI {
 
     private static final int DNI_LENGTH = 9;
-    private static final List<String> NIE_VALID_FIRST_LETTERS = List.of("X", "Y", "Z");
     private static final Map<String, Integer> NIE_FIRST_LETTER_TO_NUMBER = Map.of(
             "X", 0,
             "Y", 1,
@@ -60,7 +59,7 @@ public class DNI {
     }
 
     private static boolean mightBeNIE(String value) {
-       return NIE_VALID_FIRST_LETTERS.contains(value);
+        return NIE_FIRST_LETTER_TO_NUMBER.containsKey(value);
     }
 
     private static DNIErrors validateLastCharacter(String value) {
