@@ -1,6 +1,8 @@
 import io.vavr.control.Either;
 import org.junit.jupiter.api.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -20,6 +22,7 @@ public class DNIShould {
         Either<DNIErrors, DNI> dni = DNI.from("12345678");
 
         assertTrue(dni.isLeft());
+        assertThat(dni.getLeft().getDescription(), is("The DNI should have 9 characters (no more, no less)"));
     }
 
     @Test
@@ -27,5 +30,6 @@ public class DNIShould {
         Either<DNIErrors, DNI> dni = DNI.from("0123456789");
 
         assertTrue(dni.isLeft());
+        assertThat(dni.getLeft().getDescription(), is("The DNI should have 9 characters (no more, no less)"));
     }
 }

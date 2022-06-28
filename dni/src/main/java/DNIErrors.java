@@ -5,4 +5,8 @@ public class DNIErrors {
 
         this.description = description;
     }
+
+    public String getDescription() {
+        return description;
+    }
 }
