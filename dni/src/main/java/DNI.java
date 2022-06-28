@@ -17,6 +17,10 @@ public class DNI {
         if (numberValidationErrors.containsAny()) {
             return Either.left(numberValidationErrors);
         }
+        DNIErrors letterValidationErrors = validateLetter(value);
+        if (letterValidationErrors.containsAny()) {
+            return Either.left(letterValidationErrors);
+        }
 
         return Either.right(new DNI(value));
     }
@@ -32,10 +36,22 @@ public class DNI {
     private static DNIErrors validateNumber(String value) {
         DNIErrors errors = new DNIErrors();
         String number = value.substring(0, DNI_LENGTH - 1);
-        boolean isNumeric = number.chars().allMatch(Character::isDigit);
-        if (!isNumeric) {
+        if (!isNumeric(number)) {
             errors.add("The first 8 characters of the DNI should be numbers");
         }
         return errors;
+    }
+
+    private static DNIErrors validateLetter(String value) {
+        DNIErrors errors = new DNIErrors();
+        String letter = value.substring(DNI_LENGTH - 1);
+        if (isNumeric(letter)) {
+            errors.add("The last character of the DNI should be a valid letter");
+        }
+        return errors;
+    }
+
+    private static boolean isNumeric(String value) {
+        return value.chars().allMatch(Character::isDigit);
     }
 }

@@ -50,4 +50,15 @@ public class DNIShould {
         assertTrue(dni.isLeft());
         assertThat(dni.getLeft().reasons().get(0), is(errorMessage));
     }
+
+    @ParameterizedTest
+    @CsvSource({
+            "123456789, The last character of the DNI should be a valid letter",
+    })
+    public void have_a_valid_letter_at_the_end(String dniValue, String errorMessage) {
+        Either<DNIErrors, DNI> dni = DNI.from(dniValue);
+
+        assertTrue(dni.isLeft());
+        assertThat(dni.getLeft().reasons().get(0), is(errorMessage));
+    }
 }
