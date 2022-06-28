@@ -6,3 +6,4 @@
 
 ## TODO
 - "21 515717E": valid, trim it and save it correctly.
+- Simplify DNIErrors: it does not need a list right now...

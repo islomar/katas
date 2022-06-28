@@ -3,7 +3,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class DNIErrors {
-    private List<String> reasons = new ArrayList<>();
+    private final List<String> reasons = new ArrayList<>();
 
     public List<String> reasons() {
         return Collections.unmodifiableList(this.reasons);
