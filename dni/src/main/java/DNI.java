@@ -1,6 +1,5 @@
 import io.vavr.control.Either;
 
-import java.util.List;
 import java.util.Map;
 
 public class DNI {
@@ -100,5 +99,9 @@ public class DNI {
 
     private static boolean containsAnyLetter(String value) {
         return !isNumeric(value);
+    }
+
+    public String value() {
+        return value;
     }
 }
