@@ -6,9 +6,11 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class DNIShould {
 
+    public static final String VALID_DNI = "21515717E";
+
     @Test
     public void have_9_characters() {
-        Either<DNIErrors, DNI> dni = DNI.from("123456789");
+        Either<DNIErrors, DNI> dni = DNI.from(VALID_DNI);
 
         assertTrue(dni.isRight());
     }
