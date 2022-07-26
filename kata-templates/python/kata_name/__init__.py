@@ -1,0 +1,1 @@
+from .kata_name import Foo
