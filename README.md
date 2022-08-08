@@ -15,6 +15,8 @@ Code from katas practiced either on my own or through Coding Dojos, Coderetreats
 * https://leanmind.es/es/blog/kata-apariencias-impares/
 * https://github.com/tomphp/untangled-conditionals-kata
   * https://www.youtube.com/watch?v=NWgY-0Qu4S4
+* Hand challenge: https://github.com/jesus-seijas-sp/hand-challenge
+
 
 ## Where to find more katas
 * https://katalyst.codurance.com/
