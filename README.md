@@ -24,6 +24,7 @@ Code from katas practiced either on my own or through Coding Dojos, Coderetreats
 * Refactoring katas:
   * https://github.com/emilybache/Email-Sender-Refactoring-Kata/blob/master/java/src/main/java/codingdojo/Server.java
   * https://github.com/emilybache/OvertimeCalculation-Refactoring-Kata
+* https://github.com/Codesai/practice_program
 * http://codekata.com/kata/kata16-business-rules/
 * To practice DDD: https://medium.com/nick-tune-tech-strategy-blog/architecture-ddd-kata-online-car-dealership-540c534121e2
 * Mars Rover
