@@ -6,3 +6,4 @@ doublex==1.8.1
 coverage==3.7.1
 expects==0.8.0
 doublex-expects==0.7.0rc1
+setuptools>=65.5.1 # not directly required, pinned by Snyk to avoid a vulnerability
