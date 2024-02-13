@@ -6,9 +6,7 @@ WORKDIR /code
 
 COPY pyproject.toml /code
 
-RUN pip install poetry
-
-RUN poetry install
+RUN pip install --no-cache-dir poetry==1.7.1 && poetry install
 
 COPY . /code
 

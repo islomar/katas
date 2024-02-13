@@ -16,6 +16,10 @@ build: ## Builds the Docker image
 update: ## Updates the Python packages
 	docker compose run --rm --no-deps python-kata-name poetry update
 
+.PHONY: check-dockerfile
+check-dockerfile: ## Validate the Dockerfile
+	docker run --rm -i hadolint/hadolint:latest-alpine < Dockerfile
+
 .PHONY: test
 test: ## Run all the tests
 	docker compose run --rm --no-deps python-kata-name poetry run pytest -n auto tests -ra
