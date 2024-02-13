@@ -12,6 +12,22 @@ local-setup: ## Set up the local environment (e.g. install git hooks)
 build: ## Builds the Docker image
 	COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker compose build
 
+.PHONY: add-package
+add-package: ## Add package to the project ex: make add-package package=XX
+	docker compose run --rm --no-deps python-kata-name poetry add $(package)
+	make build
+
+.PHONY: add-dev-package
+add-dev-package: ## Add dev package to the project ex: make add-dev-package package=XX
+	docker compose run --rm --no-deps python-kata-name poetry add $(package) -G dev
+	make build
+
+.PHONY: build-with-updated-packages
+build-with-updated-packages: ## Rebuild the docker image with updated python packages
+	rm -f poetry.lock
+	docker compose run --rm --no-deps chatcommands poetry update
+	make build
+
 .PHONY: update
 update: ## Updates the Python packages
 	docker compose run --rm --no-deps python-kata-name poetry update
@@ -21,8 +37,16 @@ check-dockerfile: ## Validate the Dockerfile
 	docker run --rm -i hadolint/hadolint:latest-alpine < Dockerfile
 
 .PHONY: check-typing
-check-typing:  ## Run a static analyzer over the code to find issues
+check-typing:  ## Check types (using mypy)
 	docker compose run --rm --no-deps python-kata-name poetry run mypy .
+
+.PHONY: check-format
+check-format: ## Check the format (using black)
+	docker compose run --rm --no-deps python-kata-name poetry run black --check .
+
+.PHONY: reformat
+reformat:  ## Format Python code
+	docker compose run --rm --no-deps python-kata-name poetry run black .
 
 .PHONY: test
 test: ## Run all the tests
@@ -35,5 +59,5 @@ coverage:
 	coverage html
 	@printf "To visualize the lines open the report at htmlcov/index.html\n"
 
-docker-coverage: # Run the test coverage with Docker
+docker-coverage: ## Run the test coverage with Docker
 	@docker run --rm -v ${PWD}:/kata islomar/kata-name make coverage
