@@ -13,12 +13,12 @@ build: ## Builds the Docker image
 	COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker compose build
 
 .PHONY: add-package
-add-package: ## Add package to the project ex: make add-package package=XX
+add-package: ## Add package to the project: 'make add-package package=<package-name>'
 	docker compose run --rm --no-deps python-kata-name poetry add $(package)
 	make build
 
 .PHONY: add-dev-package
-add-dev-package: ## Add dev package to the project ex: make add-dev-package package=XX
+add-dev-package: ## Add dev package to the project: 'make add-dev-package package=<package-name>'
 	docker compose run --rm --no-deps python-kata-name poetry add $(package) -G dev
 	make build
 
@@ -52,12 +52,17 @@ reformat:  ## Format Python code
 test: ## Run all the tests
 	docker compose run --rm --no-deps python-kata-name poetry run pytest -n auto tests -ra
 
-.PHONY: coverage
-coverage:
-	coverage run --source=user_registration -m unittest
-	coverage report
-	coverage html
-	@printf "To visualize the lines open the report at htmlcov/index.html\n"
+.PHONY: test-coverage
+test-coverage: ## Generate an HTML test coverage report after running all the tests
+	docker compose run --rm python-kata-name poetry run coverage run --branch -m pytest tests
+	docker compose run --rm python-kata-name poetry run coverage html
+	@echo "You can find the generated coverage report here: ${PWD}/htmlcov/index.html"
 
-docker-coverage: ## Run the test coverage with Docker
-	@docker run --rm -v ${PWD}:/kata islomar/kata-name make coverage
+.PHONY: pre-commit
+pre-commit: check-format check-typing test
+
+.PHONY: rename-project
+rename-project: ## Rename project: 'make rename name=<new-name>'
+	sed -i 's/python-kata-name/$(name)/' docker-compose.yaml
+	sed -i 's/python-kata-name/$(name)/' Makefile
+	sed -i 's/python-kata-name/$(name)/' pyproject.toml
