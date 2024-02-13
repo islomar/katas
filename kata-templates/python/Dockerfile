@@ -1,8 +1,15 @@
-FROM python:3.8
+FROM python:3.10-alpine
 
-RUN pip3 install coverage
-RUN pip3 install pytest-cov
-RUN pip3 install mutmut
-RUN pip3 install doublex doublex-expects
+RUN apk  update --no-cache && apk upgrade --no-cache --available
 
-WORKDIR /kata
+WORKDIR /code
+
+COPY pyproject.toml /code
+
+RUN pip install poetry
+
+RUN poetry install
+
+COPY . /code
+
+CMD ["poetry", "run"]

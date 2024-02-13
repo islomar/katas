@@ -1,7 +1,12 @@
-from kata_name import Foo
+from expects import equal, expect
+from src.foo import Foo
 
-class FooTest():
 
-    def test_xxx(self):
-        Foo()
-        self.assertEqual(True, True)
+class TestFoo:
+
+    def test_add_two_ints(self) -> None:
+        foo = Foo()
+
+        result = foo.add(1, 2)
+
+        expect(result).to(equal(3))
