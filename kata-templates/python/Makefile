@@ -20,6 +20,10 @@ update: ## Updates the Python packages
 check-dockerfile: ## Validate the Dockerfile
 	docker run --rm -i hadolint/hadolint:latest-alpine < Dockerfile
 
+.PHONY: check-typing
+check-typing:  ## Run a static analyzer over the code to find issues
+	docker compose run --rm --no-deps python-kata-name poetry run mypy .
+
 .PHONY: test
 test: ## Run all the tests
 	docker compose run --rm --no-deps python-kata-name poetry run pytest -n auto tests -ra
