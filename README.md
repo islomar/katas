@@ -19,8 +19,14 @@ Code from katas practiced either on my own or through Coding Dojos, Coderetreats
 
 
 ## Where to find more katas
+* https://sammancoaching.org/kata_descriptions/index.html 
+* https://kata-log.rocks/ 
+* https://codingdojo.org/kata/
+* https://github.com/emilybache 
+* https://www.codurance.com/katas 
 * https://katalyst.codurance.com/
 * https://sammancoaching.org/kata_descriptions/index.html
+* Codium repos, e.g. https://github.com/CodiumTeam/tdd-training-js  
 * Refactoring katas:
   * https://github.com/emilybache/Email-Sender-Refactoring-Kata/blob/master/java/src/main/java/codingdojo/Server.java
   * https://github.com/emilybache/OvertimeCalculation-Refactoring-Kata
