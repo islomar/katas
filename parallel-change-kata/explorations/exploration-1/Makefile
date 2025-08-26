@@ -1,0 +1,2 @@
+test:
+	./gradlew clean test
