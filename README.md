@@ -1,6 +1,5 @@
 # Repository for katas
 
-
 Code from katas practiced either on my own or through Coding Dojos, Coderetreats, etc.
 
 ## Pending
@@ -19,6 +18,10 @@ Code from katas practiced either on my own or through Coding Dojos, Coderetreats
   * https://www.youtube.com/watch?v=NWgY-0Qu4S4
 * Hand challenge: https://github.com/jesus-seijas-sp/hand-challenge
 
+## Kata bootstraps
+- https://github.com/rradczewski/kata-bootstraps
+- https://github.com/swkberlin/kata-bootstraps
+- [My kata templates](./kata-templates/)
 
 ## Resources with lots of katas
 * https://sammancoaching.org/kata_descriptions/index.html 
